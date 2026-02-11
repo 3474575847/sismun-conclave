@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-platinum: #F9FAFB;
+    --color-gold: #B89146;
+    --color-charcoal: #1A1A1A;
+  }
+
+  * {
+    border-color: rgba(184, 145, 70, 0.2);
+  }
+
+  body {
+    cursor: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(184, 145, 70, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-charcoal) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Global Scrollbar Hide */
+  html,
+  body {
+    scrollbar-width: none !important;
+    /* Firefox */
+    -ms-overflow-style: none !important;
+    /* IE/Edge */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
