@@ -4,13 +4,17 @@
 
 @layer base {
   :root {
-    --color-platinum: #F9FAFB;
-    --color-gold: #B89146;
-    --color-charcoal: #1A1A1A;
+    --color-platinum: #F0F4F8;
+    /* Cool White */
+    --color-gold: #FFCC00;
+    /* School Yellow */
+    --color-charcoal: #0A192F;
+    /* Deep Royal Blue */
   }
 
   * {
-    border-color: rgba(184, 145, 70, 0.2);
+    border-color: rgba(255, 204, 0, 0.2);
+    /* School Gold Border */
   }
 
   body {
@@ -23,18 +27,36 @@
 }
 
 @layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: var(--font-cormorant), serif;
+  }
+
   .glass-card {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.9);
+    /* Opaque white for clarity */
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(184, 145, 70, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 204, 0, 0.3);
+    /* Gold border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: var(--color-charcoal);
+    /* Force dark text in cards */
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-charcoal) 100%);
+    background: linear-gradient(135deg, var(--color-gold) 0%, #D32F2F 100%);
+    /* Gold to Red */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .border-glow {
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+    /* School Gold Glow */
   }
 
   /* Global Scrollbar Hide */

@@ -55,7 +55,7 @@ export default function FooterSection() {
     return (
         <footer
             ref={sectionRef}
-            className="relative min-h-screen bg-gradient-to-b from-platinum via-platinum to-black overflow-hidden flex items-center justify-center"
+            className="relative min-h-screen bg-gradient-to-b from-charcoal via-charcoal to-black overflow-hidden flex items-center justify-center"
         >
             {/* Parallax background elements */}
             <div className="parallax-slow absolute top-20 left-20 w-40 h-40 border border-gold/10 rounded-full" />
@@ -84,7 +84,7 @@ export default function FooterSection() {
                             cy="250"
                             r="200"
                             fill="none"
-                            stroke="#C5A059"
+                            stroke="#FFCC00" /* School Gold */
                             strokeWidth="2"
                             clipPath="url(#reveal-clip)"
                         />
@@ -94,7 +94,7 @@ export default function FooterSection() {
                             x="250"
                             y="230"
                             textAnchor="middle"
-                            fill="#C5A059"
+                            fill="#FFCC00" /* School Gold */
                             fontSize="48"
                             fontWeight="bold"
                             clipPath="url(#reveal-clip)"
@@ -107,7 +107,7 @@ export default function FooterSection() {
                             x="250"
                             y="280"
                             textAnchor="middle"
-                            fill="#F5F5F7"
+                            fill="#F0F4F8" /* Platinum/White */
                             fontSize="36"
                             clipPath="url(#reveal-clip)"
                         >
@@ -117,12 +117,12 @@ export default function FooterSection() {
                 </div>
 
                 {/* School name */}
-                <h3 className="text-4xl md:text-5xl font-bold text-gradient mb-8">
+                <h3 className="text-4xl md:text-5xl font-display font-bold text-gradient mb-8">
                     Singapore International School
                 </h3>
 
                 {/* Contact info */}
-                <div className="flex flex-wrap justify-center gap-8 mb-12 text-charcoal/60">
+                <div className="flex flex-wrap justify-center gap-8 mb-12 text-platinum/60">
                     <a
                         href="mailto:mun@sis.edu.sg"
                         className="hover:text-gold transition-colors duration-300"
@@ -155,7 +155,7 @@ export default function FooterSection() {
                 <div className="max-w-4xl mx-auto h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent mb-8" />
 
                 {/* Copyright */}
-                <p className="text-charcoal/40 text-sm font-mono">
+                <p className="text-platinum/40 text-sm font-mono">
                     © 2024 SISMUN. Crafted with precision and diplomacy.
                 </p>
             </div>
@@ -165,7 +165,7 @@ export default function FooterSection() {
                 <div
                     className="w-full h-full"
                     style={{
-                        backgroundImage: `linear-gradient(#C5A059 1px, transparent 1px), linear-gradient(90deg, #C5A059 1px, transparent 1px)`,
+                        backgroundImage: `linear-gradient(#FFCC00 1px, transparent 1px), linear-gradient(90deg, #FFCC00 1px, transparent 1px)`,
                         backgroundSize: '50px 50px',
                     }}
                 />

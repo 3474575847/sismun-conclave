@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 // Dynamically import HeroScene to avoid SSR issues with Three.js
 const HeroScene = dynamic(() => import('./HeroScene'), {
     ssr: false,
-    loading: () => <div className="absolute inset-0 bg-platinum" />,
+    loading: () => <div className="absolute inset-0 bg-white" />,
 });
 
 const splitTextReveal = (element: HTMLElement, delay: number = 0) => {
@@ -51,18 +51,18 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <section id="hero-section" className="relative h-screen w-full overflow-hidden bg-platinum">
-            {/* 3D Background */}
-            <HeroScene />
-
+        <section id="hero-section" className="relative h-screen w-full overflow-hidden bg-white">
+            <div className="absolute inset-0 z-0">
+                <HeroScene />
+            </div>
             {/* Gradient overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-platinum/30 to-platinum pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal/30 to-charcoal pointer-events-none" />
 
             {/* Content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full px-8">
                 <h1
                     ref={titleRef}
-                    className="text-[120px] md:text-[180px] lg:text-[220px] font-bold text-[#C5A059] leading-none tracking-tighter mb-6"
+                    className="text-[120px] md:text-[180px] lg:text-[220px] font-display font-bold text-gold leading-none tracking-tighter mb-6"
                     style={{ perspective: '1000px' }}
                 >
                     SISMUN

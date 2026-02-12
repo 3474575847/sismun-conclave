@@ -1,13 +1,15 @@
 import HeroSection from '@/components/HeroSection';
-import MissionSection from '@/components/MissionSection';
+import ThemeSection from '@/components/ThemeSection';
+import SecretariatSection from '@/components/SecretariatSection';
 import CommitteesSection from '@/components/CommitteesSection';
 import FooterSection from '@/components/FooterSection';
 
 export default function Home() {
     return (
-        <main className="relative bg-platinum">
+        <main className="min-h-screen bg-charcoal text-platinum selection:bg-gold/30">
             <HeroSection />
-            <MissionSection />
+            <ThemeSection />
+            <SecretariatSection />
             <CommitteesSection />
             <FooterSection />
         </main>

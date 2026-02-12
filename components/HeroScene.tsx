@@ -90,11 +90,11 @@ function ParticleGlobe({ mousePosition }: { mousePosition: { x: number; y: numbe
         <Points ref={pointsRef} positions={particlesPosition} stride={3} frustumCulled={false}>
             <PointMaterial
                 transparent
-                color="#000000"
+                color="#0A192F" // Deep Blue for Light Mode
                 size={0.02}
                 sizeAttenuation={true}
                 depthWrite={false}
-                opacity={0.4}
+                opacity={0.6}
             />
         </Points>
     );

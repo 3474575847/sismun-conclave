@@ -9,14 +9,18 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                platinum: '#F9FAFB', // Light Background
-                charcoal: '#1A1A1A', // Dark Text
-                gold: '#B89146',     // Contrast Gold
-                border: 'rgba(184, 145, 70, 0.2)',
+                platinum: '#F0F4F8', // Cool White
+                charcoal: '#0A192F', // Deep Royal Blue (Background/Text)
+                gold: '#FFCC00',     // School Yellow/Gold
+                'school-red': '#D32F2F',
+                'school-blue': '#1565C0',
+                border: 'rgba(255, 204, 0, 0.2)', // Gold border
             },
             fontFamily: {
-                sans: ['Inter', 'system-ui', 'sans-serif'],
-                mono: ['JetBrains Mono', 'monospace'],
+                sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+                mono: ['var(--font-jetbrains-mono)', 'monospace'],
+                display: ['var(--font-cormorant)', 'serif'],
+                serif: ['var(--font-cormorant)', 'serif'],
             },
             animation: {
                 'border-beam': 'border-beam 2s linear infinite',

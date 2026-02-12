@@ -1,6 +1,6 @@
 // Force rebuild: Light Theme Update
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono, Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import MechanicalCursor from '@/components/MechanicalCursor';
@@ -13,6 +13,13 @@ const inter = Inter({
 const jetbrainsMono = JetBrains_Mono({
     subsets: ['latin'],
     variable: '--font-jetbrains',
+});
+
+const cormorant = Cormorant_Garamond({
+    subsets: ["latin"],
+    variable: "--font-cormorant",
+    weight: ["300", "400", "500", "600", "700"],
+    display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -33,8 +40,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-            <body className={`${inter.className} font-sans bg-platinum text-charcoal antialiased selection:bg-gold/30 no-scrollbar`}>
+        <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${cormorant.variable}`}>
+            <body className={`${inter.className} font-sans bg-white text-charcoal antialiased selection:bg-gold/30 no-scrollbar`}>
                 <SmoothScroll>
                     <MechanicalCursor />
                     {children}
