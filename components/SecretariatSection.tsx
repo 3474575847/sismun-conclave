@@ -19,7 +19,7 @@ const secretariat = [
     },
     {
         name: 'Chahel Dharod',
-        role: 'Special Advisor to the Secretary-General',
+        role: 'Deputy Secretary-General',
         image: null, // Placeholder
     },
 ];

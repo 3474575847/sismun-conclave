@@ -14,13 +14,19 @@ const splitTextReveal = (element: HTMLElement, delay: number = 0) => {
     const text = element.textContent || '';
     element.innerHTML = '';
 
-    const chars = text.split('').map((char) => {
+    const chars = text.split('').map((char, index) => {
         const span = document.createElement('span');
         span.textContent = char === ' ' ? '\u00A0' : char;
         span.style.display = 'inline-block';
         span.style.transformStyle = 'preserve-3d';
         span.style.opacity = '0';
         span.style.transform = 'rotateX(90deg)';
+
+        // Apply school-red to 'SIS' in 'SISMUN'
+        if (text === 'SISMUN' && index < 3) {
+            span.style.color = '#D32F2F';
+        }
+
         element.appendChild(span);
         return span;
     });
@@ -56,7 +62,7 @@ export default function HeroSection() {
                 <HeroScene />
             </div>
             {/* Gradient overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal/30 to-charcoal pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal/10 to-charcoal/20 pointer-events-none" />
 
             {/* Content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full px-8">
@@ -70,7 +76,7 @@ export default function HeroSection() {
 
                 <p
                     ref={subtitleRef}
-                    className="text-lg md:text-xl text-charcoal/80 font-light tracking-[0.3em] uppercase"
+                    className="text-lg md:text-xl text-charcoal/80 font-display font-medium tracking-[0.3em] uppercase text-center"
                     style={{ perspective: '1000px' }}
                 >
                     Singapore International School Model United Nations

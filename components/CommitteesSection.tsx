@@ -125,7 +125,7 @@ export default function CommitteesSection() {
 
         if (direction === 1) {
             tl.to(`.committee-card-${next}`, {
-                yPercent: 0,
+                xPercent: 0,
                 duration: 2.0,
                 ease: "power3.inOut"
             }, "-=0.2");
@@ -138,7 +138,7 @@ export default function CommitteesSection() {
             }, "<");
         } else {
             tl.to(`.committee-card-${current}`, {
-                yPercent: 100,
+                xPercent: 100,
                 duration: 2.0,
                 ease: "power3.inOut"
             }, "-=0.2");
@@ -167,7 +167,7 @@ export default function CommitteesSection() {
 
         const ctx = gsap.context(() => {
             committees.forEach((_, i) => {
-                if (i > 0) gsap.set(`.committee-card-${i}`, { yPercent: 100 });
+                if (i > 0) gsap.set(`.committee-card-${i}`, { xPercent: 100 });
             });
 
             const trigger = ScrollTrigger.create({
@@ -246,7 +246,7 @@ export default function CommitteesSection() {
     return (
         <section ref={sectionRef} className="relative h-screen bg-white overflow-hidden select-none">
             {/* Slide Indicators */}
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 pointer-events-auto">
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex flex-row gap-3 pointer-events-auto">
                 {committees.map((_, i) => (
                     <button
                         key={i}
@@ -310,29 +310,9 @@ export default function CommitteesSection() {
                                     </div>
                                 </div>
 
-                                <p className="text-lg text-charcoal/60 leading-relaxed font-light border-l-2 border-charcoal/10 pl-6">
+                                <p className="text-lg text-charcoal/60 leading-relaxed font-light border-l-2 border-charcoal/10 pl-6 max-w-md">
                                     {committee.description}
                                 </p>
-
-                                {/* Data Table */}
-                                <div className="grid grid-cols-2 gap-y-4 gap-x-8 font-mono text-[10px] uppercase tracking-widest text-charcoal/40">
-                                    <div className="border-b border-charcoal/10 pb-2">
-                                        <span>TYPE</span>
-                                        <span className="block text-charcoal mt-1">SPECIALIZED_AGENCY</span>
-                                    </div>
-                                    <div className="border-b border-charcoal/10 pb-2">
-                                        <span>DIFFICULTY</span>
-                                        <span className="block text-gold mt-1">ADVANCED</span>
-                                    </div>
-                                    <div className="border-b border-charcoal/10 pb-2">
-                                        <span>DELEGATES</span>
-                                        <span className="block text-charcoal mt-1">DOUBLE_DEL</span>
-                                    </div>
-                                    <div className="border-b border-charcoal/10 pb-2">
-                                        <span>SESSION</span>
-                                        <span className="block text-charcoal mt-1">001_INAUGURAL</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
