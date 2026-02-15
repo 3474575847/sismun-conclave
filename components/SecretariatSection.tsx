@@ -1,5 +1,5 @@
 'use client';
-
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,17 +10,17 @@ const secretariat = [
     {
         name: 'Zorawar Bhinder',
         role: 'Secretary-General',
-        image: null, // Placeholder
+        image: '/zorawar bhinder.jpeg', // Placeholder
     },
     {
         name: 'Ritvayg Bindal',
         role: 'Deputy Secretary-General',
-        image: null, // Placeholder
+        image: '/ritvayg bindal.jpeg', // Placeholder
     },
     {
         name: 'Chahel Dharod',
         role: 'Deputy Secretary-General',
-        image: null, // Placeholder
+        image: '/chahel dharod.jpeg', // Placeholder
     },
 ];
 
@@ -107,9 +107,19 @@ export default function SecretariatSection() {
                         >
                             <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl aspect-[3/4] mb-8 border border-platinum hover:border-gold/50 transition-colors duration-500">
                                 {/* Image Placeholder */}
-                                <div className="absolute inset-0 bg-charcoal/5 flex items-center justify-center group-hover:bg-charcoal/10 transition-colors duration-500">
-                                    <span className="text-charcoal/20 font-display text-6xl">photo</span>
+                                <div className="absolute inset-0 bg-charcoal/5 group-hover:bg-charcoal/10 transition-colors duration-500">
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill // This makes it fill the parent container automatically
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        priority={index === 0} // Optimization: loads the first image immediately
+                                    />
                                 </div>
+
+                                {/* Overlay Gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-transparent to-transparent opacity-60 z-10" />
 
                                 {/* Overlay Gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-60" />

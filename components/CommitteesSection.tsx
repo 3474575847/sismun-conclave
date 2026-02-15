@@ -2,11 +2,9 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Observer } from 'gsap/Observer';
-import { useLenis } from '@/components/SmoothScroll';
 
-gsap.registerPlugin(ScrollTrigger, Observer);
+gsap.registerPlugin(Observer);
 
 const committees = [
     {
@@ -94,168 +92,108 @@ export default function CommitteesSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const animating = useRef(false);
     const currentIndex = useRef(0);
-    const exitAttempts = useRef(0);
-    const isScrolling = useRef(false);
-    const lenis = useLenis();
     const [activeIndex, setActiveIndex] = useState(0);
 
     const gotoSlide = useCallback((index: number, direction: number) => {
-        if (animating.current) return;
-        if (index === currentIndex.current) return;
+        if (animating.current || index === currentIndex.current) return;
 
-        if (lenis) lenis.stop();
         animating.current = true;
-        isScrolling.current = true;
         const current = currentIndex.current;
         const next = index;
 
         const tl = gsap.timeline({
             onComplete: () => {
                 animating.current = false;
-                if (lenis) lenis.start();
-                setTimeout(() => { isScrolling.current = false; }, 200);
             }
         });
 
-        tl.to(`.card-content-${current}`, {
-            opacity: 0,
-            duration: 0.5,
+        // Ensure the next card is correctly positioned before animating
+        // Forward: next card comes from right (100). Backward: next card comes from left (-100).
+        gsap.set(`.committee-card-${next}`, {
+            xPercent: direction === 1 ? 100 : -100,
+            opacity: 1,
+            zIndex: 20
+        });
+
+        // Keep current card below it
+        gsap.set(`.committee-card-${current}`, { zIndex: 10 });
+
+        // Horizontal Move
+        tl.to(`.committee-card-${current}`, {
+            xPercent: direction === 1 ? -100 : 100,
+            duration: 0.8,
             ease: "power2.inOut"
         });
 
-        if (direction === 1) {
-            tl.to(`.committee-card-${next}`, {
-                xPercent: 0,
-                duration: 2.0,
-                ease: "power3.inOut"
-            }, "-=0.2");
+        tl.to(`.committee-card-${next}`, {
+            xPercent: 0,
+            duration: 0.8,
+            ease: "power2.inOut"
+        }, "<");
 
-            tl.to(`.committee-card-${current}`, {
-                scale: 0.95,
-                opacity: 0.5,
-                duration: 2.0,
-                ease: "power3.inOut"
-            }, "<");
-        } else {
-            tl.to(`.committee-card-${current}`, {
-                xPercent: 100,
-                duration: 2.0,
-                ease: "power3.inOut"
-            }, "-=0.2");
-
-            tl.to(`.committee-card-${next}`, {
-                scale: 1,
-                opacity: 1,
-                duration: 2.0,
-                ease: "power3.inOut"
-            }, "<");
-        }
-
+        // Subtle Content Fade
+        tl.to(`.card-content-${current}`, { opacity: 0, duration: 0.3 }, 0);
         tl.fromTo(`.card-content-${next}`,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
-            "-=0.5"
+            { opacity: 0 },
+            { opacity: 1, duration: 0.8 },
+            0.4
         );
 
         currentIndex.current = index;
         setActiveIndex(index);
-    }, [lenis]);
+    }, []);
 
     useEffect(() => {
         const section = sectionRef.current;
         if (!section) return;
 
         const ctx = gsap.context(() => {
+            // Initial Stacking logic
             committees.forEach((_, i) => {
-                if (i > 0) gsap.set(`.committee-card-${i}`, { xPercent: 100 });
-            });
-
-            const trigger = ScrollTrigger.create({
-                trigger: section,
-                pin: true,
-                start: "top top",
-                end: () => `+=${window.innerHeight * (committees.length - 1)}`,
-                pinSpacing: true,
-            });
-
-            const obs = Observer.create({
-                target: section,
-                type: "wheel,touch",
-                preventDefault: true,
-                tolerance: 10,
-                onStopDelay: 0.05,
-
-                onUp: () => {
-                    if (!trigger.isActive) return;
-                    if (animating.current || isScrolling.current) return;
-
-                    if (currentIndex.current > 0) {
-                        exitAttempts.current = 0;
-                        gotoSlide(currentIndex.current - 1, -1);
-                    } else {
-                        exitAttempts.current++;
-                        if (exitAttempts.current >= 1) {
-                            exitAttempts.current = 0;
-                            isScrolling.current = true;
-                            if (lenis) {
-                                lenis.start();
-                                lenis.scrollTo(trigger.start - 50, { immediate: true });
-                            }
-                            setTimeout(() => { isScrolling.current = false; }, 500);
-                        }
-                    }
-                },
-
-                onDown: () => {
-                    if (!trigger.isActive) return;
-                    if (animating.current || isScrolling.current) return;
-
-                    if (currentIndex.current < committees.length - 1) {
-                        exitAttempts.current = 0;
-                        gotoSlide(currentIndex.current + 1, 1);
-                    } else {
-                        exitAttempts.current++;
-                        if (exitAttempts.current >= 1) {
-                            exitAttempts.current = 0;
-                            isScrolling.current = true;
-                            if (lenis) {
-                                lenis.start();
-                                lenis.scrollTo(trigger.end + 50, { immediate: true });
-                            }
-                            setTimeout(() => { isScrolling.current = false; }, 500);
-                        }
-                    }
-                },
-
-                onStop: () => {
-                    isScrolling.current = false;
+                if (i === 0) {
+                    gsap.set(`.committee-card-${i}`, { xPercent: 0, zIndex: 10 });
+                } else {
+                    gsap.set(`.committee-card-${i}`, { xPercent: 100, zIndex: 0 });
                 }
             });
 
+            Observer.create({
+                target: section,
+                type: "touch,pointer",
+                lockAxis: true,
+                tolerance: 60, // Higher tolerance for a more "intentional" swipe
+                onLeft: () => {
+                    if (currentIndex.current < committees.length - 1) {
+                        gotoSlide(currentIndex.current + 1, 1);
+                    }
+                },
+                onRight: () => {
+                    if (currentIndex.current > 0) {
+                        gotoSlide(currentIndex.current - 1, -1);
+                    }
+                },
+            });
         }, sectionRef);
 
         return () => ctx.revert();
-    }, [lenis, gotoSlide]);
-
-    const handleDotClick = (i: number) => {
-        if (i === activeIndex || animating.current) return;
-        const direction = i > activeIndex ? 1 : -1;
-        gotoSlide(i, direction);
-    };
+    }, [gotoSlide]);
 
     return (
-        <section ref={sectionRef} className="relative h-screen bg-white overflow-hidden select-none">
-            {/* Slide Indicators */}
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex flex-row gap-3 pointer-events-auto">
+        <section ref={sectionRef} className="relative h-screen bg-white overflow-hidden select-none touch-none">
+            {/* Slide Navigation Dots */}
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex gap-4">
                 {committees.map((_, i) => (
                     <button
                         key={i}
-                        onClick={() => handleDotClick(i)}
-                        className={`w-2 h-2 rounded-full transition-all duration-500 cursor-pointer outline-none ${i === activeIndex
-                            ? 'bg-gold scale-125 shadow-[0_0_8px_rgba(255,204,0,0.6)]'
-                            : 'bg-charcoal/20 hover:bg-charcoal/40'
+                        onClick={() => {
+                            if (!animating.current) {
+                                const dir = i > activeIndex ? 1 : -1;
+                                gotoSlide(i, dir);
+                            }
+                        }}
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-1000 ${i === activeIndex ? 'bg-gold scale-125' : 'bg-charcoal/20 hover:bg-charcoal/40'
                             }`}
-                        aria-label={`Go to committee ${i + 1}`}
+                        aria-label={`Go to slide ${i + 1}`}
                     />
                 ))}
             </div>
@@ -263,65 +201,56 @@ export default function CommitteesSection() {
             {committees.map((committee, index) => (
                 <div
                     key={index}
-                    className={`committee-card-${index} absolute inset-0 w-full h-full flex items-center justify-center bg-white border-t-[0.5px] border-charcoal/10`}
-                    style={{ zIndex: index + 1 }}
+                    className={`committee-card-${index} absolute inset-0 w-full h-full flex items-center justify-center bg-white`}
+                    style={{ willChange: 'transform' }}
                 >
-                    {/* Background */}
-                    <div className="absolute inset-0 z-0 overflow-hidden">
-                        <div className={`absolute inset-0 bg-gradient-to-br ${committee.color} opacity-10`} />
-                        <div className="absolute inset-0 bg-white" />
-                    </div>
+                    {/* Background Visuals */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${committee.color} opacity-10`} />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
-                    {/* Background Grid & Vignette */}
-                    <div className="absolute inset-0 pointer-events-none opacity-30 z-10">
-                        <div className="w-full h-full bg-[linear-gradient(to_right,rgba(10,25,47,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,25,47,0.05)_1px,transparent_1px)] bg-[size:60px_60px]" />
-                        <div className="absolute inset-0 bg-radial-gradient from-transparent via-white/80 to-white" />
-                    </div>
+                    <div className="w-full max-w-7xl px-8 md:px-12 z-20">
+                        <div className={`card-content-${index} grid grid-cols-1 lg:grid-cols-12 gap-12 items-center`}>
 
-                    {/* Content Container */}
-                    <div className="w-full h-full flex items-center justify-center z-20 relative">
-                        <div className={`card-content-${index} w-full max-w-7xl px-8 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center`}>
-
-                            {/* Left: Monumental Typography */}
+                            {/* Left Side: Identity */}
                             <div className="lg:col-span-7">
-                                <div className="flex items-center gap-4 mb-4 text-gold font-mono text-[10px] tracking-[0.4em] uppercase">
-                                    <span className="w-2 h-2 bg-gold rounded-full" />
-                                    Model: {committee.acronym} // REF.2026
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="w-8 h-[1px] bg-gold" />
+                                    <span className="text-gold font-mono text-xs tracking-widest uppercase">
+                                        Committee // 0{index + 1}
+                                    </span>
                                 </div>
-
-                                <h2 className="text-[15vw] lg:text-[12vw] leading-[0.8] font-display font-bold text-charcoal tracking-tighter opacity-90">
+                                <h2 className="text-[14vw] lg:text-[11vw] leading-[0.85] font-display font-bold text-charcoal tracking-tighter uppercase">
                                     {committee.acronym}
                                 </h2>
-                                <div className="h-1 w-32 bg-gold mt-8" />
-                                <h3 className="text-2xl md:text-4xl lg:text-5xl font-light text-charcoal/80 mt-6 tracking-widest uppercase">
+                                <h3 className="text-xl md:text-3xl font-light text-charcoal/70 mt-6 uppercase tracking-[0.2em]">
                                     {committee.name}
                                 </h3>
                             </div>
 
-                            {/* Right: Technical Layout */}
-                            <div className="lg:col-span-5 flex flex-col justify-center space-y-12">
-                                <div>
-                                    <div className="space-y-4">
-                                        {committee.topics.map((topic, i) => (
-                                            <p key={i} className="text-charcoal/80 font-mono text-xs tracking-widest leading-relaxed">
-                                                // 0{i + 1} {topic.toUpperCase()}
+                            {/* Right Side: Info */}
+                            <div className="lg:col-span-5 space-y-10">
+                                <div className="space-y-6">
+                                    {committee.topics.map((topic, i) => (
+                                        <div key={i} className="flex gap-4">
+                                            <span className="text-gold font-mono text-xs pt-1">0{i + 1}</span>
+                                            <p className="text-charcoal/80 font-mono text-[11px] md:text-xs leading-relaxed uppercase tracking-wider">
+                                                {topic}
                                             </p>
-                                        ))}
-                                    </div>
+                                        </div>
+                                    ))}
                                 </div>
-
-                                <p className="text-lg text-charcoal/60 leading-relaxed font-light border-l-2 border-charcoal/10 pl-6 max-w-md">
+                                <p className="text-charcoal/60 font-light leading-relaxed text-lg border-l border-charcoal/10 pl-6">
                                     {committee.description}
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Mechanical Decorative Elements */}
-                    <div className="absolute right-8 bottom-8 flex flex-col items-end opacity-20 pointer-events-none">
-                        <div className="text-[120px] font-bold text-charcoal leading-none tracking-tighter">
+                    {/* Massive Background Number */}
+                    <div className="absolute right-10 bottom-0 opacity-[0.03] select-none pointer-events-none">
+                        <span className="text-[25vw] font-bold text-charcoal leading-none translate-y-1/4">
                             0{index + 1}
-                        </div>
+                        </span>
                     </div>
                 </div>
             ))}
