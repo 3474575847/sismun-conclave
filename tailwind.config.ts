@@ -12,6 +12,7 @@ const config: Config = {
                 platinum: '#F0F4F8', // Cool White
                 charcoal: '#0A192F', // Deep Royal Blue (Background/Text)
                 gold: '#FFCC00',     // School Yellow/Gold
+                ivory: '#FFFDF9',    // Warm White for messages
                 'school-red': '#D32F2F',
                 'school-blue': '#1565C0',
                 border: 'rgba(255, 204, 0, 0.2)', // Gold border

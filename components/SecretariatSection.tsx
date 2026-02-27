@@ -8,19 +8,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 const secretariat = [
     {
-        name: 'Zorawar Bhinder',
-        role: 'Secretary-General',
-        image: '/zorawar bhinder.jpeg', // Placeholder
-    },
-    {
         name: 'Ritvayg Bindal',
         role: 'Deputy Secretary-General',
-        image: '/ritvayg bindal.jpeg', // Placeholder
+        image: '/ritvayg bindal.jpeg',
+    },
+    {
+        name: 'Zorawar Bhinder',
+        role: 'Secretary-General',
+        image: '/zorawar bhinder.jpeg',
     },
     {
         name: 'Chahel Dharod',
         role: 'Deputy Secretary-General',
-        image: '/chahel dharod.jpeg', // Placeholder
+        image: '/chahel dharod.jpeg',
     },
 ];
 
@@ -87,6 +87,7 @@ export default function SecretariatSection() {
     return (
         <section
             ref={sectionRef}
+            id="secretariat-section"
             className="relative min-h-screen bg-white py-24 px-8 z-20 flex flex-col justify-center"
         >
             <div className="max-w-7xl mx-auto w-full">
@@ -105,9 +106,9 @@ export default function SecretariatSection() {
                             key={index}
                             className="member-card relative group"
                         >
-                            <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl aspect-[3/4] mb-8 border border-platinum hover:border-gold/50 transition-colors duration-500">
+                            <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl aspect-[3/4] mb-8 border-gold/50 md:border-platinum transition-colors duration-500 md:hover:border-gold/50">
                                 {/* Image Placeholder */}
-                                <div className="absolute inset-0 bg-charcoal/5 group-hover:bg-charcoal/10 transition-colors duration-500">
+                                <div className="absolute inset-0 bg-charcoal/10 md:bg-charcoal/5 md:group-hover:bg-charcoal/10 transition-colors duration-500">
                                     <Image
                                         src={member.image}
                                         alt={member.name}

@@ -1,92 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import { Observer } from 'gsap/Observer';
 
 gsap.registerPlugin(Observer);
 
-const committees = [
-    {
-        name: 'Special Political & Decolonisation (GA4)',
-        acronym: 'GA4',
-        description: 'Addressing the decolonisation of natural resources and self-determination movements in the post-colonial era.',
-        topics: [
-            'The Question of Self-Determination Movements in Africa in the Post-Colonial Era in Somaliland',
-            'The Role of The United Nations bodies in Facilitating the Decolonisation of Natural Resources in the Horn of Africa'
-        ],
-        color: 'from-blue-500/20 to-blue-900/20',
-    },
-    {
-        name: 'Security Council',
-        acronym: 'SC',
-        description: 'Safeguarding international peace and security amid global crises and humanitarian threats.',
-        topics: [
-            'Aftereffects of the lasting Impact of Prolonged Warfare in Ukraine on Global Food Security, Energy Stability, and Credibility of International Security Guarantees',
-            'Addressing the humanitarian crisis and threats to international peace and security resulting from the Yemen conflict'
-        ],
-        color: 'from-red-500/20 to-red-900/20',
-    },
-    {
-        name: 'Economic and Social Council',
-        acronym: 'ECOSOC',
-        description: 'Coordinating humanitarian aid and environmental safeguards for global stability.',
-        topics: [
-            'Emergency Measures to enhance food security and distribution of humanitarian aid in conflict zones across Sudan and South Sudan',
-            'Ensuring equitable water sharing of Trans-boundary River Systems of South Asia'
-        ],
-        color: 'from-green-500/20 to-green-900/20',
-    },
-    {
-        name: 'Human Rights Council',
-        acronym: 'HRC',
-        description: 'Promoting and protecting human rights across diverse socio-political landscapes.',
-        topics: [
-            'The Impact of Socio-Political Instability, Armed Conflict, and Social Conservatism vis-a-vis the Rights of Gender-Divergent in Middle East',
-            'Human Rights frameworks and the smooth transition towards a future elected Parliament in Nepal'
-        ],
-        color: 'from-purple-500/20 to-purple-900/20',
-    },
-    {
-        name: 'Historical Security Council',
-        acronym: 'HSC',
-        description: 'Re-evaluating historical conflicts that shaped the modern world.',
-        topics: [
-            'The implications of Cuban Missile Crisis and the Deployment of Strategic Weapons in the Caribbean',
-            'Proposed formation of a future independent government with the prevalent Situation in East Pakistan'
-        ],
-        color: 'from-indigo-500/20 to-indigo-900/20',
-    },
-    {
-        name: 'Disarmament and International Security Committee',
-        acronym: 'DISEC',
-        description: 'Regulating emerging military applications and sovereignty questions.',
-        topics: [
-            'Regulating Lethal Autonomous Weapon Systems (LAWS) and Military Applications of Artificial Intelligence',
-            'The question of granting Greenland conditional autonomy from Denmark'
-        ],
-        color: 'from-orange-500/20 to-orange-900/20',
-    },
-    {
-        name: 'International Criminal Court',
-        acronym: 'ICC',
-        description: 'Pursuing justice and accountability for crimes against humanity.',
-        topics: [
-            'The question of the Judicial Rights, privileges and Accountability for the Prisoners of Consciences taken from the Rohingya Population in Myanmar',
-            'Setting up Truth and Reconciliation tribunal for Accountability of Crimes Against Humanity in Venezuela'
-        ],
-        color: 'from-yellow-500/20 to-yellow-900/20',
-    },
-    {
-        name: 'United Nations Environment Programme',
-        acronym: 'UNEP',
-        description: 'Strengthening global protection frameworks for endangered ecosystems.',
-        topics: [
-            'Addressing the Degradation of Ecosystems and Strengthening Global Protection Frameworks with a focus on Bay of Bengal Islands'
-        ],
-        color: 'from-cyan-500/20 to-cyan-900/20',
-    },
-];
+import { committees } from '@/data/committees';
 
 export default function CommitteesSection() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -159,19 +80,20 @@ export default function CommitteesSection() {
 
             Observer.create({
                 target: section,
-                type: "touch,pointer",
+                type: "wheel,touch",
                 lockAxis: true,
                 tolerance: 60, // Higher tolerance for a more "intentional" swipe
-                onLeft: () => {
+                onRight: () => {
                     if (currentIndex.current < committees.length - 1) {
                         gotoSlide(currentIndex.current + 1, 1);
                     }
                 },
-                onRight: () => {
+                onLeft: () => {
                     if (currentIndex.current > 0) {
                         gotoSlide(currentIndex.current - 1, -1);
                     }
                 },
+                preventDefault: true,
             });
         }, sectionRef);
 
@@ -179,7 +101,7 @@ export default function CommitteesSection() {
     }, [gotoSlide]);
 
     return (
-        <section ref={sectionRef} className="relative h-screen bg-white overflow-hidden select-none touch-none">
+        <section ref={sectionRef} id="committees-section" className="relative h-screen bg-white overflow-hidden select-none">
             {/* Slide Navigation Dots */}
             <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex gap-4">
                 {committees.map((_, i) => (
@@ -191,7 +113,7 @@ export default function CommitteesSection() {
                                 gotoSlide(i, dir);
                             }
                         }}
-                        className={`w-2.5 h-2.5 rounded-full transition-all duration-1000 ${i === activeIndex ? 'bg-gold scale-125' : 'bg-charcoal/20 hover:bg-charcoal/40'
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-1000 ${i === activeIndex ? 'bg-school-red scale-125' : 'bg-charcoal/20 hover:bg-charcoal/40'
                             }`}
                         aria-label={`Go to slide ${i + 1}`}
                     />
@@ -214,9 +136,9 @@ export default function CommitteesSection() {
                             {/* Left Side: Identity */}
                             <div className="lg:col-span-7">
                                 <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-8 h-[1px] bg-gold" />
-                                    <span className="text-gold font-mono text-xs tracking-widest uppercase">
-                                        Committee // 0{index + 1}
+                                    <div className="w-8 h-[1px] bg-school-red" />
+                                    <span className="text-school-red font-mono text-xs tracking-widest uppercase">
+                                        Committee 0{index + 1}
                                     </span>
                                 </div>
                                 <h2 className="text-[14vw] lg:text-[11vw] leading-[0.85] font-display font-bold text-charcoal tracking-tighter uppercase">
@@ -232,7 +154,7 @@ export default function CommitteesSection() {
                                 <div className="space-y-6">
                                     {committee.topics.map((topic, i) => (
                                         <div key={i} className="flex gap-4">
-                                            <span className="text-gold font-mono text-xs pt-1">0{i + 1}</span>
+                                            <span className="text-school-red font-mono text-xs pt-1">0{i + 1}</span>
                                             <p className="text-charcoal/80 font-mono text-[11px] md:text-xs leading-relaxed uppercase tracking-wider">
                                                 {topic}
                                             </p>
@@ -242,6 +164,29 @@ export default function CommitteesSection() {
                                 <p className="text-charcoal/60 font-light leading-relaxed text-lg border-l border-charcoal/10 pl-6">
                                     {committee.description}
                                 </p>
+
+                                {/* Committee Actions */}
+                                <div className="pt-2 flex flex-wrap gap-4">
+                                    <Link
+                                        href={`/committees/${committee.slug}`}
+                                        className="group relative inline-flex items-center gap-6 px-10 py-5 border border-school-red/100 bg-school-red/10 backdrop-blur-md md:bg-school-red/5 md:border-school-red/30 transition-all duration-700 md:hover:border-school-red md:hover:bg-school-red/10 overflow-hidden"
+                                    >
+                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-school-red/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+
+                                        <span className="relative z-10 text-school-red font-mono text-[10px] tracking-[0.4em] uppercase transition-colors duration-500 group-hover:text-school-red">
+                                            Enter Committee
+                                        </span>
+
+                                        <div className="relative z-10 flex items-center">
+                                            <div className="w-12 h-[1px] bg-school-red/30 transition-all duration-700 group-hover:w-16 group-hover:bg-school-red" />
+                                            <div className="w-2 h-2 border-t border-r border-school-red/50 rotate-45 -ml-1 group-hover:border-school-red transition-colors duration-700" />
+                                        </div>
+
+                                        {/* Mechanical Corner Accents */}
+                                        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-school-red/40 group-hover:w-3 group-hover:h-3 transition-all duration-500" />
+                                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-school-red/40 group-hover:w-3 group-hover:h-3 transition-all duration-500" />
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -7,11 +7,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const commemorations = [
-    { id: '01', title: 'The 80th Commemoration of the United Nations' },
-    { id: '02', title: 'The 250th Commemoration of the American Declaration of Independence' },
-    { id: '03', title: 'The 150th Commemoration of the First Telephone Call' },
-    { id: '04', title: 'The 150th Birth Commemoration of Birsa Munda and Sardar Vallabhbhai Patel' },
-    { id: '05', title: 'The 40th Solemn Commemoration of the Chernobyl Nuclear Disaster' },
+    { id: '01', title: 'The 75th Anniversary of Schuman Declaration' },
+    { id: '02', title: 'The 80th Commemoration of the United Nations' },
+    { id: '03', title: 'The 40th Solemn Commemoration of the Chernobyl Nuclear Disaster' },
+    { id: '04', title: 'The 150th Birth Commemoration of Birsa Munda and Sardar Vallabhbhai Patel' }
 ];
 
 export default function ThemeSection() {
@@ -60,19 +59,20 @@ export default function ThemeSection() {
     return (
         <section
             ref={sectionRef}
+            id="theme-section"
             className="relative min-h-screen bg-white py-24 px-8 z-10 flex flex-col justify-center"
         >
             <div ref={containerRef} className="max-w-6xl mx-auto w-full">
                 {/* Section Tag */}
-                <div className="flex items-center gap-4 mb-20 text-gold font-mono text-[10px] tracking-[0.4em] uppercase">
-                    <span className="w-2 h-2 bg-gold rounded-full" />
-                    Conclave Concept // THEME.2026
+                <div className="flex items-center gap-4 mb-20 text-school-red font-mono text-[10px] tracking-[0.4em] uppercase">
+                    <span className="w-2 h-2 bg-school-red rounded-full" />
+                    Conclave Concept THEME.2026
                 </div>
 
                 {/* Main Theme */}
                 <div className="mb-32">
                     <h2 className="theme-title text-4xl md:text-6xl lg:text-7xl font-display font-bold text-charcoal leading-[1.1] tracking-tight text-center md:text-left">
-                        Towards Fostering an Ecosystem of a <span className="text-gold">Uniform Global Human Rights</span> and Social Justice Framework
+                        Towards Fostering an Ecosystem of a <span className="text-school-red">Uniform Global Human Rights</span> and Social Justice Framework
                     </h2>
                 </div>
 
@@ -84,18 +84,18 @@ export default function ThemeSection() {
                         </h3>
                         <div className="h-px w-full bg-charcoal/10" />
                         <p className="mt-6 text-charcoal/60 font-light text-lg">
-                            SISMUN Conclave is Dedicated to Five Landmark Commemorations that shaped our modern history and shared values.
+                            SISMUN Conclave is Dedicated to Four Landmark Commemorations that shaped our modern history and shared values.
                         </p>
                     </div>
 
                     <div className="lg:col-span-8 commemorations-grid space-y-8">
                         {commemorations.map((item) => (
                             <div key={item.id} className="commemoration-item flex items-start gap-8 group">
-                                <span className="font-display text-4xl text-gold/30 group-hover:text-gold transition-colors duration-500">
+                                <span className="font-display text-4xl text-school-red md:text-school-red/30 md:group-hover:text-school-red transition-colors duration-500">
                                     {item.id}
                                 </span>
                                 <div className="pt-2">
-                                    <p className="text-xl md:text-2xl font-light text-charcoal group-hover:pl-4 transition-all duration-500 ease-out border-l border-transparent group-hover:border-gold">
+                                    <p className="text-xl md:text-2xl font-light text-charcoal pl-4 md:pl-0 md:group-hover:pl-4 transition-all duration-500 ease-out border-l border-school-red md:border-transparent md:group-hover:border-school-red">
                                         {item.title}
                                     </p>
                                 </div>

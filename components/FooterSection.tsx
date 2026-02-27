@@ -55,22 +55,21 @@ export default function FooterSection() {
     return (
         <footer
             ref={sectionRef}
-            className="relative min-h-screen bg-gradient-to-b from-charcoal via-charcoal to-black overflow-hidden flex items-center justify-center"
+            className="relative bg-gradient-to-b from-charcoal via-charcoal/95 to-charcoal/90 overflow-hidden py-12 lg:py-16"
         >
             {/* Parallax background elements */}
             <div className="parallax-slow absolute top-20 left-20 w-40 h-40 border border-gold/10 rounded-full" />
-            <div className="parallax-fast absolute bottom-40 right-40 w-60 h-60 border border-gold/10 rounded-full" />
+            <div className="parallax-fast absolute bottom-20 right-20 w-40 h-40 border border-gold/10 rounded-full" />
             <div className="parallax-slow absolute top-1/2 right-20 w-32 h-32 border border-gold/10 rounded-full" />
 
             {/* Main content */}
-            <div className="relative z-10 text-center px-8">
-                {/* Logo reveal with clip path */}
-                <div className="mb-16">
+            <div className="relative z-10 max-w-7xl mx-auto px-8">
+
+                {/* Branding Circle SVG */}
+                <div className="mb-4 flex justify-center">
                     <svg
-                        width="500"
-                        height="500"
-                        viewBox="0 0 500 500"
-                        className="mx-auto opacity-80"
+                        viewBox="0 50 500 400"
+                        className="w-full max-w-[280px] opacity-90"
                     >
                         <defs>
                             <clipPath id="reveal-clip">
@@ -82,21 +81,22 @@ export default function FooterSection() {
                         <circle
                             cx="250"
                             cy="250"
-                            r="200"
+                            r="220"
                             fill="none"
-                            stroke="#FFCC00" /* School Gold */
-                            strokeWidth="2"
+                            stroke="#FFCC00" /* Gold */
+                            strokeWidth="1.5"
                             clipPath="url(#reveal-clip)"
                         />
 
                         {/* SIS text */}
                         <text
                             x="250"
-                            y="230"
+                            y="225"
                             textAnchor="middle"
-                            fill="#FFCC00" /* School Gold */
-                            fontSize="48"
-                            fontWeight="bold"
+                            fill="#FFCC00" /* Gold */
+                            fontSize="80"
+                            className="font-display font-bold"
+                            style={{ letterSpacing: '0.15em' }}
                             clipPath="url(#reveal-clip)"
                         >
                             SIS
@@ -105,10 +105,12 @@ export default function FooterSection() {
                         {/* MUN text */}
                         <text
                             x="250"
-                            y="280"
+                            y="310"
                             textAnchor="middle"
                             fill="#F0F4F8" /* Platinum/White */
-                            fontSize="36"
+                            fontSize="64"
+                            className="font-display font-light"
+                            style={{ letterSpacing: '0.3em' }}
                             clipPath="url(#reveal-clip)"
                         >
                             MUN
@@ -116,57 +118,103 @@ export default function FooterSection() {
                     </svg>
                 </div>
 
-                {/* School name */}
-                <h3 className="text-4xl md:text-5xl font-display font-bold text-gradient mb-8">
-                    Singapore International School
-                </h3>
-
-                {/* Contact info */}
-                <div className="flex flex-wrap justify-center gap-8 mb-12 text-platinum/60">
-                    <a
-                        href="mailto:mun@sis.edu.sg"
-                        className="hover:text-gold transition-colors duration-300"
-                    >
-                        mun@sis.edu.sg
-                    </a>
-                    <span>•</span>
-                    <a
-                        href="tel:+6512345678"
-                        className="hover:text-gold transition-colors duration-300"
-                    >
-                        +65 1234 5678
-                    </a>
+                <div className="text-center mb-8">
+                    <div className="flex justify-center items-center gap-4 mb-2 text-gold font-mono text-[10px] tracking-[0.4em] uppercase">
+                        <span className="w-2 h-2 bg-gold rounded-full animate-ping" />
+                        CARPE DIEM!
+                    </div>
                 </div>
 
-                {/* Social links */}
-                <div className="flex justify-center gap-6 mb-16">
-                    {['Instagram', 'Twitter', 'LinkedIn'].map((social) => (
-                        <a
-                            key={social}
-                            href="#"
-                            className="glass-card px-6 py-3 rounded-full hover:border-glow transition-all duration-300 text-sm tracking-wider"
-                        >
-                            {social}
-                        </a>
-                    ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 border-t border-white/10 pt-8">
+
+                    {/* Venue */}
+                    <div>
+                        <h4 className="text-gold font-mono text-xs uppercase tracking-[0.2em] mb-8">Venue Address</h4>
+                        <p className="text-platinum/80 font-light text-lg leading-relaxed">
+                            <span className="text-white font-medium block mb-2">Singapore International School, Mumbai</span>
+                            On National Highway No-8, Post, near Dahisar Toll Plaza, <br />
+                            next to Aaradhya Highpark, Mahajan Wadi, <br />
+                            Dahisar East, Mumbai, Maharashtra 401104
+                        </p>
+                    </div>
+
+                    {/* Directors */}
+                    <div>
+                        <h4 className="text-gold font-mono text-xs uppercase tracking-[0.2em] mb-8">SIS MUN Directors</h4>
+                        <div className="space-y-8">
+                            <div className="group">
+                                <p className="text-platinum font-display text-2xl mb-1 group-hover:text-gold transition-colors">CA Pushpendra Bansal</p>
+                                <a href="tel:+919828727678" className="text-platinum/40 font-mono text-sm hover:text-white transition-colors">+91 98287 27678</a>
+                            </div>
+                            <div className="group">
+                                <p className="text-platinum font-display text-2xl mb-1 group-hover:text-gold transition-colors">Abhilasha Singh</p>
+                                <a href="tel:+919754789839" className="text-platinum/40 font-mono text-sm hover:text-white transition-colors">+91 97547 89839</a>
+                            </div>
+                            <div className="pt-4">
+                                <p className="text-[10px] font-mono text-platinum/30 uppercase mb-2">Directorate Email</p>
+                                <a href="mailto:rep.mun@sisindia.edu.in" className="text-platinum font-display text-xl border-b border-gold/30 pb-1 hover:border-gold transition-all">
+                                    rep.mun@sisindia.edu.in
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Secretariat */}
+                    <div>
+                        <h4 className="text-gold font-mono text-xs uppercase tracking-[0.2em] mb-8">Secretariat</h4>
+                        <div className="space-y-8">
+                            <div className="group">
+                                <p className="text-platinum font-display text-xl mb-1 group-hover:text-gold transition-colors">Zorawar Bhinder</p>
+                                <div className="space-y-1">
+                                    <a href="tel:+919619718508" className="block text-platinum/40 text-xs font-mono hover:text-white transition-colors">+91 96197 18508</a>
+                                    <a href="mailto:zorawarbhinder7@gmail.com" className="block text-platinum/20 text-[10px] font-mono italic">zorawarbhinder7@gmail.com</a>
+                                </div>
+                            </div>
+                            <div className="group">
+                                <p className="text-platinum font-display text-xl mb-1 group-hover:text-gold transition-colors">Chahel Dharod</p>
+                                <div className="space-y-1">
+                                    <a href="tel:+918432306060" className="block text-platinum/40 text-xs font-mono hover:text-white transition-colors">+91 84323 06060</a>
+                                    <a href="mailto:chaheldharod@gmail.com" className="block text-platinum/20 text-[10px] font-mono italic">chaheldharod@gmail.com</a>
+                                </div>
+                            </div>
+                            <div className="group border-t border-white/5 pt-4">
+                                <p className="text-platinum font-display text-xl mb-1 group-hover:text-gold transition-colors">Ritvayg Bindal</p>
+                                <div className="space-y-1">
+                                    <a href="tel:+918655850355" className="block text-platinum/40 text-xs font-mono hover:text-white transition-colors">+91 86558 50355</a>
+                                    <a href="mailto:ritvayg@gmail.com" className="block text-platinum/20 text-[10px] font-mono italic">ritvayg@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Divider */}
-                <div className="max-w-4xl mx-auto h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent mb-8" />
+                {/* Social links & Copyright */}
+                <div className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-12">
+                    <div className="flex gap-12">
+                        {['Instagram', 'Twitter', 'LinkedIn'].map((social) => (
+                            <a
+                                key={social}
+                                href="#"
+                                className="text-platinum/40 hover:text-gold transition-colors duration-300 text-sm font-display tracking-widest uppercase"
+                            >
+                                {social}
+                            </a>
+                        ))}
+                    </div>
 
-                {/* Copyright */}
-                <p className="text-platinum/40 text-sm font-mono">
-                    © 2024 SISMUN. Crafted with precision and diplomacy.
-                </p>
+                    <p className="text-platinum/20 text-[10px] font-mono uppercase tracking-[0.4em]">
+                        © 2026 SISMUN CONCLAVE DIPLOMACY REDEFINED
+                    </p>
+                </div>
             </div>
 
-            {/* Decorative grid */}
-            <div className="absolute inset-0 opacity-5 pointer-events-none">
+            {/* Decorative background grid */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div
                     className="w-full h-full"
                     style={{
                         backgroundImage: `linear-gradient(#FFCC00 1px, transparent 1px), linear-gradient(90deg, #FFCC00 1px, transparent 1px)`,
-                        backgroundSize: '50px 50px',
+                        backgroundSize: '60px 60px',
                     }}
                 />
             </div>

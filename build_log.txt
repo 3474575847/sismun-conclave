@@ -1,0 +1,31 @@
+
+> sismun-landing@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/4) ...
+   Generating static pages (1/4) 
+   Generating static pages (2/4) 
+   Generating static pages (3/4) 
+ ✓ Generating static pages (4/4)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    40.2 kB         181 kB
+├ ○ /_not-found                          873 B          88.3 kB
+└ ƒ /committees/[slug]                   3.22 kB         127 kB
++ First Load JS shared by all            87.4 kB
+  ├ chunks/117-d27f0b7578e99cf5.js       31.7 kB
+  ├ chunks/fd9d1056-686ec31b8af3a863.js  53.6 kB
+  └ other shared chunks (total)          2.06 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -6,8 +6,11 @@ import { motion } from 'framer-motion';
 export default function MechanicalCursor() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+
         const updateMousePosition = (e: MouseEvent) => {
             setMousePosition({ x: e.clientX, y: e.clientY });
 
@@ -20,12 +23,26 @@ export default function MechanicalCursor() {
             setIsHovering(!!isInteractive);
         };
 
-        window.addEventListener('mousemove', updateMousePosition);
+        const handleVisibilityChange = () => {
+            const matches = mediaQuery.matches;
+            setIsVisible(matches);
+            if (matches) {
+                window.addEventListener('mousemove', updateMousePosition);
+            } else {
+                window.removeEventListener('mousemove', updateMousePosition);
+            }
+        };
+
+        handleVisibilityChange();
+        mediaQuery.addEventListener('change', handleVisibilityChange);
 
         return () => {
+            mediaQuery.removeEventListener('change', handleVisibilityChange);
             window.removeEventListener('mousemove', updateMousePosition);
         };
     }, []);
+
+    if (!isVisible) return null;
 
     return (
         <>
@@ -44,14 +61,7 @@ export default function MechanicalCursor() {
                     mass: 0.5,
                 }}
             >
-                <div className="w-10 h-10 border-2 border-gold rounded-full relative">
-                    {/* Coordinates display */}
-                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                        <span className="font-mono text-[8px] text-gold opacity-60">
-                            {Math.round(mousePosition.x)}, {Math.round(mousePosition.y)}
-                        </span>
-                    </div>
-                </div>
+                <div className="w-10 h-10 border-2 border-gold rounded-full relative" />
             </motion.div>
 
             {/* Dot cursor */}
