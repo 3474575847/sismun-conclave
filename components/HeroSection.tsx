@@ -12,7 +12,7 @@ const HeroScene = dynamic(() => import('./HeroScene'), {
     loading: () => <div className="absolute inset-0 bg-white" />,
 });
 
-const splitTextReveal = (element: HTMLElement, delay: number = 0) => {
+const splitTextReveal = (element: HTMLElement, delay: number = 0, isTitle: boolean = false) => {
     const text = element.textContent || '';
     element.innerHTML = '';
 
@@ -24,14 +24,16 @@ const splitTextReveal = (element: HTMLElement, delay: number = 0) => {
         span.style.opacity = '0';
         span.style.transform = 'rotateX(90deg)';
 
-        // Apply two-tone branding to 'SISMUN' (first 6 chars)
-        if (text.startsWith('SISMUN')) {
-            if (index < 3) {
-                span.style.color = '#B22234'; // Institutional Red
-            } else if (index < 6) {
-                span.style.color = '#EFC001'; // Institutional Gold
-            } else {
-                span.style.color = '#222222'; // Charcoal for ' CONCLAVE'
+        // Color Branding logic
+        if (isTitle) {
+            if (text === 'SISMUN') {
+                if (index < 3) {
+                    span.style.color = '#B22234'; // Institutional Red (SIS)
+                } else {
+                    span.style.color = '#EFC001'; // Institutional Gold (MUN)
+                }
+            } else if (text === 'CONCLAVE') {
+                span.style.color = '#222222'; // Institutional Charcoal
             }
         }
 
@@ -51,15 +53,17 @@ const splitTextReveal = (element: HTMLElement, delay: number = 0) => {
 };
 
 export default function HeroSection() {
-    const titleRef = useRef<HTMLHeadingElement>(null);
+    const titlePart1Ref = useRef<HTMLSpanElement>(null);
+    const titlePart2Ref = useRef<HTMLSpanElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
 
     useEffect(() => {
-        if (titleRef.current && subtitleRef.current) {
+        if (titlePart1Ref.current && titlePart2Ref.current && subtitleRef.current) {
             // Delay for dramatic entrance
             setTimeout(() => {
-                splitTextReveal(titleRef.current!, 0.5);
-                splitTextReveal(subtitleRef.current!, 1.5);
+                splitTextReveal(titlePart1Ref.current!, 0.5, true);
+                splitTextReveal(titlePart2Ref.current!, 0.7, true);
+                splitTextReveal(subtitleRef.current!, 1.5, false);
             }, 500);
         }
     }, []);
@@ -70,36 +74,47 @@ export default function HeroSection() {
                 <HeroScene />
             </div>
             {/* Gradient overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal/10 to-charcoal/20 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal/5 to-charcoal/15 pointer-events-none" />
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full px-8">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full px-8 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 30, scale: 0.8 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
-                    className="relative w-32 h-32 md:w-48 md:h-48 mb-8"
+                    className="relative w-32 h-32 md:w-36 md:h-36 mb-6"
                 >
                     <Image
                         src="/SIS mun 1.png"
                         alt="SISMUN Conclave Logo"
                         fill
-                        className="object-contain drop-shadow-[0_0_30px_rgba(239,192,1,0.3)]"
+                        sizes="(max-width: 768px) 128px, 144px"
+                        className="object-contain drop-shadow-[0_0_20px_rgba(239,192,1,0.2)]"
                         priority
                     />
                 </motion.div>
 
                 <h1
-                    ref={titleRef}
-                    className="text-[120px] md:text-[180px] lg:text-[220px] font-display font-bold leading-none tracking-tighter mb-6"
+                    className="flex flex-col items-center font-display font-bold leading-[0.85] tracking-tighter mb-8"
                     style={{ perspective: '1000px' }}
                 >
-                    SISMUN CONCLAVE
+                    <span
+                        ref={titlePart1Ref}
+                        className="text-[100px] sm:text-[140px] md:text-[180px] lg:text-[220px]"
+                    >
+                        SISMUN
+                    </span>
+                    <span
+                        ref={titlePart2Ref}
+                        className="text-[60px] sm:text-[90px] md:text-[120px] lg:text-[150px] opacity-90"
+                    >
+                        CONCLAVE
+                    </span>
                 </h1>
 
                 <p
                     ref={subtitleRef}
-                    className="text-lg md:text-xl text-charcoal/80 font-display font-medium tracking-[0.3em] uppercase text-center"
+                    className="max-w-4xl text-xs sm:text-base md:text-lg text-charcoal/60 font-display font-medium tracking-[0.2em] sm:tracking-[0.4em] uppercase"
                     style={{ perspective: '1000px' }}
                 >
                     Singapore International School Model United Nations Conclave

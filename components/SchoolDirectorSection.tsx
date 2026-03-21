@@ -58,7 +58,7 @@ export default function SchoolDirectorSection() {
                             alt="Ms. Sharonee Mullick, School Director"
                             fill
                             sizes="(max-width: 1024px) 100vw, 400px"
-                            className="object-cover object-top transition-transform duration-700 md:group-hover:scale-105"
+                            className="object-contain transition-transform duration-700 md:group-hover:scale-105"
                         />
 
                         {/* Corner Accents mirroring theme */}

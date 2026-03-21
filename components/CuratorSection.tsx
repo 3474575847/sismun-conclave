@@ -47,26 +47,23 @@ export default function CuratorSection() {
             id="curator-section"
         >
             <div className="max-w-7xl w-full">
-                {/* Left Side: Image Placeholder Area - Floating on LG screens */}
+                {/* Left Side: Image Holder - Floating on LG screens */}
                 <div
                     ref={placeholderRef}
                     className="w-full lg:w-auto lg:float-left lg:mr-16 lg:mb-12 flex justify-center lg:block"
                 >
-                    <div className="relative w-full max-w-md aspect-[3/4] rounded-2xl bg-platinum/5 border border-platinum/10 shadow-lg flex items-center justify-center overflow-hidden group">
-                        {/* Placeholder Content */}
-                        <div className="text-center p-12 transition-transform duration-500 group-hover:scale-105">
-                            <div className="w-24 h-24 mx-auto mb-6 text-gold/30">
-                                <svg fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                                </svg>
-                            </div>
-                            <p className="text-platinum/40 font-serif italic text-2xl">Mr. Mukherjee P</p>
-                            <p className="text-[10px] uppercase tracking-[0.4em] text-platinum/20 mt-2">Curator&apos;s Portrait</p>
-                        </div>
+                    <div className="relative w-full max-w-md aspect-[3/4] rounded-2xl bg-platinum/5 border border-platinum/10 shadow-lg overflow-hidden group">
+                        <Image
+                            src="/parnav mukherjee, knowledge curator.jpeg"
+                            alt="Parnav Mukherjee - Knowledge Curator"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, 448px"
+                        />
 
                         {/* Corner Accents mirroring theme */}
-                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/20 rounded-tl-2xl" />
-                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/20 rounded-br-2xl" />
+                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/20 rounded-tl-2xl z-10" />
+                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/20 rounded-br-2xl z-10" />
                     </div>
                 </div>
 
@@ -78,7 +75,7 @@ export default function CuratorSection() {
                     <div className="mb-10">
                         <div className="space-y-4">
                             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum font-bold leading-[1.1]">
-                                From the desk of Mr. Mukherjee P
+                                From the desk of Parnav Mukherjee
                             </h2>
                             <div className="h-1.5 w-24 bg-gold" />
                         </div>
@@ -86,7 +83,7 @@ export default function CuratorSection() {
 
                     <div className="text-platinum leading-relaxed text-lg lg:text-xl font-light">
                         <p className="font-semibold text-platinum text-2xl lg:text-3xl mb-6 italic">
-                            Mr. Mukherjee P
+                            Parnav Mukherjee
                         </p>
 
                         <div className="space-y-6 text-platinum/80">

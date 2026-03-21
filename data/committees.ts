@@ -9,7 +9,12 @@ export const committees = [
             'The Role of The United Nations bodies in Facilitating the Decolonisation of Natural Resources in the Horn of Africa'
         ],
         color: 'from-blue-500/20 to-blue-900/20',
-        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-ga4'
+        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-ga4',
+        studentOfficers: [
+            { name: 'Raphael Fohine', role: 'President', email: 'rfohine@gmail.com', image: '/Invite Photos Heads /Raphael1.JPG' },
+            { name: 'Kaira Ghosh', role: 'Deputy President', email: 'kaira.ghosh@gmail.com', image: '/Invite Photos Heads /Kaira1.JPG' },
+            { name: 'Yug Banerjjee', role: 'Deputy President', email: 'yugzgaming@gmail.com', image: '/Invite Photos Heads /Yug Banerjee.jpg' }
+        ]
     },
     {
         name: 'Security Council',
@@ -21,7 +26,12 @@ export const committees = [
             'Addressing the humanitarian crisis and threats to international peace and security resulting from the Yemen conflict'
         ],
         color: 'from-red-500/20 to-red-900/20',
-        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-sc'
+        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-sc',
+        studentOfficers: [
+            { name: 'Siddhanth Chawla', role: 'President', email: 'sidchawla20@gmail.com', image: '/Invite Photos Heads /Siddhant1.JPG' },
+            { name: 'Aarav Naik', role: 'Deputy President', email: 'lancevance69420@gmail.com', image: '/Invite Photos Heads /Aarav1.JPG' },
+            { name: 'Yidam Verma', role: 'Deputy President', email: 'yidamverma00@gmail.com', image: '/Invite Photos Heads /Yidam.jpg' }
+        ]
     },
     {
         name: 'Economic and Social Council',
@@ -33,7 +43,12 @@ export const committees = [
             'Ensuring equitable water sharing of Trans-boundary River Systems of South Asia'
         ],
         color: 'from-green-500/20 to-green-900/20',
-        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-ecosoc'
+        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-ecosoc',
+        studentOfficers: [
+            { name: 'Ayontika Naha', role: 'President', email: 'ayontikan46@gmail.com', image: '/Invite Photos Heads /Ayontika.jpg' },
+            { name: 'Nathan George', role: 'Deputy President', email: 'Knathangeorge@gmail.com', image: '/Invite Photos Heads /Nathan1.JPG' },
+            { name: 'Anya Narayan', role: 'Deputy President', email: 'reachanyanarayan@gmail.com', image: '/Invite Photos Heads /Aanya1.JPG' }
+        ]
     },
     {
         name: 'Human Rights Council',
@@ -45,7 +60,12 @@ export const committees = [
             'Human Rights frameworks and the smooth transition towards a future elected Parliament in Nepal'
         ],
         color: 'from-purple-500/20 to-purple-900/20',
-        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hrc'
+        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hrc',
+        studentOfficers: [
+            { name: 'Plaksha Sachanandani', role: 'President', email: 'plaksharajesh@gmail.com', image: '/Invite Photos Heads /Plaksha1.jpg' },
+            { name: 'Joshua Jose', role: 'Deputy President', email: 'joshnissan98@gmail.com', image: '/Invite Photos Heads /Joshua1.JPG' },
+            { name: 'Diva Meharchandani', role: 'Deputy President', email: 'diva.meharchandani@gmail.com', image: '/Invite Photos Heads /Diva1.JPG' }
+        ]
     },
     {
         name: 'Historical Security Council',
@@ -57,7 +77,12 @@ export const committees = [
             'Proposed formation of a future independent government with the prevalent Situation in East Pakistan'
         ],
         color: 'from-indigo-500/20 to-indigo-900/20',
-        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hsc'
+        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hsc',
+        studentOfficers: [
+            { name: 'Advait Vaishnav', role: 'President', email: 'advaitvaishnav27@gmail.com', image: '/Invite Photos Heads /Advait1.JPG' },
+            { name: 'Kavish Goenka', role: 'Deputy President', email: 'kavish.goenka@gmail.com', image: '/Invite Photos Heads /Kavish1.jpg' },
+            { name: 'Rithvik Singh', role: 'Deputy President', email: 'rithvik.rahul.singh@gmail.com', image: '/Invite Photos Heads /Rithvik1.JPG' }
+        ]
     },
     {
         name: 'Disarmament and International Security Committee',
@@ -69,7 +94,12 @@ export const committees = [
             'The question of granting Greenland conditional autonomy from Denmark'
         ],
         color: 'from-orange-500/20 to-orange-900/20',
-        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-disec'
+        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-disec',
+        studentOfficers: [
+            { name: 'Satvik Agarwal', role: 'President', email: 'satvikagar2@gmail.com', image: '/Invite Photos Heads /Satvik1.JPG' },
+            { name: 'Vivaan Varshney', role: 'Deputy President', email: 'vivaan.varshney23@gmail.com', image: '/Invite Photos Heads /Vivaan Varshney.jpg' },
+            { name: 'Medhansh Saha', role: 'Deputy President', email: 'medhanshsaha.10@gmail.com', image: '/Invite Photos Heads /Medhansh1.JPG' }
+        ]
     },
     {
         name: 'International Criminal Court',
@@ -81,7 +111,12 @@ export const committees = [
             'Setting up Truth and Reconciliation tribunal for Accountability of Crimes Against Humanity in Venezuela'
         ],
         color: 'from-yellow-500/20 to-yellow-900/20',
-        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-icc'
+        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-icc',
+        studentOfficers: [
+            { name: 'Kiros Kamaal', role: 'President', email: 'kiros.kamaal1@gmail.com', image: '/Invite Photos Heads /Kiros1.jpg' },
+            { name: 'Anushka Bahorey', role: 'Deputy President', email: 'anushkabahorey@gmail.com', image: '/Invite Photos Heads /AnushkaBoharey1.jpg' },
+            { name: 'Viransh Shetty', role: 'Deputy President', email: 'virshetty2703@gmail.com', image: '/Invite Photos Heads /Viransh Shetty.jpg' }
+        ]
     },
     {
         name: 'United Nations Environment Programme',
@@ -92,6 +127,11 @@ export const committees = [
             'Addressing the Degradation of Ecosystems and Strengthening Global Protection Frameworks with a focus on Bay of Bengal Islands'
         ],
         color: 'from-cyan-500/20 to-cyan-900/20',
-        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-unep'
+        draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-unep',
+        studentOfficers: [
+            { name: 'Krishiv Agarwal', role: 'President', email: 'krishivagarwal29@gmail.com', image: '/Invite Photos Heads /Krishiv Agarwal.jpg' },
+            { name: 'Yatharth Bhati', role: 'Deputy President', email: 'yatharthbhatiecole@gmail.com', image: '/Invite Photos Heads /Yatharth Bhati.jpg' },
+            { name: 'Anushka Iyer', role: 'Deputy President', email: 'nushkaiyer0104@gmail.com', image: '/Invite Photos Heads /AnushaIyer1.JPG' }
+        ]
     },
 ];

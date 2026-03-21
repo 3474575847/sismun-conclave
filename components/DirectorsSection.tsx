@@ -58,7 +58,7 @@ export default function DirectorsSection() {
                         alt="MUN Directors - CA Pushpendra Bansal & Abhilasha Singh"
                         fill
                         sizes="(max-width: 1024px) 100vw, 1000px"
-                        className="object-cover object-top transition-transform duration-700 md:group-hover:scale-105"
+                        className="object-contain transition-transform duration-700 md:group-hover:scale-105"
                         priority
                     />
                 </div>

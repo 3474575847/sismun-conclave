@@ -113,7 +113,7 @@ export default function SecretariatSection() {
                                         src={member.image}
                                         alt={member.name}
                                         fill // This makes it fill the parent container automatically
-                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        className="object-contain transition-transform duration-700 group-hover:scale-110"
                                         sizes="(max-width: 768px) 100vw, 33vw"
                                         priority={index === 0} // Optimization: loads the first image immediately
                                     />

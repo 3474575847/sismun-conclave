@@ -14,6 +14,7 @@ import ScheduleSection from '@/components/ScheduleSection';
 import AwardsSection from '@/components/AwardsSection';
 import GallerySection from '@/components/GallerySection';
 import AccommodationSection from '@/components/AccommodationSection';
+import StudentHeadsSection from '@/components/StudentHeadsSection';
 import FooterSection from '@/components/FooterSection';
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
             <ThemeSection />
             <SecretariatSection />
             <SecretariatNoteSection />
+            <StudentHeadsSection />
             <CommitteesSection />
             <PrincipalSection />
             <SchoolDirectorSection />

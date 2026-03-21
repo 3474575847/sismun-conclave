@@ -91,6 +91,7 @@ export default function Navbar() {
                             src="/SIS mun 1.png"
                             alt="SISMUN Logo"
                             fill
+                            sizes="(max-width: 768px) 40px, 48px"
                             className="object-contain transition-transform duration-500 group-hover:scale-110"
                         />
                     </div>

@@ -58,7 +58,7 @@ export default function PrincipalSection() {
                             alt="Mr. Stephen Willoughby, Principal"
                             fill
                             sizes="(max-width: 1024px) 100vw, 400px"
-                            className="object-cover object-[75%_center] transition-transform duration-700 md:group-hover:scale-105"
+                            className="object-contain transition-transform duration-700 md:group-hover:scale-105"
                             priority
                         />
 

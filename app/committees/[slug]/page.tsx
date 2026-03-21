@@ -5,22 +5,14 @@ import { committees } from '@/data/committees';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function CommitteePage() {
     const { slug } = useParams();
     const router = useRouter();
     const sectionRef = useRef<HTMLElement>(null);
-    const [draftUrl, setDraftUrl] = useState<string | null>(null);
 
     const committee = committees.find(c => c.slug === slug);
-
-    // Load draft resolution URL from localStorage on mount
-    useEffect(() => {
-        if (committee) {
-            const stored = localStorage.getItem(`draft-resolution-${committee.slug}`);
-            if (stored) setDraftUrl(stored);
-        }
-    }, [committee]);
 
     useEffect(() => {
         if (!committee) {
@@ -53,7 +45,7 @@ export default function CommitteePage() {
                     <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-charcoal/50 group-hover:text-charcoal transition-all">Back to Home</span>
                 </Link>
                 <div className="font-mono text-[10px] uppercase tracking-[0.6em] text-charcoal/30">
-                    <span className="text-school-red text-sm lg:text-base">SISMUN Conclave</span> // 2026
+                    <span className="text-school-red text-sm lg:text-base">SISMUN Conclave</span> 2026
                 </div>
             </nav>
 
@@ -70,7 +62,7 @@ export default function CommitteePage() {
                     <div className="lg:col-span-12 mb-12">
                         <div className="reveal flex items-center gap-4 mb-8 text-school-red font-mono text-xs tracking-[0.4em] uppercase">
                             <span className="w-2 h-2 bg-school-red rounded-full animate-pulse" />
-                            Active Committee // {committee.acronym}
+                            Active Committee {committee.acronym}
                         </div>
                         <h1 className="reveal text-5xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter uppercase leading-[0.85] mb-8 text-charcoal">
                             {committee.name}
@@ -78,7 +70,60 @@ export default function CommitteePage() {
                         <div className="reveal h-1 w-32 bg-school-red mb-12" />
                     </div>
 
-                    {/* Middle: Core Information */}
+                    {/* Committee Leadership — Refined & Centered (Moved Up) */}
+                    <div className="lg:col-span-12 mt-12 mb-20 relative z-10">
+                        <div className="reveal mb-12">
+                            <div className="flex items-center gap-4 mb-4 text-school-red font-mono text-[10px] tracking-[0.4em] uppercase">
+                                <span className="w-1.5 h-1.5 bg-school-red rounded-full animate-pulse" />
+                                Committee Leadership
+                            </div>
+                            <div className="h-[1px] w-24 bg-school-red/30" />
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
+                            {committee.studentOfficers?.map((officer, i) => (
+                                <div key={i} className="reveal group flex flex-col items-center text-center">
+                                    <div className="relative aspect-square w-full max-w-[240px] rounded-2xl overflow-hidden border border-charcoal/10 bg-charcoal/5 group-hover:border-school-red/30 transition-all duration-700 shadow-sm mb-8">
+                                        {officer.image ? (
+                                            <Image
+                                                src={officer.image}
+                                                alt={officer.name}
+                                                fill
+                                                sizes="240px"
+                                                className="object-contain group-hover:scale-105 transition-transform duration-1000 p-4"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center bg-charcoal/10 text-charcoal/30">
+                                                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                </svg>
+                                            </div>
+                                        )}
+                                    </div>
+                                    
+                                    <div className="space-y-3">
+                                        <p className="text-school-red font-mono text-[9px] uppercase tracking-[0.4em] font-bold">
+                                            {officer.role}
+                                        </p>
+                                        <h4 className="text-2xl font-display font-bold text-charcoal group-hover:text-school-red transition-colors duration-500">
+                                            {officer.name}
+                                        </h4>
+                                        <div className="pt-3 border-t border-charcoal/5">
+                                            <a
+                                                href={`mailto:${officer.email}`}
+                                                className="text-[10px] text-charcoal/40 hover:text-school-red transition-colors font-mono lowercase flex items-center justify-center gap-2 group/link"
+                                            >
+                                                <span className="w-1 h-1 border border-charcoal/30 rounded-full group-hover/link:bg-school-red group-hover/link:border-school-red transition-all" />
+                                                {officer.email}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Middle: Core Information (Agenda) */}
                     <div className="lg:col-span-7 space-y-16">
                         <div className="reveal space-y-8">
                             <h2 className="text-school-red font-mono text-[10px] uppercase tracking-[0.5em] mb-4">Committee Agenda</h2>
@@ -104,54 +149,6 @@ export default function CommitteePage() {
                             <p className="text-charcoal/70 font-light leading-relaxed text-lg italic">
                                 &ldquo;{committee.description}&rdquo;
                             </p>
-                        </div>
-
-                        <div className="reveal space-y-6 pt-8">
-                            <div className="grid grid-cols-2 gap-8">
-                                <div className="space-y-2">
-                                    <span className="block text-[10px] font-mono text-charcoal/40 uppercase tracking-widest">Classification</span>
-                                    <span className="block text-sm uppercase tracking-widest text-charcoal/80">THIMUN Level</span>
-                                </div>
-                                <div className="space-y-2">
-                                    <span className="block text-[10px] font-mono text-charcoal/40 uppercase tracking-widest">Status</span>
-                                    <span className="block text-sm uppercase tracking-widest text-school-red animate-pulse">Open for Registration</span>
-                                </div>
-                            </div>
-
-                            {/* Draft Resolution Block */}
-                            <div className="pt-4">
-                                <div className="space-y-1 mb-3">
-                                    <span className="block text-[10px] font-mono text-school-red uppercase tracking-widest">Resources</span>
-                                </div>
-                                {draftUrl ? (
-                                    <a
-                                        href={draftUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group relative flex items-center justify-between p-6 border border-charcoal/10 bg-white hover:border-school-red/50 hover:bg-school-red/[0.02] transition-all duration-500 rounded-xl"
-                                    >
-                                        <div className="space-y-1">
-                                            <span className="block text-lg font-display font-medium text-charcoal group-hover:text-school-red transition-colors">Draft Resolution</span>
-                                            <span className="block text-[10px] font-mono text-charcoal/40 uppercase tracking-widest">Open in Google Docs ↗</span>
-                                        </div>
-                                        <div className="w-12 h-12 border border-charcoal/10 flex items-center justify-center rounded-full group-hover:border-school-red/30 group-hover:bg-school-red/5 transition-all">
-                                            <svg className="w-5 h-5 text-charcoal/40 group-hover:text-school-red transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                            </svg>
-                                        </div>
-                                    </a>
-                                ) : (
-                                    <div className="flex items-center gap-4 p-6 border border-charcoal/10 bg-charcoal/[0.02] rounded-xl">
-                                        <svg className="w-5 h-5 text-charcoal/30 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                        </svg>
-                                        <div>
-                                            <span className="block text-sm font-display text-charcoal/50">Draft Resolution</span>
-                                            <span className="block text-[10px] font-mono text-charcoal/30 uppercase tracking-widest mt-0.5">Not yet posted by Chair</span>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
                         </div>
                     </div>
                 </div>

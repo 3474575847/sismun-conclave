@@ -11,37 +11,43 @@ const hotels = [
         name: 'Royal Hometel Suites',
         address: 'D B OZONE, Western Express Hwy, Next to Thakur Mall, Ketkipada, Mira Road East, Mumbai, Maharashtra 401107',
         contact: '02262950000 / reservations@sarovarhotels.com',
-        distance: '550 m (5 minutes)'
+        distance: '550 m (5 minutes)',
+        link: 'https://www.sarovarhotels.com/royal-hometel-suites-dahisar-mumbai/'
     },
     {
         name: 'The Fern Residency',
         address: 'Western Express Hwy, Opp. Daras Dhabha, Laxmi Baug, Kashimira, Mira Road East, Mumbai, Mira Bhayandar, Maharashtra 401107',
         contact: '0124 458 0651 / crs@fernhotels.com',
-        distance: '3.7 km (15 minutes)'
+        distance: '3.7 km (15 minutes)',
+        link: 'https://www.marriott.com/en-us/hotels/bomrm-the-fern-residency-mumbai-mira-road-series/overview/'
     },
     {
         name: 'GCC Hotel & Clubs',
         address: 'Off Mira Bhayandar Road, 92/1, GCC Club Rd, Mira Road East, Maharashtra 401107',
         contact: '8285638563, 8285638564 / reservation@gechotelandclub.com',
-        distance: '4.6 km (20 minutes)'
+        distance: '4.6 km (20 minutes)',
+        link: 'https://gcchotelandclub.com'
     },
     {
         name: 'Seven Eleven Hotels & Clubs',
         address: '8V2H+233, Beverly Park, Mira Road East, Mira Bhayandar, Maharashtra 401107',
         contact: '9324907513 / reservation@sevenelevenclub.in',
-        distance: '6.9 km (25 minutes)'
+        distance: '6.9 km (25 minutes)',
+        link: 'https://sevenelevenclub.in'
     },
     {
         name: 'Hotel Sea \'N Rock',
         address: 'Thane Ghodbunder Road, Western Express Highway, Beside Thane Toll Naka, Mira Road East, Mumbai, Maharashtra 401104',
         contact: '09820955711 / reservation@hotelseanrock.com',
-        distance: '6.5 km (20 minutes)'
+        distance: '6.5 km (20 minutes)',
+        link: 'https://hotelseanrock.com'
     },
     {
         name: 'The Westin Garden City',
         address: 'Oberoi Garden City, International Business Park, Yashodham, Goregaon, Mumbai, Maharashtra 400063',
         contact: '226147000 / westin.mumbaigardencity@westin.com',
-        distance: '13 km (40 minutes)'
+        distance: '13 km (40 minutes)',
+        link: 'https://www.marriott.com/en-us/hotels/bomwi-the-westin-mumbai-garden-city/overview/'
     }
 ];
 
@@ -94,10 +100,20 @@ export default function AccommodationSection() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {hotels.map((hotel, index) => (
-                        <div key={index} className="hotel-card group bg-charcoal md:bg-platinum/30 border border-charcoal/5 p-8 rounded-2xl flex flex-col justify-between md:hover:bg-charcoal transition-all duration-500">
+                        <a
+                            key={index}
+                            href={hotel.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hotel-card group bg-charcoal md:bg-platinum/30 border border-charcoal/5 p-8 rounded-2xl flex flex-col justify-between md:hover:bg-charcoal transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 block"
+                        >
                             <div>
                                 <div className="flex justify-between items-start mb-6">
-                                    <span className="font-mono text-school-red text-xs">0{index + 1}</span>
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-mono text-school-red text-xs">0{index + 1}</span>
+                                        <div className="w-4 h-[1px] bg-school-red/30" />
+                                        <span className="text-[10px] font-mono text-school-red/50 uppercase tracking-widest">Official Website</span>
+                                    </div>
                                     <span className="text-[10px] font-mono text-school-red/50 md:text-charcoal/40 md:group-hover:text-school-red/50 transition-colors uppercase tracking-widest">{hotel.distance}</span>
                                 </div>
                                 <h3 className="text-2xl font-display font-bold text-platinum md:text-charcoal md:group-hover:text-platinum transition-colors mb-4 uppercase leading-none">{hotel.name}</h3>
@@ -107,7 +123,7 @@ export default function AccommodationSection() {
                                 <p className="text-[10px] font-mono text-school-red uppercase tracking-widest mb-2">Booking Contact</p>
                                 <p className="text-xs text-platinum/60 md:text-charcoal/80 md:group-hover:text-platinum md:group-hover:opacity-60 transition-colors break-words">{hotel.contact}</p>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </div>

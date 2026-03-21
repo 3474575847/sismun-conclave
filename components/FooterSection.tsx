@@ -191,15 +191,14 @@ export default function FooterSection() {
                 {/* Social links & Copyright */}
                 <div className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-12">
                     <div className="flex gap-12">
-                        {['Instagram', 'Twitter', 'LinkedIn'].map((social) => (
-                            <a
-                                key={social}
-                                href="#"
-                                className="text-platinum/40 hover:text-gold transition-colors duration-300 text-sm font-display tracking-widest uppercase"
-                            >
-                                {social}
-                            </a>
-                        ))}
+                        <a
+                            href="https://www.instagram.com/sismun_2026?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-platinum/40 hover:text-gold transition-colors duration-300 text-sm font-display tracking-widest uppercase"
+                        >
+                            Instagram
+                        </a>
                     </div>
 
                     <p className="text-platinum/20 text-[10px] font-mono uppercase tracking-[0.4em]">

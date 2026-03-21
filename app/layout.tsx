@@ -28,6 +28,10 @@ export const metadata: Metadata = {
     description: 'Cultivating the next generation of global leaders through intensive diplomatic simulation and international collaboration.',
     keywords: ['MUN', 'Model United Nations', 'Singapore', 'SISMUN', 'Diplomacy', 'International Relations'],
     authors: [{ name: 'Singapore International School' }],
+    icons: {
+        icon: '/SIS mun 1.png',
+        apple: '/SIS mun 1.png',
+    },
     openGraph: {
         title: 'SISMUN - Singapore International School Model United Nations',
         description: 'Cultivating the next generation of global leaders through intensive diplomatic simulation.',
