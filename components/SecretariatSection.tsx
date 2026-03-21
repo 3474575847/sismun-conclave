@@ -10,17 +10,17 @@ const secretariat = [
     {
         name: 'Ritvayg Bindal',
         role: 'Deputy Secretary-General',
-        image: '/ritvayg bindal.jpeg',
+        image: '/ritvayg-bindal.jpeg',
     },
     {
         name: 'Zorawar Bhinder',
         role: 'Secretary-General',
-        image: '/zorawar bhinder.jpeg',
+        image: '/zorawar-bhinder.jpeg',
     },
     {
         name: 'Chahel Dharod',
         role: 'Deputy Secretary-General',
-        image: '/chahel dharod.jpeg',
+        image: '/chahel-dharod.jpeg',
     },
 ];
 

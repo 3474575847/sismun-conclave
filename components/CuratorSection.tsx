@@ -54,7 +54,7 @@ export default function CuratorSection() {
                 >
                     <div className="relative w-full max-w-md aspect-[3/4] rounded-2xl bg-platinum/5 border border-platinum/10 shadow-lg overflow-hidden group">
                         <Image
-                            src="/parnav mukherjee, knowledge curator.jpeg"
+                            src="/parnav-curator.jpeg"
                             alt="Parnav Mukherjee - Knowledge Curator"
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
