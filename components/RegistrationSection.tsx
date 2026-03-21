@@ -61,7 +61,7 @@ export default function RegistrationSection() {
             title: 'Expression of Interest',
             subtitle: 'Submit Intent to Participate',
             content: 'Schools are required to indicate their intention to participate by completing the SISMUN Conclave 2026 Google Registration Form. The form includes details of the school, the School MUN Director, and formal consent.',
-            link: 'https://forms.gle/your-school-form-link', // Placeholder
+            link: 'https://forms.gle/8rZRG7U7MtCnjho47',
             deadline: '15th April 2026'
         },
         {
@@ -89,7 +89,7 @@ export default function RegistrationSection() {
             title: 'Google Form Submission',
             subtitle: 'Personal & Committee Details',
             content: 'Independent delegates are required to complete the SISMUN Conclave 2026 Google Registration Form by providing their name, school, grade, committee preferences, and other relevant details.',
-            link: 'https://forms.gle/your-independent-form-link', // Placeholder
+            link: 'https://forms.gle/21dAqNYqNcJEZvjp8',
             deadline: '30 April 2026'
         },
         {
