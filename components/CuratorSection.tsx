@@ -52,7 +52,7 @@ export default function CuratorSection() {
                     ref={placeholderRef}
                     className="w-full lg:w-auto lg:float-left lg:mr-16 lg:mb-12 flex justify-center lg:block"
                 >
-                    <div className="relative w-full max-w-md aspect-[3/4] rounded-2xl bg-platinum/5 border border-platinum/10 shadow-lg overflow-hidden group">
+                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-platinum/5 border border-platinum/10 shadow-lg overflow-hidden group">
                         <Image
                             src="/parnav-curator.jpeg"
                             alt="Parnav Mukherjee - Knowledge Curator"
