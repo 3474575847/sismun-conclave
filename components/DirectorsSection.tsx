@@ -48,17 +48,17 @@ export default function DirectorsSection() {
         >
             <div className="max-w-5xl w-full flex flex-col space-y-16">
 
-                {/* Top: Landscape Image Placeholder */}
+                {/* Top: Portrait Image Placeholder */}
                 <div
                     ref={imageRef}
-                    className="relative w-full aspect-square sm:aspect-square lg:aspect-[4/3] rounded-3xl bg-platinum/5 border border-platinum/10 shadow-xl overflow-hidden group"
+                    className="relative w-full max-w-md mx-auto aspect-[3/4] rounded-3xl bg-platinum/5 border border-platinum/10 shadow-xl overflow-hidden group"
                 >
                     <Image
-                        src="/mun-directors.JPG"
-                        alt="MUN Directors - CA Pushpendra Bansal & Abhilasha Singh"
+                        src="/pushpendra-sir.jpeg"
+                        alt="MUN Director - CA Pushpendra Bansal"
                         fill
-                        sizes="(max-width: 1024px) 100vw, 1000px"
-                        className="object-contain transition-transform duration-700 md:group-hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 448px"
+                        className="object-cover transition-transform duration-700 md:group-hover:scale-105"
                         priority
                     />
                 </div>
@@ -70,7 +70,7 @@ export default function DirectorsSection() {
                 >
                     <div className="space-y-4">
                         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum font-bold leading-tight">
-                            From the MUN Directors
+                            From the MUN Director
                         </h2>
                         <div className="h-1.5 w-24 bg-gold" />
                     </div>
@@ -89,14 +89,10 @@ export default function DirectorsSection() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-10 border-t border-platinum/10">
+                    <div className="pt-10 border-t border-platinum/10 w-fit">
                         <div className="space-y-1">
                             <p className="text-platinum font-serif text-2xl italic">CA Pushpendra Bansal</p>
                             <p className="text-gold text-xs uppercase tracking-[0.3em] font-bold">MUN Director</p>
-                        </div>
-                        <div className="space-y-1">
-                            <p className="text-platinum font-serif text-2xl italic">Abhilasha Singh</p>
-                            <p className="text-gold text-xs uppercase tracking-[0.3em] font-bold">Deputy MUN Director</p>
                         </div>
                     </div>
                 </div>

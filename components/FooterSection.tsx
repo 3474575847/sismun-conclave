@@ -140,15 +140,11 @@ export default function FooterSection() {
 
                     {/* Directors */}
                     <div>
-                        <h4 className="text-gold font-mono text-xs uppercase tracking-[0.2em] mb-8">SIS MUN Directors</h4>
+                        <h4 className="text-gold font-mono text-xs uppercase tracking-[0.2em] mb-8">SIS MUN Director</h4>
                         <div className="space-y-8">
                             <div className="group">
                                 <p className="text-platinum font-display text-2xl mb-1 group-hover:text-gold transition-colors">CA Pushpendra Bansal</p>
                                 <a href="tel:+919828727678" className="text-platinum/40 font-mono text-sm hover:text-white transition-colors">+91 98287 27678</a>
-                            </div>
-                            <div className="group">
-                                <p className="text-platinum font-display text-2xl mb-1 group-hover:text-gold transition-colors">Abhilasha Singh</p>
-                                <a href="tel:+919754789839" className="text-platinum/40 font-mono text-sm hover:text-white transition-colors">+91 97547 89839</a>
                             </div>
                             <div className="pt-4">
                                 <p className="text-[10px] font-mono text-platinum/30 uppercase mb-2">Directorate Email</p>
