@@ -75,7 +75,7 @@ export default function SchoolDirectorSection() {
                     <div className="mb-10">
                         <div className="space-y-4">
                             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold leading-[1.1]">
-                                Message from the School Director
+                                Message from the desk of the School Director
                             </h2>
                             <div className="h-1.5 w-24 bg-school-red" />
                         </div>

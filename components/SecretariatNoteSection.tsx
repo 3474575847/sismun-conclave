@@ -47,7 +47,7 @@ export default function SecretariatNoteSection() {
                 {/* Section Tag */}
                 <div className="flex items-center gap-4 mb-12 text-gold font-mono text-[10px] tracking-[0.4em] uppercase">
                     <span className="w-2 h-2 bg-gold rounded-full" />
-                    Note from the Secretariat
+                    Message from the desk of the Secretariat
                 </div>
 
                 <div className="space-y-12">

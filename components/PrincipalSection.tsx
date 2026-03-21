@@ -76,7 +76,7 @@ export default function PrincipalSection() {
                     <div className="mb-10">
                         <div className="space-y-4">
                             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum font-bold leading-[1.1]">
-                                Message from the Principal
+                                Message from the desk of the Principal
                             </h2>
                             <div className="h-1.5 w-24 bg-gold" />
                         </div>

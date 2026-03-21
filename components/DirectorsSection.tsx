@@ -70,7 +70,7 @@ export default function DirectorsSection() {
                 >
                     <div className="space-y-4">
                         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum font-bold leading-tight">
-                            From the MUN Director
+                            Message from the desk of the MUN Director
                         </h2>
                         <div className="h-1.5 w-24 bg-gold" />
                     </div>
