@@ -54,8 +54,8 @@ export default function CuratorSection() {
                 >
                     <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-platinum/5 border border-platinum/10 shadow-lg overflow-hidden group">
                         <Image
-                            src="/parnav-curator.jpeg"
-                            alt="Parnav Mukherjee - Knowledge Curator"
+                            src="/parnab-curator.jpeg"
+                            alt="Parnab Mukherjee - Knowledge Curator"
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                             sizes="(max-width: 768px) 100vw, 448px"
@@ -75,7 +75,7 @@ export default function CuratorSection() {
                     <div className="mb-10">
                         <div className="space-y-4">
                             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum font-bold leading-[1.1]">
-                                From the desk of Parnav Mukherjee
+                                From the desk of Parnab Mukherjee
                             </h2>
                             <div className="h-1.5 w-24 bg-gold" />
                         </div>
@@ -83,7 +83,7 @@ export default function CuratorSection() {
 
                     <div className="text-platinum leading-relaxed text-lg lg:text-xl font-light">
                         <p className="font-semibold text-platinum text-2xl lg:text-3xl mb-6 italic">
-                            Parnav Mukherjee
+                            Parnab Mukherjee
                         </p>
 
                         <div className="space-y-6 text-platinum/80">
