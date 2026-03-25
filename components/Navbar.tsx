@@ -14,7 +14,7 @@ const navItems = [
         ],
     },
     {
-        label: 'People',
+        label: 'Directory',
         sections: [
             { name: 'Secretariat', id: 'secretariat-section' },
             { name: 'Message', id: 'secretariat-note' },
