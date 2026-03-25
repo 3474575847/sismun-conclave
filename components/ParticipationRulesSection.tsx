@@ -120,7 +120,7 @@ export default function ParticipationRulesSection() {
 
 
                     {/* Attendance - VERBATIM */}
-                    <div className="rule-entry lg:col-span-2 p-10 bg-platinum border border-charcoal/5 rounded-3xl hover:bg-white transition-all duration-500">
+                    <div className="rule-entry p-8 bg-platinum border border-charcoal/5 rounded-3xl hover:bg-white transition-all duration-500">
                         <h4 className="text-2xl font-display font-bold mb-4 uppercase">Attendance</h4>
                         <p className="font-normal text-sm leading-relaxed">
                             Attendance on both conference days is mandatory. In case of absence, the school chaperone must inform the SISMUN Conclave 2026 MUN Director before the start of the day. Delegates absent on either day will not be eligible for certificates or awards.
@@ -128,7 +128,7 @@ export default function ParticipationRulesSection() {
                     </div>
 
                     {/* Use of Devices - VERBATIM */}
-                    <div className="rule-entry lg:col-span-2 p-10 bg-platinum border border-charcoal/5 rounded-3xl hover:bg-white transition-all duration-500">
+                    <div className="rule-entry p-8 bg-platinum border border-charcoal/5 rounded-3xl hover:bg-white transition-all duration-500">
                         <h4 className="text-2xl font-display font-bold mb-4 uppercase">Use of Devices</h4>
                         <p className="font-normal text-sm leading-relaxed">
                             Laptops and mobile phones are permitted only at the discretion of the Committee President and Deputy President. Delegates must comply with usage instructions; misuse may result in restriction of devices for the remainder of the session.

@@ -151,6 +151,79 @@ export default function CommitteePage() {
                             </p>
                         </div>
                     </div>
+
+                    {/* Full Width detailedWriteup Section */}
+                    {committee.detailedWriteup && (
+                        <div className="lg:col-span-12 mt-20 space-y-20">
+                            {/* Quote Section */}
+                            {committee.detailedWriteup.quote && (
+                                <div className="reveal flex flex-col items-center text-center max-w-4xl mx-auto">
+                                    <svg className="w-12 h-12 text-school-red/20 mb-8" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V3L21.017 3V15C21.017 18.3137 18.3307 21 15.017 21H14.017ZM3.0166 21L3.0166 18C3.0166 16.8954 3.91203 16 5.0166 16H8.0166C8.56888 16 9.0166 15.5523 9.0166 15V9C9.0166 8.44772 8.56888 8 8.0166 8H5.0166C3.91203 8 3.0166 7.10457 3.0166 6V3L10.0166 3V15C10.0166 18.3137 7.33031 21 4.0166 21H3.0166Z" />
+                                    </svg>
+                                    <p className="text-3xl md:text-4xl font-display font-medium text-charcoal leading-tight mb-6 italic">
+                                        &ldquo;{committee.detailedWriteup.quote}&rdquo;
+                                    </p>
+                                    <p className="text-school-red font-mono text-xs uppercase tracking-[0.3em] font-bold">
+                                        — {committee.detailedWriteup.quoteAuthor}
+                                    </p>
+                                </div>
+                            )}
+
+                            {/* Main Content */}
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                                <div className="lg:col-span-8 space-y-10">
+                                    <div className="reveal prose prose-lg prose-slate max-w-none">
+                                        {committee.detailedWriteup.introduction && (
+                                            <p className="text-xl text-charcoal font-medium leading-relaxed mb-8">
+                                                {committee.detailedWriteup.introduction}
+                                            </p>
+                                        )}
+                                        <div className="space-y-6 text-charcoal/80 font-light leading-relaxed">
+                                            {committee.detailedWriteup.body?.map((para, i) => (
+                                                <p key={i}>{para}</p>
+                                            ))}
+                                        </div>
+                                        {committee.detailedWriteup.conclusion && (
+                                            <p className="mt-12 p-8 bg-charcoal/5 rounded-2xl border-l-4 border-school-red text-charcoal/90 italic">
+                                                {committee.detailedWriteup.conclusion}
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="lg:col-span-4 space-y-12">
+                                    {/* Bibliography / Citations Sidebar */}
+                                    {(committee.detailedWriteup.bibliography || committee.detailedWriteup.citations) && (
+                                        <div className="reveal space-y-8 sticky top-32">
+                                            <div>
+                                                <h4 className="text-school-red font-mono text-[10px] uppercase tracking-[0.4em] mb-6 border-b border-charcoal/10 pb-4">
+                                                    {committee.detailedWriteup.bibliography ? 'Bibliography' : 'Citations'}
+                                                </h4>
+                                                <ul className="space-y-4">
+                                                    {(committee.detailedWriteup.bibliography || committee.detailedWriteup.citations)?.map((item, i) => (
+                                                        <li key={i} className="text-xs font-mono text-charcoal/50 leading-loose break-words hover:text-school-red transition-colors">
+                                                            <span className="text-school-red/40 mr-2">/0{i + 1}</span>
+                                                            {item.startsWith('http') ? (
+                                                                <a href={item} target="_blank" rel="noopener noreferrer" className="underline decoration-school-red/20 underline-offset-4">
+                                                                    {item}
+                                                                </a>
+                                                            ) : item}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+
+                                            <div className="p-6 bg-school-red text-white rounded-xl shadow-xl">
+                                                <p className="font-mono text-[9px] uppercase tracking-widest mb-2 opacity-70">Committee status</p>
+                                                <p className="text-sm font-bold uppercase tracking-tighter">Ready for Debate</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </section>
 
