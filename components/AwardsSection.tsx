@@ -93,10 +93,9 @@ export default function AwardsSection() {
                         <div className="flex flex-col border-t border-white/10">
                             {[
                                 'Best Delegate',
-                                'Best Delegate (Research)',
-                                'High Commendation',
-                                'Special Commendation',
-                                'Commendation'
+                                'Outstanding Delegate',
+                                'Honorable Mention',
+                                'Best Position Paper'
                             ].map((award, index) => (
                                 <div key={award} className="group relative flex items-center justify-between py-8 px-4 md:px-8 border-b border-white/10 hover:bg-white/[0.02] transition-colors duration-500 cursor-default overflow-hidden">
                                     {/* Left highlight bar */}

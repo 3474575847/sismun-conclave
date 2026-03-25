@@ -55,7 +55,8 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            const threshold = window.innerHeight * 0.8;
+            setIsScrolled(window.scrollY > threshold);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -75,9 +76,9 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${isScrolled
-                ? 'py-4 bg-charcoal/80 backdrop-blur-md border-b border-gold/10 shadow-lg'
-                : 'py-8 bg-gradient-to-b from-black/20 to-transparent'
+            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 ${isScrolled
+                ? 'py-4 bg-charcoal/80 backdrop-blur-md border-b border-gold/10 shadow-lg translate-y-0 opacity-100'
+                : 'py-8 bg-transparent -translate-y-full opacity-0 pointer-events-none'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
@@ -98,7 +99,7 @@ export default function Navbar() {
                     <div className="flex flex-col">
                         <span className="text-xl md:text-2xl font-display font-bold tracking-tighter transition-colors duration-300 leading-none">
                             <span className="text-school-red">SIS</span>
-                            <span className={`transition-colors duration-300 group-hover:text-gold ${isScrolled ? 'text-platinum' : 'text-platinum'}`}>MUN</span>
+                            <span className="text-platinum">MUN</span>
                         </span>
                         <span className="text-[8px] font-mono text-gold/60 uppercase tracking-[0.2em] mt-1 group-hover:text-gold transition-colors">Conclave 2026</span>
                     </div>

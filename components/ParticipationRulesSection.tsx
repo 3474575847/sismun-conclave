@@ -93,13 +93,13 @@ export default function ParticipationRulesSection() {
                                 All delegates are required to wear formal Western business attire reflecting the professionalism of United Nations diplomats.
                             </p>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-t border-white/10 pt-8">
+                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-t border-white/10 pt-8">
                                 <div>
                                     <h5 className="font-mono text-[10px] text-school-red uppercase tracking-widest mb-3">Mandatory:</h5>
                                     <ul className="space-y-2 text-[11px] font-normal text-white/80">
                                         <li className="flex items-center gap-2"><span className="w-1 h-1 bg-school-red rounded-full" /> Formal trousers/pants</li>
                                         <li className="flex items-center gap-2"><span className="w-1 h-1 bg-school-red rounded-full" /> Formal shirts/blouses</li>
-                                        <li className="flex items-center gap-2"><span className="w-1 h-1 bg-school-red rounded-full" /> Blazers/suits</li>
+                                        <li className="flex items-center gap-2"><span className="w-1 h-1 bg-school-red rounded-full" /> Blazers/suits (Recommended)</li>
                                         <li className="flex items-center gap-2"><span className="w-1 h-1 bg-school-red rounded-full" /> Formal shoes</li>
                                     </ul>
                                 </div>
@@ -107,6 +107,8 @@ export default function ParticipationRulesSection() {
                                     <h5 className="font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-3">Prohibited:</h5>
                                     <ul className="space-y-2 text-[11px] font-normal text-white/60">
                                         <li className="flex items-center gap-2"><span className="w-1 h-1 bg-gray-700 rounded-full" /> Skirts/mini-skirts</li>
+                                        <li className="flex items-center gap-2"><span className="w-1 h-1 bg-gray-700 rounded-full" /> Denim (including jeans)</li>
+                                        <li className="flex items-center gap-2"><span className="w-1 h-1 bg-gray-700 rounded-full" /> Sneakers/Sports shoes/Sandals</li>
                                         <li className="flex items-center gap-2"><span className="w-1 h-1 bg-gray-700 rounded-full" /> National/Cultural dress</li>
                                         <li className="flex items-center gap-2"><span className="w-1 h-1 bg-gray-700 rounded-full" /> Military/Costumes</li>
                                         <li className="flex items-center gap-2"><span className="w-1 h-1 bg-gray-700 rounded-full" /> Political accessories</li>
@@ -115,6 +117,7 @@ export default function ParticipationRulesSection() {
                             </div>
                         </div>
                     </div>
+
 
                     {/* Attendance - VERBATIM */}
                     <div className="rule-entry lg:col-span-2 p-10 bg-platinum border border-charcoal/5 rounded-3xl hover:bg-white transition-all duration-500">

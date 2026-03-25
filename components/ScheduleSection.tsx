@@ -21,16 +21,16 @@ const day1 = [
 ];
 
 const day2 = [
-    { time: '8:00 am - 8:30 am', activity: 'Reporting time for delegates' },
-    { time: '8:30 am - 9:30 am', activity: 'Committee Session 1' },
-    { time: '9:30 am - 10:00 am', activity: 'Breakfast + Lobbying' },
-    { time: '10:00 am - 11:30 am', activity: 'Committee Session 2' },
-    { time: '11:30 am - 11:40 am', activity: 'Break + Lobbying' },
-    { time: '11:40 am - 1:00 pm', activity: 'Committee Session 3' },
-    { time: '1:00 pm - 1:30 pm', activity: 'Lunch + Lobbying' },
-    { time: '1:30 pm - 4:00 pm', activity: 'Committee Session 4' },
+    { time: '8:00 am - 8:30 am', activity: 'Reporting & Breakfast' },
+    { time: '8:30 am - 9:50 am', activity: 'Committee Session 1' },
+    { time: '9:50 am - 10:00 am', activity: 'Refreshment Break' },
+    { time: '10:00 am - 12:30 pm', activity: 'Committee Session 2' },
+    { time: '12:30 pm - 1:00 pm', activity: 'Lunch Break' },
+    { time: '1:00 pm - 2:50 pm', activity: 'Committee Session 3' },
+    { time: '2:50 pm - 3:00 pm', activity: 'Refreshment Break' },
+    { time: '3:00 pm - 4:00 pm', activity: 'Committee Session 4' },
     { time: '4:00 pm - 6:00 pm', activity: 'Closing Ceremony' },
-    { time: '6:00 pm', activity: 'Dispersal' },
+    { time: '6:00 pm', activity: 'Delegates Disperse' },
 ];
 
 export default function ScheduleSection() {
@@ -113,7 +113,7 @@ export default function ScheduleSection() {
                 <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 py-10 border-t border-charcoal/10">
                     <div>
                         <h4 className="font-mono text-[10px] text-charcoal/40 uppercase mb-2 tracking-widest">Dress Code</h4>
-                        <p className="text-charcoal/70 uppercase text-sm font-medium">Refer Page 17 of Information Docket</p>
+                        <p className="text-charcoal/70 uppercase text-sm font-medium">Formal Western Business Attire</p>
                     </div>
                     <div>
                         <h4 className="font-mono text-[10px] text-charcoal/40 uppercase mb-2 tracking-widest">Location</h4>

@@ -80,17 +80,17 @@ export default function CommitteesSection() {
 
             Observer.create({
                 target: section,
-                type: "wheel,touch",
+                type: "wheel,touch,pointer",
                 lockAxis: true,
-                tolerance: 60, // Higher tolerance for a more "intentional" swipe
+                tolerance: 30, // Lower tolerance for better mouse responsiveness
                 onRight: () => {
-                    if (currentIndex.current < committees.length - 1) {
-                        gotoSlide(currentIndex.current + 1, 1);
+                    if (currentIndex.current > 0) {
+                        gotoSlide(currentIndex.current - 1, -1);
                     }
                 },
                 onLeft: () => {
-                    if (currentIndex.current > 0) {
-                        gotoSlide(currentIndex.current - 1, -1);
+                    if (currentIndex.current < committees.length - 1) {
+                        gotoSlide(currentIndex.current + 1, 1);
                     }
                 },
                 preventDefault: true,

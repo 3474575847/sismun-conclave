@@ -16,7 +16,7 @@ const hotels = [
     },
     {
         name: 'The Fern Residency',
-        address: 'Western Express Hwy, Opp. Daras Dhabha, Laxmi Baug, Kashimira, Mira Road East, Mumbai, Mira Bhayandar, Maharashtra 401107',
+        address: 'Western Express Hwy, Opp. Daras Dhaba, Laxmi Baug, Kashimira, Mira Road East, Mumbai, Mira Bhayandar, Maharashtra 401107',
         contact: '0124 458 0651 / crs@fernhotels.com',
         distance: '3.7 km (15 minutes)',
         link: 'https://www.marriott.com/en-us/hotels/bomrm-the-fern-residency-mumbai-mira-road-series/overview/'
@@ -24,7 +24,7 @@ const hotels = [
     {
         name: 'GCC Hotel & Clubs',
         address: 'Off Mira Bhayandar Road, 92/1, GCC Club Rd, Mira Road East, Maharashtra 401107',
-        contact: '8285638563, 8285638564 / reservation@gechotelandclub.com',
+        contact: '8285638563, 8285638564 / reservation@gcchotelandclub.com',
         distance: '4.6 km (20 minutes)',
         link: 'https://gcchotelandclub.com'
     },
@@ -45,7 +45,7 @@ const hotels = [
     {
         name: 'The Westin Garden City',
         address: 'Oberoi Garden City, International Business Park, Yashodham, Goregaon, Mumbai, Maharashtra 400063',
-        contact: '226147000 / westin.mumbaigardencity@westin.com',
+        contact: '2261470000 / westin.mumbaigardencity@westin.com',
         distance: '13 km (40 minutes)',
         link: 'https://www.marriott.com/en-us/hotels/bomwi-the-westin-mumbai-garden-city/overview/'
     }

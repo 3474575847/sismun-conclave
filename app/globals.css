@@ -21,12 +21,6 @@
     cursor: default;
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    body {
-      cursor: none;
-    }
-  }
-
   html {
     scroll-behavior: auto;
   }

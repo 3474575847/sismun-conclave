@@ -21,6 +21,7 @@ export default function Home() {
     return (
         <main className="min-h-screen bg-charcoal text-platinum selection:bg-gold/30">
             <HeroSection />
+            <GallerySection />
             <ThemeSection />
             <SecretariatSection />
             <SecretariatNoteSection />
@@ -35,7 +36,6 @@ export default function Home() {
             <TrainingSection />
             <ScheduleSection />
             <AwardsSection />
-            <GallerySection />
             <AccommodationSection />
             <FooterSection />
         </main>

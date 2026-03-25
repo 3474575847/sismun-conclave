@@ -30,7 +30,7 @@ const splitTextReveal = (element: HTMLElement, delay: number = 0, isTitle: boole
                 if (index < 3) {
                     span.style.color = '#B22234'; // Institutional Red (SIS)
                 } else {
-                    span.style.color = '#EFC001'; // Institutional Gold (MUN)
+                    span.style.color = '#FFCC00'; // School Yellow (MUN)
                 }
             } else if (text === 'CONCLAVE') {
                 span.style.color = '#222222'; // Institutional Charcoal

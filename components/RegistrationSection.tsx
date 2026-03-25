@@ -62,14 +62,14 @@ export default function RegistrationSection() {
             subtitle: 'Submit Intent to Participate',
             content: 'Schools are required to indicate their intention to participate by completing the SISMUN Conclave 2026 Google Registration Form. The form includes details of the school, the School MUN Director, and formal consent.',
             link: 'https://forms.gle/8rZRG7U7MtCnjho47',
-            deadline: '15th April 2026'
+            deadline: '25th April 2026'
         },
         {
             number: '02',
             title: 'Submission of Delegate Details',
             subtitle: 'Delegate & Chaperone Info',
             content: 'Upon receiving the Expression of Interest, the SISMUN Secretariat will share an Excel form via email. This form will require information about the participating delegates and the teacher chaperones for both days.',
-            deadline: '25th April 2026'
+            deadline: '30th April 2026'
         },
         {
             number: '03',
@@ -79,7 +79,7 @@ export default function RegistrationSection() {
             fee: '₹3,000',
             feeSub: '/ student',
             chaperone: 'Chaperones: No registration fee',
-            deadline: '30th April 2026'
+            deadline: '15th May 2026'
         }
     ];
 
@@ -90,7 +90,7 @@ export default function RegistrationSection() {
             subtitle: 'Personal & Committee Details',
             content: 'Independent delegates are required to complete the SISMUN Conclave 2026 Google Registration Form by providing their name, school, grade, committee preferences, and other relevant details.',
             link: 'https://forms.gle/21dAqNYqNcJEZvjp8',
-            deadline: '30 April 2026'
+            deadline: '15th May 2026'
         },
         {
             number: '02',
@@ -99,7 +99,7 @@ export default function RegistrationSection() {
             content: 'Delegates must complete the registration payment at the time of submission and email the payment receipt to rep.mun@sisindia.edu.in for verification and confirmation.',
             fee: '₹3,000',
             feeSub: '/ delegate',
-            deadline: '30 April 2026'
+            deadline: '15th May 2026'
         },
         {
             number: '03',
@@ -261,11 +261,10 @@ export default function RegistrationSection() {
                                 View Detailed Rules
                             </a>
 
-                            {/* Special Note */}
-                            <div className="mt-8 p-6 bg-gold/5 border border-gold/10 rounded-2xl">
+                            <div className="mt-8 p:6 bg-gold/5 border border-gold/10 rounded-2xl">
                                 <h4 className="text-gold font-mono text-[9px] uppercase tracking-[0.3em] mb-4">Special Note</h4>
                                 <p className="text-[11px] leading-relaxed text-platinum/60 font-light italic">
-                                    Schools whose academic session begins after the first week of August (i.e., after the conference dates) may nominate independent delegates to participate. Refer to <strong className="text-gold">Page 18</strong> of the Information Docket for guidelines.
+                                    Schools whose academic session begins after the first week of August (i.e., after the conference dates) may nominate independent delegates to participate.
                                 </p>
                             </div>
                         </div>

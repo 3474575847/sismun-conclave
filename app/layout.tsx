@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono, Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
-import MechanicalCursor from '@/components/MechanicalCursor';
 import Navbar from '@/components/Navbar';
 
 const inter = Inter({
@@ -49,7 +48,6 @@ export default function RootLayout({
             <body className={`${inter.className} font-sans bg-white text-charcoal antialiased selection:bg-gold/30 no-scrollbar`}>
                 <SmoothScroll>
                     <Navbar />
-                    <MechanicalCursor />
                     {children}
                 </SmoothScroll>
             </body>
