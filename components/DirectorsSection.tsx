@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
@@ -43,7 +42,7 @@ export default function DirectorsSection() {
     return (
         <section
             ref={sectionRef}
-            className="w-full bg-charcoal py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-white/5"
+            className="w-full bg-white py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5"
             id="directors-section"
         >
             <div className="max-w-7xl w-full">
@@ -52,7 +51,7 @@ export default function DirectorsSection() {
                     ref={placeholderRef}
                     className="w-full lg:w-auto lg:float-right lg:ml-16 lg:mb-12 flex justify-center lg:block"
                 >
-                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-platinum/5 border border-platinum/10 shadow-lg overflow-hidden group">
+                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-charcoal/5 border border-charcoal/10 shadow-lg overflow-hidden group">
                         <Image
                             src="/pushpendra-sir.jpeg"
                             alt="MUN Director - CA Pushpendra Bansal"
@@ -63,8 +62,8 @@ export default function DirectorsSection() {
                         />
 
                         {/* Corner Accents mirroring theme */}
-                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/20 rounded-tl-2xl" />
-                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/20 rounded-br-2xl" />
+                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-school-red/20 rounded-tl-2xl" />
+                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-school-red/20 rounded-br-2xl" />
                     </div>
                 </div>
 
@@ -75,35 +74,38 @@ export default function DirectorsSection() {
                 >
                     <div className="mb-10">
                         <div className="space-y-4">
-                            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum font-bold leading-[1.1]">
-                                Message from the desk of the MUN Director
+                            <h2 className="text-4xl sm:text-5xl lg:text-8xl font-serif text-charcoal font-bold leading-[1.1] mb-2 uppercase tracking-tighter text-balance">
+                                In the Spirit of the United Nations
                             </h2>
-                            <div className="h-1.5 w-24 bg-gold" />
+                            <h3 className="text-xl sm:text-2xl text-school-red font-mono uppercase tracking-[0.3em] font-medium mb-8">
+                                A Message from the SISMUN Director
+                            </h3>
+                            <div className="h-1.5 w-24 bg-school-red" />
                         </div>
                     </div>
 
-                    <div className="text-platinum/80 leading-relaxed text-lg lg:text-xl font-light">
-                        <p className="font-semibold text-platinum text-2xl lg:text-3xl mb-6 italic">
-                            CA Pushpendra Bansal
-                        </p>
-
+                    <div className="text-charcoal/80 leading-relaxed text-lg lg:text-xl font-light">
                         <div className="space-y-6">
                             <p>
-                                It gives me immense pleasure to invite schools from across the world to the 17th Edition of SISMUN Conclave 2026, hosted at Singapore International School, Mumbai. Guided by the theme <span className="text-gold font-medium italic underline decoration-gold/30 underline-offset-4">&ldquo;Towards Fostering an Ecosystem of a Uniform Global Human Rights and Social Justice Framework,&rdquo;</span> this year&rsquo;s conference calls upon young leaders to reflect on the enduring promise of global cooperation as the international community marks eight decades since nations first came together to imagine a multilateral order founded on dialogue and shared responsibility.
+                                Welcome to SISMUN 2026. This year, we stand at a crossroads where diplomacy and action must meet to address the most pressing challenges of our time. Our theme, &ldquo;Towards Fostering an Ecosystem of a Uniform Global Human Rights and Social Justice Framework,&rdquo; is a call to all young leaders to engage in meaningful dialogue and develop sustainable solutions for the future.
                             </p>
 
                             <p>
-                                As a THIMUN-aligned conference, SISMUN is grounded in academic rigour, meaningful diplomacy, and thoughtful collaboration across carefully curated committees. Yet beyond procedure and policy, it is built upon three enduring pillars: <span className="text-gold font-medium underline decoration-gold/30 underline-offset-4">voice, integrity, and connection</span>. These are not merely skills cultivated within committee rooms; they are the very principles that compelled nations to come together eighty years ago in pursuit of peace.
+                                At SISMUN, we believe that education is not just about academics but about empathy, critical thinking, and global awareness. Our committees have been meticulously designed to challenge you, push your boundaries, and help you emerge as the principled leaders the world needs today.
                             </p>
 
-                            <p>
-                                Within committee sessions, delegates learn to use their voice not to dominate but to clarify, not to perform but to connect. They learn that integrity is the foundation of trust, and that connection is the only path toward meaningful and lasting progress. It is our hope that every delegate who joins us for SISMUN Conclave 2026 will depart with more than a resolution; we hope they will leave with a renewed sense of purpose and a deeper commitment to the collective journey of our global community.
+                            <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red pl-8 py-2 text-charcoal/90 mt-8">
+                                &ldquo;You must be the change you wish to see in the world.&quot;
+                                <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50">&mdash; MAHATMA GANDHI</span>
                             </p>
                         </div>
                     </div>
 
-                    <div className="mt-10 pt-4 border-t border-platinum/10 w-fit">
-                        <p className="text-gold text-sm lg:text-base uppercase tracking-[0.3em] font-bold">MUN Director</p>
+                    <div className="mt-10 pt-4 border-t border-charcoal/10 w-fit">
+                        <p className="text-school-red text-lg lg:text-xl tracking-[0.1em] font-medium mb-1">CA PUSHPENDRA BANSAL</p>
+                        <p className="text-charcoal/40 font-mono text-[10px] uppercase tracking-widest leading-relaxed">
+                            SISMUN Director,<br />Singapore International School
+                        </p>
                     </div>
                 </div>
                 {/* Clearfix for floating elements */}

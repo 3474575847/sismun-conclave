@@ -86,14 +86,16 @@ export default function AccommodationSection() {
                     <div className="lg:col-span-8">
                         <div className="flex items-center gap-4 mb-6 text-school-red font-mono text-[10px] tracking-[0.4em] uppercase">
                             <span className="w-2 h-2 bg-school-red rounded-full" />
-                            Logistics ACCOMMODATION & TRAVEL
+                            Logistics
                         </div>
-                        <h2 className="text-5xl md:text-7xl font-display font-bold text-charcoal uppercase tracking-tighter">
-                            Guest Information
+                        <h2 className="text-5xl md:text-7xl font-display font-bold text-charcoal uppercase tracking-tighter mb-4">
+                            Accommodation & Travel
                         </h2>
+                        <h3 className="text-xl md:text-2xl font-display font-medium text-charcoal/40 uppercase tracking-widest mb-8">
+                            (For Outstation Schools)
+                        </h3>
                         <p className="mt-8 text-charcoal/60 font-light text-xl leading-relaxed max-w-2xl">
-                            Schools are responsible for their own accommodation and transport arrangements.
-                            We recommend booking early due to high demand.
+                            Schools are responsible for their own accommodation and transport arrangements. We recommend booking early due to high demand.
                         </p>
                     </div>
                 </div>
@@ -105,7 +107,7 @@ export default function AccommodationSection() {
                             href={hotel.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hotel-card group bg-charcoal md:bg-platinum/30 border border-charcoal/5 p-8 rounded-2xl flex flex-col justify-between md:hover:bg-charcoal transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 block"
+                            className="hotel-card group bg-white/5 md:bg-platinum/5 border border-white/5 p-8 rounded-xl flex flex-col justify-between hover:bg-white/10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 block"
                         >
                             <div>
                                 <div className="flex justify-between items-start mb-6">
@@ -114,14 +116,14 @@ export default function AccommodationSection() {
                                         <div className="w-4 h-[1px] bg-school-red/30" />
                                         <span className="text-[10px] font-mono text-school-red/50 uppercase tracking-widest">Official Website</span>
                                     </div>
-                                    <span className="text-[10px] font-mono text-school-red/50 md:text-charcoal/40 md:group-hover:text-school-red/50 transition-colors uppercase tracking-widest">{hotel.distance}</span>
+                                    <span className="text-[10px] font-mono text-school-red/50 uppercase tracking-widest">{hotel.distance}</span>
                                 </div>
-                                <h3 className="text-2xl font-display font-bold text-platinum md:text-charcoal md:group-hover:text-platinum transition-colors mb-4 uppercase leading-none">{hotel.name}</h3>
-                                <p className="text-sm text-platinum/40 md:text-charcoal/60 md:group-hover:text-platinum/40 transition-colors mb-6 font-light leading-relaxed">{hotel.address}</p>
+                                <h3 className="text-2xl font-display font-bold text-white mb-4 uppercase leading-none">{hotel.name}</h3>
+                                <p className="text-sm text-white/60 mb-6 font-light leading-relaxed">{hotel.address}</p>
                             </div>
                             <div className="pt-6 border-t border-charcoal/10">
                                 <p className="text-[10px] font-mono text-school-red uppercase tracking-widest mb-2">Booking Contact</p>
-                                <p className="text-xs text-platinum/60 md:text-charcoal/80 md:group-hover:text-platinum md:group-hover:opacity-60 transition-colors break-words">{hotel.contact}</p>
+                                <p className="text-xs text-white/80 transition-colors break-words">{hotel.contact}</p>
                             </div>
                         </a>
                     ))}

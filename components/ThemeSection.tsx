@@ -7,10 +7,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const commemorations = [
-    { id: '01', title: 'The 75th Anniversary of Schuman Declaration' },
-    { id: '02', title: 'The 80th Commemoration of the United Nations' },
-    { id: '03', title: 'The 40th Solemn Commemoration of the Chernobyl Nuclear Disaster' },
-    { id: '04', title: 'The 150th Birth Commemoration of Birsa Munda and Sardar Vallabhbhai Patel' }
+    { id: '01', title: '75th Anniversary of the Schuman Declaration' },
+    { id: '02', title: '80th Commemoration of the United Nations' },
+    { id: '03', title: '40th Solemn Commemoration of the Chernobyl Nuclear Disaster' },
+    { id: '04', title: '150th Birth Commemoration of Birsa Munda and Sardar Vallabhbhai Patel' }
 ];
 
 export default function ThemeSection() {
@@ -64,14 +64,14 @@ export default function ThemeSection() {
         >
             <div ref={containerRef} className="max-w-6xl mx-auto w-full">
                 {/* Section Tag */}
-                <div className="flex items-center gap-4 mb-20 text-school-red font-mono text-[10px] tracking-[0.4em] uppercase">
+                <div className="flex items-center gap-4 mb-20 text-school-red font-mono text-xs md:text-sm tracking-[0.4em] uppercase">
                     <span className="w-2 h-2 bg-school-red rounded-full" />
-                    Conclave Concept THEME.2026
+                    SISMUN 2026 Theme
                 </div>
 
                 {/* Main Theme */}
                 <div className="mb-32">
-                    <h2 className="theme-title text-4xl md:text-6xl lg:text-7xl font-display font-bold text-charcoal leading-[1.1] tracking-tight text-center md:text-left">
+                    <h2 className="theme-title text-3xl md:text-5xl lg:text-6xl font-display font-bold text-charcoal leading-[1.1] tracking-tight text-center md:text-left">
                         Towards Fostering an Ecosystem of a <span className="text-school-red">Uniform Global Human Rights</span> and Social Justice Framework
                     </h2>
                 </div>
@@ -79,12 +79,9 @@ export default function ThemeSection() {
                 {/* Commemorations Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
                     <div className="lg:col-span-4">
-                        <h3 className="text-sm font-mono tracking-[0.5em] text-charcoal/40 uppercase mb-4">
-                            Landmark commemorations
-                        </h3>
                         <div className="h-px w-full bg-charcoal/10" />
-                        <p className="mt-6 text-charcoal/60 font-light text-lg">
-                            SISMUN Conclave is Dedicated to Four Landmark Commemorations that shaped our modern history and shared values.
+                        <p className="mt-6 text-charcoal/60 font-light text-lg font-medium text-charcoal">
+                            Dedicated to Four Landmark Commemorations:
                         </p>
                     </div>
 

@@ -102,6 +102,14 @@ export default function CommitteesSection() {
 
     return (
         <section ref={sectionRef} id="committees-section" className="relative h-screen bg-white overflow-hidden select-none">
+            {/* Section Header */}
+            <div className="absolute top-12 left-12 z-50">
+                <h2 className="text-2xl md:text-5xl font-display font-bold text-charcoal uppercase tracking-tighter">
+                    Committees and Agendas
+                </h2>
+                <div className="h-1 w-12 bg-school-red mt-2" />
+            </div>
+
             {/* Slide Navigation Dots */}
             <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex gap-4">
                 {committees.map((_, i) => (

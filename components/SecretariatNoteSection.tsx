@@ -44,44 +44,39 @@ export default function SecretariatNoteSection() {
             </div>
 
             <div ref={contentRef} className="max-w-4xl mx-auto w-full relative z-10">
-                {/* Section Tag */}
-                <div className="flex items-center gap-4 mb-12 text-gold font-mono text-[10px] tracking-[0.4em] uppercase">
-                    <span className="w-2 h-2 bg-gold rounded-full" />
-                    Message from the desk of the Secretariat
-                </div>
-
-                <div className="space-y-12">
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-platinum leading-tight">
-                        A Welcome from the <span className="text-gold">Heart of SISMUN Conclave</span>
+                <div className="space-y-8">
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum font-bold leading-[1.1] mb-4">
+                        A note from the Secretariat
                     </h2>
+                    <div className="h-1.5 w-24 bg-gold mb-8" />
 
                     <div className="space-y-8 text-platinum/80 font-light text-lg leading-relaxed text-justify">
                         <p>
-                            As the Secretariat, it is our great pleasure to welcome you to the 17th edition of SISMUN. This year, we come together around a theme that demands building an environment built upon a universal set of global human rights and social justice principles, a notion that feels ever more pressing in our current world order.
+                            It is with immense pride and gratitude that we welcome you to the 17th Edition of SISMUN. What you see is more than just a platform &mdash; it is the culmination of months of planning, collaboration, late-night discussions, and a shared commitment to creating a conference that challenges, inspires, and empowers. However, no matter how detailed our preparation, a conference truly comes alive only because of its delegates &mdash; and that means you.
                         </p>
                         <p>
-                            In our various committees, you will be discussing issues of self-determination, conflict, equitable distribution of resources, environmentalism, technological control, and global accountability, each of which has been carefully crafted to mirror our world in the 21st century, yet still requires intellectual, legal, and diplomatic sophistication.
+                            SISMUN has never been defined merely by formal speeches or structured debate. It is a dynamic space where ideas are tested, perspectives evolve, and confidence steadily takes shape. Some of you arrive as seasoned delegates, comfortable navigating procedure and negotiation. Others may still be waiting for the right moment to raise your placard. Both journeys are equally meaningful. Every confident diplomat once began with hesitation, carefully drafting their first speech and hoping their resolution would pass.
                         </p>
                         <p>
-                            Debate, however, will not be merely rhetorical in nature. In our Security Council, you will be discussing pressing issues of global food security as a result of the conflict in Ukraine, as well as humanitarian crises in Yemen. In our Human Rights Council, you will be discussing socio-political instability in gender-divergent societies as well as democratic backsliding in Nepal. DISEC and HSC will be discussing autonomous weapons, Greenland&rsquo;s autonomy, and a number of historical crises, all of which will challenge us to be responsible, forward-thinking global leaders.
+                            The true spirit of Model United Nations extends beyond committee sessions. It thrives in the hurried strategy discussions in hallways, the alliances formed during short breaks, and the thoughtful compromises reached moments before voting. You will argue passionately, negotiate deliberately, and perhaps discover that diplomacy often requires rewriting an entire clause in pursuit of consensus. It is in these intense, human moments that leadership quietly develops.
+                        </p>
+                        <p>
+                            After more than sixteen years of debate and dialogue, SISMUN has grown into a platform grounded in cooperation, curiosity, and principled diplomacy. Here, disagreement is not an obstacle but an opportunity &mdash; a chance to understand perspectives beyond our own. We encourage you not only to speak with conviction, but also to listen with openness, for meaningful learning often begins where comfort ends.
+                        </p>
+                        <p>
+                            As your Secretariat, our hope is simple: immerse yourselves fully in the experience. Take intellectual risks. Build lasting friendships. Embrace both triumphs and challenges with equal grace. While awards may recognise excellence, the confidence you cultivate, the resilience you develop, and the relationships you forge will remain with you long after the final gavel falls.
+                        </p>
+                        <p>
+                            Thank you for being part of SISMUN 2026. We eagerly await the energy, integrity, and passion you will bring to this conference.
+                        </p>
+                        <p>
+                            As former UN Secretary-General Kofi Annan once said, &ldquo;More than ever before in human history, we share a common destiny.&rdquo; May this conference remind us of that shared responsibility &mdash; and the power of dialogue in shaping it.
+                        </p>
+                        <p className="font-semibold text-platinum italic">
+                            Let the debate begin.
                         </p>
                     </div>
 
-                    {/* Signatories */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-platinum/10">
-                        <div className="space-y-1">
-                            <p className="text-gold font-display text-xl font-bold italic">Zorawar Bhinder</p>
-                            <p className="text-platinum/40 font-mono text-[10px] uppercase tracking-widest">Secretary General</p>
-                        </div>
-                        <div className="space-y-1">
-                            <p className="text-gold font-display text-xl font-bold italic">Chahel Dharod</p>
-                            <p className="text-platinum/40 font-mono text-[10px] uppercase tracking-widest">Deputy Secretary General</p>
-                        </div>
-                        <div className="space-y-1">
-                            <p className="text-gold font-display text-xl font-bold italic">Ritvayg Bindal</p>
-                            <p className="text-platinum/40 font-mono text-[10px] uppercase tracking-widest">Deputy Secretary General</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

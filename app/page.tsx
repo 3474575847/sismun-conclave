@@ -21,18 +21,18 @@ export default function Home() {
     return (
         <main className="min-h-screen bg-charcoal text-platinum selection:bg-gold/30">
             <HeroSection />
-            <GallerySection />
             <ThemeSection />
+            <GallerySection />
+            <SchoolDirectorSection />
+            <PrincipalSection />
+            <CuratorSection />
+            <DirectorsSection />
             <SecretariatSection />
             <SecretariatNoteSection />
             <StudentHeadsSection />
             <CommitteesSection />
-            <PrincipalSection />
-            <SchoolDirectorSection />
-            <CuratorSection />
-            <DirectorsSection />
-            <ParticipationRulesSection />
             <RegistrationSection />
+            <ParticipationRulesSection />
             <TrainingSection />
             <ScheduleSection />
             <AwardsSection />

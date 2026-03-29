@@ -3,87 +3,43 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { teamMembers } from '@/data/team';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const partners = [
-    {
-        name: 'Aryan Jindal',
-        role: 'Tech Head',
-        image: '/Invite Photos Heads /Aaryan2.JPG',
-    },
-    {
-        name: 'Sarthak Devrani',
-        role: 'Joint Tech Head',
-        image: '/Invite Photos Heads /Sarthak1.jpg',
-    },
-    {
-        name: 'Aahana Patil',
-        role: 'Design & Media Head',
-        image: '/Invite Photos Heads /AhanaPatil1.jpg',
-    },
-    {
-        name: 'Angad Sawant',
-        role: 'Joint Design & Media Head',
-        image: '/Invite Photos Heads /Angad.jpg',
-    },
-    {
-        name: 'Tchia Pathare',
-        role: 'Press Head',
-        image: '/Invite Photos Heads /Tchia2.JPG',
-    },
-    {
-        name: 'Saisha Swamy',
-        role: 'Joint Press Head',
-        image: '/Invite Photos Heads /Saisha1.jpg',
-    },
-    {
-        name: 'Parth Toprani',
-        role: 'Logistics & Hospitality Head',
-        image: '/Invite Photos Heads /Parth1.jpg',
-    },
-    {
-        name: 'Mahi Kasat',
-        role: 'Joint Logistics & Hospitality Head',
-        image: '/Invite Photos Heads /Mahi1.jpg',
-    },
-];
-
 export default function StudentHeadsSection() {
     const sectionRef = useRef<HTMLElement>(null);
-    const gridRef = useRef<HTMLDivElement>(null);
+    const headingRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            if (sectionRef.current) {
-                // Header reveal
-                gsap.fromTo('.heads-header',
-                    { y: 50, opacity: 0 },
+            gsap.fromTo('.team-card',
+                { y: 50, opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: 'top 80%',
+                    },
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: 'power3.out'
+                }
+            );
+
+            if (headingRef.current) {
+                gsap.fromTo(headingRef.current,
+                    { x: -50, opacity: 0 },
                     {
                         scrollTrigger: {
                             trigger: sectionRef.current,
-                            start: 'top 80%',
+                            start: 'top 90%',
                         },
-                        y: 0,
+                        x: 0,
                         opacity: 1,
                         duration: 1,
-                        ease: 'power3.out',
-                    }
-                );
-
-                // Heads grid stagger
-                gsap.fromTo('.head-card',
-                    { y: 60, opacity: 0 },
-                    {
-                        scrollTrigger: {
-                            trigger: gridRef.current,
-                            start: 'top 85%',
-                        },
-                        y: 0,
-                        opacity: 1,
-                        duration: 1,
-                        stagger: 0.1,
-                        ease: 'power3.out',
+                        ease: 'power4.out'
                     }
                 );
             }
@@ -92,51 +48,73 @@ export default function StudentHeadsSection() {
         return () => ctx.revert();
     }, []);
 
+    // Only department heads for this section
+    const categories = ['Department Heads'];
+
     return (
         <section
             ref={sectionRef}
             id="student-heads-section"
-            className="relative min-h-screen bg-charcoal py-24 px-8 z-20 flex flex-col justify-center"
+            className="relative bg-white py-24 px-6 sm:px-12 lg:px-24 z-20 overflow-hidden"
         >
             <div className="max-w-7xl mx-auto w-full">
-                {/* Header */}
-                <div className="heads-header text-center mb-20 text-platinum">
-                    <h2 className="text-5xl md:text-7xl font-display font-bold mb-4">
-                        Student Department Heads
+                <div ref={headingRef} className="mb-20">
+                    <h2 className="text-5xl md:text-8xl font-serif font-bold text-charcoal leading-none mb-6 uppercase tracking-tighter">
+                        Meet the <span className="text-school-red">Team</span>
                     </h2>
-                    <div className="h-1 w-24 bg-gold mx-auto rounded-full" />
+                    <div className="h-2 w-32 bg-school-red" />
                 </div>
 
-                {/* Profiles Grid */}
-                <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-                    {partners.map((member, index) => (
-                        <div
-                            key={index}
-                            className="head-card relative group flex flex-col items-center"
-                        >
-                            <div className="relative overflow-hidden rounded-xl bg-platinum/5 border border-platinum/10 aspect-square w-full mb-6 transition-all duration-500 group-hover:border-gold/30">
-                                <Image
-                                    src={member.image}
-                                    alt={member.name}
-                                    fill
-                                    className="object-contain transition-transform duration-700 group-hover:scale-105"
-                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                                />
-                                {/* Soft Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            </div>
-
-                            <div className="text-center">
-                                <h3 className="text-2xl font-display font-bold text-platinum mb-1">
-                                    {member.name}
-                                </h3>
-                                <p className="text-gold/80 font-sans font-medium tracking-wider text-[10px] uppercase">
-                                    {member.role}
-                                </p>
-                            </div>
+                {categories.map((category) => (
+                    <div key={category} className="mb-20 last:mb-0">
+                        <div className="flex items-center gap-6 mb-10">
+                            <h3 className="text-xl md:text-2xl font-mono text-charcoal/60 uppercase tracking-[0.4em]">
+                                {category}
+                            </h3>
+                            <div className="h-[1px] flex-grow bg-charcoal/10" />
                         </div>
-                    ))}
-                </div>
+
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10">
+                            {teamMembers
+                                .filter(member => member.category === category)
+                                .map((partner, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="team-card group relative flex flex-col items-center text-center"
+                                    >
+                                        <div className="relative w-full aspect-[4/5] mb-6 overflow-hidden bg-charcoal/5 rounded-2xl border border-charcoal/5 group-hover:border-school-red/30 transition-all duration-500 shadow-sm group-hover:shadow-xl">
+                                            <Image
+                                                src={partner.image}
+                                                alt={partner.name}
+                                                fill
+                                                sizes="(max-width: 640px) 50vw, 280px"
+                                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                            />
+                                            {/* Geometric Corner Accent */}
+                                            <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-school-red/0 group-hover:border-school-red/40 group-hover:m-2 transition-all duration-500 opacity-0 group-hover:opacity-100" />
+                                            <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-school-red/0 group-hover:border-school-red/40 group-hover:m-2 transition-all duration-500 opacity-0 group-hover:opacity-100" />
+                                        </div>
+                                        <div className="space-y-1">
+                                            <h4 className="text-charcoal font-display font-bold text-lg leading-tight group-hover:text-school-red transition-colors">
+                                                {partner.name}
+                                            </h4>
+                                            <p className="text-charcoal/40 font-mono text-[10px] uppercase tracking-[0.2em] px-2 italic font-medium">
+                                                {partner.role}
+                                            </p>
+                                            {partner.email && (
+                                                <a 
+                                                    href={`mailto:${partner.email}`} 
+                                                    className="block text-[#B22234] font-mono text-[9px] hover:underline transition-all mt-1"
+                                                >
+                                                    {partner.email}
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                        </div>
+                    </div>
+                ))}
             </div>
         </section>
     );

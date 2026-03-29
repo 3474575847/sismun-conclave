@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
@@ -20,7 +19,7 @@ export default function CuratorSection() {
         if (!section || !content || !placeholder) return;
 
         const ctx = gsap.context(() => {
-            gsap.fromTo([placeholder, content],
+            gsap.fromTo([content, placeholder],
                 { opacity: 0, y: 30 },
                 {
                     opacity: 1,
@@ -43,7 +42,7 @@ export default function CuratorSection() {
     return (
         <section
             ref={sectionRef}
-            className="w-full bg-charcoal py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible"
+            className="w-full bg-white py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5"
             id="curator-section"
         >
             <div className="max-w-7xl w-full">
@@ -52,7 +51,7 @@ export default function CuratorSection() {
                     ref={placeholderRef}
                     className="w-full lg:w-auto lg:float-left lg:mr-16 lg:mb-12 flex justify-center lg:block"
                 >
-                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-platinum/5 border border-platinum/10 shadow-lg overflow-hidden group">
+                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-charcoal/5 border border-charcoal/10 shadow-lg overflow-hidden group">
                         <Image
                             src="/parnab-curator.jpeg"
                             alt="Parnab Mukherjee - Knowledge Curator"
@@ -62,8 +61,8 @@ export default function CuratorSection() {
                         />
 
                         {/* Corner Accents mirroring theme */}
-                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/20 rounded-tl-2xl z-10" />
-                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/20 rounded-br-2xl z-10" />
+                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-school-red/20 rounded-tl-2xl z-10" />
+                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-school-red/20 rounded-br-2xl z-10" />
                     </div>
                 </div>
 
@@ -74,47 +73,41 @@ export default function CuratorSection() {
                 >
                     <div className="mb-10">
                         <div className="space-y-4">
-                            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum font-bold leading-[1.1]">
-                                Message from the desk of Parnab Mukherjee
+                            <h2 className="text-4xl sm:text-5xl lg:text-8xl font-serif text-charcoal font-bold leading-[1.1] mb-2 uppercase tracking-tighter text-balance">
+                                A Vision for SISMUN 2026
                             </h2>
-                            <div className="h-1.5 w-24 bg-gold" />
+                            <h3 className="text-xl sm:text-2xl text-school-red font-mono uppercase tracking-[0.3em] font-medium mb-8">
+                                A Message from the Curator
+                            </h3>
+                            <div className="h-1.5 w-24 bg-school-red" />
                         </div>
                     </div>
 
-                    <div className="text-platinum leading-relaxed text-lg lg:text-xl font-light">
-                        <p className="font-semibold text-platinum text-2xl lg:text-3xl mb-6 italic">
-                            Parnab Mukherjee
+                    <div className="text-charcoal leading-relaxed text-lg lg:text-xl font-light">
+                        <div className="space-y-6 text-charcoal/80">
+                            <p>
+                                What is history? Is it merely a collection of data, chronology, dates, timelines, and facts, or is it the study of diplomacy, subaltern voices, human experiences, wars, peace efforts, and their consequences across time? Is it a vital tool for understanding the present and shaping the future through the nuances of geopolitics? Do we gain a deeper appreciation of our mistakes, hopes, collective heritage, questions of identity and migration, and the complexities of human existence? Is history simply the past, a log of events that unfolded, or does it demand interpretation? Who unravels its dilemmas and dialectics to piece together an unbiased, coherent rendition? What is the place of the United Nations in this chronicling, and what role do media and social media play in shaping the narratives that influence both micro and grand histories?
+                            </p>
+
+                            <p>
+                                Every generation interprets history based on its own concerns, challenges, and aspirations. Therefore, history is not a closed book; it is a continuously evolving, living dialogue between the past and the present. It helps us avoid repeating the tragic errors of our predecessors and fosters a spirit of critical inquiry—a quality essential to any robust educational framework.
+                            </p>
+
+                            <p>
+                                The SISMUN Conclave is an ode to memory and history, carried forward by societies to transmit values and preserve the lamp of peace. Every discussion may be incomplete, yet it grounds us by dissolving boundaries as we engage with one another to better understand the present, the past, and the future. A resolution or white paper holds meaning only when it reflects sincere and rigorous deliberation. Our unique line-up of committees bridges historical continuities with present urgencies. The rest now lies with you, delegates, to make this journey engrossing, meaningful, and above all, humane.
+                            </p>
+                        </div>
+                        <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red pl-8 py-2 text-charcoal/90 mt-12">
+                            &ldquo;Information is not knowledge. Knowledge is not wisdom. Wisdom is not truth.&rdquo;
+                            <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50">&mdash; PARNAB MUKHERJEE</span>
                         </p>
-
-                        <div className="space-y-6 text-platinum/80">
-                            <p>
-                                What is history? Is it merely a collection of data, big data, chronology, dates, timelines and facts? Or is it the study of diplomacy, subaltern voices, human experiences, wars, peace efforts, actions, and their consequences across a period of time? Is it a vital tool for understanding the present and shaping the future by studying the nuances of geo-politics? Is history merely the past, a passive record of events that unfolded? Who unravels the dilemmas, chronicles and dialectics of history across the sands of time to piece together, an unbiased, tilt free, coherent rendition?
-                            </p>
-
-                            <p>
-                                What is the place of UN in this chronicling? What role do media and social media play in constructing present-day narratives that later shape both micro and grand narratives?
-                            </p>
-
-                            <p>
-                                These are some of the questions that every MUN should attempt to unravel.
-                            </p>
-
-                            <p>
-                                We hope to explore these ideas around the facticity of geo-politics and look at multi-track narratives of the past, and if so, whose past. We seek to explore contemporary narratives of conflict resolution and their role in building effective praxis. Politics, History, Sociology and International Relations are powerful tools; they can sow discord, yet foster peace, collaboration, empathy, care and compassion. Its use and abuse at the hands of those in positions of influence makes the discussions in MUN the urgent need of the hour.
-                            </p>
-
-                            <p>
-                                SISMUN conclave every year is an ode to memory and history. By cultivating hope for individuals and societies, we understand ourselves better. Every discussion is problematic and incomplete, yet they ground us by dissolving boundaries as we engage with each other and decide on the best way to understand the present, past, and future. We engage with orality, listen to diversity, including everyday memories of survival that are often less marginalised. A resolution or a white paper does not carry meaning if it does not carry the essence of discussions.
-                            </p>
-
-                            <p>
-                                We are ready with our unique line-up of committees that act as a bridge between the past and present urgencies. Over to you, delegates, to make this engrossing, meaningful, and most importantly, humane.
-                            </p>
-                        </div>
                     </div>
 
-                    <div className="mt-10 pt-4 border-t border-platinum/10 w-fit">
-                        <p className="text-gold text-sm lg:text-base uppercase tracking-[0.3em] font-bold">Knowledge Resource Curator</p>
+                    <div className="mt-10 pt-4 border-t border-charcoal/10 w-fit">
+                        <p className="text-school-red text-lg lg:text-xl tracking-[0.1em] font-medium mb-1">PARNAB MUKHERJEE</p>
+                        <p className="text-charcoal/40 font-mono text-[10px] uppercase tracking-widest leading-relaxed">
+                            Knowledge Curator,<br />SISMUN Conclave
+                        </p>
                     </div>
                 </div>
                 {/* Clearfix for floating elements */}

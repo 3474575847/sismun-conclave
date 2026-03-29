@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     keywords: ['MUN', 'Model United Nations', 'Singapore', 'SISMUN', 'Diplomacy', 'International Relations'],
     authors: [{ name: 'Singapore International School' }],
     icons: {
-        icon: '/SIS mun 1.png',
-        apple: '/SIS mun 1.png',
+        icon: '/WhatsApp_Image_2026-03-26_at_18.10.16-removebg-preview.png',
+        apple: '/WhatsApp_Image_2026-03-26_at_18.10.16-removebg-preview.png',
     },
     openGraph: {
         title: 'SISMUN - Singapore International School Model United Nations',

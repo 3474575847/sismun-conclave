@@ -55,6 +55,7 @@ export default function FooterSection() {
     return (
         <footer
             ref={sectionRef}
+            id="footer-section"
             className="relative bg-gradient-to-b from-charcoal via-charcoal/95 to-charcoal/90 overflow-hidden py-12 lg:py-16"
         >
             {/* Parallax background elements */}
@@ -118,11 +119,14 @@ export default function FooterSection() {
                     </svg>
                 </div>
 
-                <div className="text-center mb-8">
+                <div className="text-center mb-16">
                     <div className="flex justify-center items-center gap-4 mb-2 text-gold font-mono text-[10px] tracking-[0.4em] uppercase">
                         <span className="w-2 h-2 bg-gold rounded-full animate-ping" />
                         CARPE DIEM!
                     </div>
+                    <h2 className="text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-tighter">
+                        Contact Details
+                    </h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 border-t border-white/10 pt-8">
@@ -132,23 +136,19 @@ export default function FooterSection() {
                         <h4 className="text-gold font-mono text-xs uppercase tracking-[0.2em] mb-8">Venue Address</h4>
                         <p className="text-platinum/80 font-light text-lg leading-relaxed">
                             <span className="text-white font-medium block mb-2">Singapore International School, Mumbai</span>
-                            On National Highway No-8, Post, near Dahisar Toll Plaza, <br />
-                            next to Aaradhya Highpark, Mahajan Wadi, <br />
-                            Dahisar East, Mumbai, Maharashtra 401104
                         </p>
                     </div>
 
                     {/* Directors */}
                     <div>
-                        <h4 className="text-gold font-mono text-xs uppercase tracking-[0.2em] mb-8">SIS MUN Director</h4>
+                        <h4 className="text-gold font-mono text-xs uppercase tracking-[0.2em] mb-8">SISMUN Director</h4>
                         <div className="space-y-8">
                             <div className="group">
-                                <p className="text-platinum font-display text-2xl mb-1 group-hover:text-gold transition-colors">CA Pushpendra Bansal</p>
-                                <a href="tel:+919828727678" className="text-platinum/40 font-mono text-sm hover:text-white transition-colors">+91 98287 27678</a>
+                                <p className="text-platinum font-display text-2xl mb-1 group-hover:text-gold transition-colors">Pushpendra Bansal</p>
+                                <a href="tel:+919828727678" className="text-platinum/60 font-mono text-lg md:text-xl hover:text-white transition-colors tracking-tighter">+91 9828727678</a>
                             </div>
                             <div className="pt-4">
-                                <p className="text-[10px] font-mono text-platinum/30 uppercase mb-2">Directorate Email</p>
-                                <a href="mailto:rep.mun@sisindia.edu.in" className="text-platinum font-display text-xl border-b border-gold/30 pb-1 hover:border-gold transition-all">
+                                <a href="mailto:rep.mun@sisindia.edu.in" className="text-platinum font-display text-2xl border-b border-gold/30 pb-1 hover:border-gold transition-all">
                                     rep.mun@sisindia.edu.in
                                 </a>
                             </div>
@@ -162,22 +162,25 @@ export default function FooterSection() {
                             <div className="group">
                                 <p className="text-platinum font-display text-xl mb-1 group-hover:text-gold transition-colors">Zorawar Bhinder</p>
                                 <div className="space-y-1">
-                                    <a href="tel:+919619718508" className="block text-platinum/40 text-xs font-mono hover:text-white transition-colors">+91 96197 18508</a>
-                                    <a href="mailto:zorawarbhinder7@gmail.com" className="block text-platinum/20 text-[10px] font-mono italic">zorawarbhinder7@gmail.com</a>
+                                    <h5 className="text-gold text-[10px] uppercase font-mono tracking-widest">Secretary General</h5>
+                                    <a href="tel:+919619718508" className="block text-platinum/60 text-lg font-mono hover:text-white transition-colors tracking-tighter">+91 9619718508</a>
+                                    <a href="mailto:zorawarbhinder7@gmail.com" className="block text-platinum/40 text-xs font-mono italic">zorawarbhinder7@gmail.com</a>
                                 </div>
                             </div>
                             <div className="group">
                                 <p className="text-platinum font-display text-xl mb-1 group-hover:text-gold transition-colors">Chahel Dharod</p>
                                 <div className="space-y-1">
-                                    <a href="tel:+918432306060" className="block text-platinum/40 text-xs font-mono hover:text-white transition-colors">+91 84323 06060</a>
-                                    <a href="mailto:chaheldharod@gmail.com" className="block text-platinum/20 text-[10px] font-mono italic">chaheldharod@gmail.com</a>
+                                    <h5 className="text-gold text-[10px] uppercase font-mono tracking-widest">Deputy Secretary General</h5>
+                                    <a href="tel:+918432306060" className="block text-platinum/60 text-lg font-mono hover:text-white transition-colors tracking-tighter">+91 8432306060</a>
+                                    <a href="mailto:chaheldharod@gmail.com" className="block text-platinum/40 text-xs font-mono italic">chaheldharod@gmail.com</a>
                                 </div>
                             </div>
                             <div className="group border-t border-white/5 pt-4">
                                 <p className="text-platinum font-display text-xl mb-1 group-hover:text-gold transition-colors">Ritvayg Bindal</p>
                                 <div className="space-y-1">
-                                    <a href="tel:+918655850355" className="block text-platinum/40 text-xs font-mono hover:text-white transition-colors">+91 86558 50355</a>
-                                    <a href="mailto:ritvayg@gmail.com" className="block text-platinum/20 text-[10px] font-mono italic">ritvayg@gmail.com</a>
+                                    <h5 className="text-gold text-[10px] uppercase font-mono tracking-widest">Deputy Secretary General</h5>
+                                    <a href="tel:+918655850355" className="block text-platinum/60 text-lg font-mono hover:text-white transition-colors tracking-tighter">+91 8655850355</a>
+                                    <a href="mailto:ritvayg@gmail.com" className="block text-platinum/40 text-xs font-mono italic">ritvayg@gmail.com</a>
                                 </div>
                             </div>
                         </div>
