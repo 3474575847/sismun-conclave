@@ -59,10 +59,10 @@ export default function StudentHeadsSection() {
         >
             <div className="max-w-7xl mx-auto w-full">
                 <div ref={headingRef} className="mb-20">
-                    <h2 className="text-5xl md:text-8xl font-serif font-bold text-charcoal leading-none mb-6 uppercase tracking-tighter">
+                    <h2 className="text-4xl sm:text-7xl lg:text-8xl font-serif font-bold text-charcoal leading-none mb-4 sm:mb-6 uppercase tracking-tighter">
                         Meet the <span className="text-school-red">Team</span>
                     </h2>
-                    <div className="h-2 w-32 bg-school-red" />
+                    <div className="h-1 sm:h-2 w-24 sm:w-32 bg-school-red" />
                 </div>
 
                 {categories.map((category) => (
@@ -74,7 +74,7 @@ export default function StudentHeadsSection() {
                             <div className="h-[1px] flex-grow bg-charcoal/10" />
                         </div>
 
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10">
+                        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-10">
                             {teamMembers
                                 .filter(member => member.category === category)
                                 .map((partner, idx) => (
@@ -94,17 +94,17 @@ export default function StudentHeadsSection() {
                                             <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-school-red/0 group-hover:border-school-red/40 group-hover:m-2 transition-all duration-500 opacity-0 group-hover:opacity-100" />
                                             <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-school-red/0 group-hover:border-school-red/40 group-hover:m-2 transition-all duration-500 opacity-0 group-hover:opacity-100" />
                                         </div>
-                                        <div className="space-y-1">
-                                            <h4 className="text-charcoal font-display font-bold text-lg leading-tight group-hover:text-school-red transition-colors">
+                                        <div className="space-y-1 px-1">
+                                            <h4 className="text-charcoal font-display font-bold text-[9px] sm:text-lg leading-tight group-hover:text-school-red transition-colors">
                                                 {partner.name}
                                             </h4>
-                                            <p className="text-charcoal/40 font-mono text-[10px] uppercase tracking-[0.2em] px-2 italic font-medium">
+                                            <p className="text-charcoal/40 font-mono text-[6px] sm:text-[10px] uppercase tracking-[0.05em] sm:tracking-[0.2em] px-0.5 sm:px-2 italic font-medium">
                                                 {partner.role}
                                             </p>
                                             {partner.email && (
                                                 <a 
                                                     href={`mailto:${partner.email}`} 
-                                                    className="block text-[#B22234] font-mono text-[9px] hover:underline transition-all mt-1"
+                                                    className="block text-[#B22234] font-mono text-[5px] sm:text-[9px] hover:underline transition-all mt-0.5 sm:mt-1 opacity-80"
                                                 >
                                                     {partner.email}
                                                 </a>

@@ -97,7 +97,7 @@ export default function SecretariatSection() {
                     <div className="h-1 w-24 bg-school-red mx-auto rounded-full" />
                 </div>
 
-                <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div ref={gridRef} className="grid grid-cols-3 md:grid-cols-3 gap-2 sm:gap-12 px-2 sm:px-0">
                     {secretariat.map((member, index) => (
                         <div
                             key={index}
@@ -117,16 +117,16 @@ export default function SecretariatSection() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-transparent to-transparent opacity-60 z-10" />
                             </div>
 
-                            <div className="text-center relative z-10">
-                                <h3 className="text-4xl font-display font-bold text-charcoal mb-2">
+                            <div className="text-center relative z-10 px-1">
+                                <h3 className="text-sm sm:text-4xl font-display font-bold text-charcoal mb-1 sm:mb-2 leading-tight">
                                     {member.name}
                                 </h3>
-                                <p className="text-school-red font-sans font-medium tracking-widest text-sm uppercase mb-4">
+                                <p className="text-school-red font-sans font-medium tracking-[0.1em] sm:tracking-widest text-[7px] sm:text-sm uppercase mb-1 sm:mb-4">
                                     {member.role}
                                 </p>
                                 <a 
                                     href={`mailto:${member.email}`} 
-                                    className="text-[#B22234] font-mono text-sm hover:underline transition-all block tracking-widest"
+                                    className="text-[#B22234] font-mono text-[6px] sm:text-sm hover:underline transition-all block tracking-tighter sm:tracking-widest opacity-80 sm:opacity-100"
                                 >
                                     {member.email}
                                 </a>

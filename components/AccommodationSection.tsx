@@ -79,51 +79,51 @@ export default function AccommodationSection() {
         <section
             ref={sectionRef}
             id="accommodation-section"
-            className="relative bg-white py-24 px-8 z-20"
+            className="relative bg-charcoal py-16 sm:py-24 px-6 sm:px-12 lg:px-24 z-20"
         >
             <div className="max-w-7xl mx-auto w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
                     <div className="lg:col-span-8">
-                        <div className="flex items-center gap-4 mb-6 text-school-red font-mono text-[10px] tracking-[0.4em] uppercase">
-                            <span className="w-2 h-2 bg-school-red rounded-full" />
+                        <div className="flex items-center gap-3 mb-6 text-gold font-mono text-[10px] tracking-[0.4em] uppercase">
+                            <span className="w-1.5 h-1.5 bg-gold rounded-full" />
                             Logistics
                         </div>
-                        <h2 className="text-5xl md:text-7xl font-display font-bold text-charcoal uppercase tracking-tighter mb-4">
+                        <h2 className="text-4xl sm:text-7xl font-display font-bold text-white uppercase tracking-tighter mb-4">
                             Accommodation & Travel
                         </h2>
-                        <h3 className="text-xl md:text-2xl font-display font-medium text-charcoal/40 uppercase tracking-widest mb-8">
+                        <h3 className="text-lg sm:text-2xl font-display font-medium text-platinum/40 uppercase tracking-widest mb-6">
                             (For Outstation Schools)
                         </h3>
-                        <p className="mt-8 text-charcoal/60 font-light text-xl leading-relaxed max-w-2xl">
+                        <p className="mt-8 text-platinum/60 font-light text-lg sm:text-xl leading-relaxed max-w-2xl">
                             Schools are responsible for their own accommodation and transport arrangements. We recommend booking early due to high demand.
                         </p>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                     {hotels.map((hotel, index) => (
                         <a
                             key={index}
                             href={hotel.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hotel-card group bg-white/5 md:bg-platinum/5 border border-white/5 p-8 rounded-xl flex flex-col justify-between hover:bg-white/10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 block"
+                            className="hotel-card group bg-white/5 border border-white/10 p-6 sm:p-8 rounded-xl flex flex-col justify-between hover:bg-white/10 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 block"
                         >
                             <div>
                                 <div className="flex justify-between items-start mb-6">
                                     <div className="flex items-center gap-2">
-                                        <span className="font-mono text-school-red text-xs">0{index + 1}</span>
-                                        <div className="w-4 h-[1px] bg-school-red/30" />
-                                        <span className="text-[10px] font-mono text-school-red/50 uppercase tracking-widest">Official Website</span>
+                                        <span className="font-mono text-gold text-[10px] sm:text-xs">0{index + 1}</span>
+                                        <div className="w-4 h-[1px] bg-gold/30" />
+                                        <span className="text-[9px] font-mono text-gold/50 uppercase tracking-widest">Official Website</span>
                                     </div>
                                     <span className="text-[10px] font-mono text-school-red/50 uppercase tracking-widest">{hotel.distance}</span>
                                 </div>
-                                <h3 className="text-2xl font-display font-bold text-white mb-4 uppercase leading-none">{hotel.name}</h3>
+                                <h3 className="text-xl sm:text-2xl font-display font-bold text-white mb-3 sm:mb-4 uppercase leading-none">{hotel.name}</h3>
                                 <p className="text-sm text-white/60 mb-6 font-light leading-relaxed">{hotel.address}</p>
                             </div>
-                            <div className="pt-6 border-t border-charcoal/10">
-                                <p className="text-[10px] font-mono text-school-red uppercase tracking-widest mb-2">Booking Contact</p>
-                                <p className="text-xs text-white/80 transition-colors break-words">{hotel.contact}</p>
+                            <div className="pt-4 sm:pt-6 border-t border-white/5">
+                                <p className="text-[9px] font-mono text-gold uppercase tracking-[0.2em] mb-2">Booking Contact</p>
+                                <p className="text-[10px] sm:text-xs text-platinum/70 transition-colors break-words font-mono">{hotel.contact}</p>
                             </div>
                         </a>
                     ))}

@@ -124,10 +124,10 @@ export default function SchoolDirectorSection() {
 
                         <p>
                             As we welcome schools from diverse institutions, we anticipate thoughtful and respectful deliberations. We hope SISMUN 2026 inspires every participant to rise beyond rhetoric and emerge as responsible advocates of peace, justice, and sustainable progress.
-                            <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red pl-8 py-2 text-charcoal/90 mt-8">
-                                &ldquo;Education is the most powerful weapon which you can use to change the world.&rdquo;
-                                <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50">&mdash; NELSON MANDELA</span>
-                            </p>
+                        </p>
+                        <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red pl-8 py-2 text-charcoal/90 mt-8">
+                            &ldquo;Education is the most powerful weapon which you can use to change the world.&rdquo;
+                            <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50">&mdash; NELSON MANDELA</span>
                         </p>
 
                         <p className="text-charcoal/80 leading-relaxed text-lg lg:text-xl font-light">
