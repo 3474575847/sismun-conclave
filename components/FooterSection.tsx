@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -8,27 +9,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function FooterSection() {
     const sectionRef = useRef<HTMLElement>(null);
-    const logoPathRef = useRef<SVGPathElement>(null);
 
     useEffect(() => {
-        if (sectionRef.current && logoPathRef.current) {
-            // Animate the clip path to reveal the logo
-            gsap.fromTo(
-                logoPathRef.current,
-                {
-                    attr: { d: 'M 250 250 m -0, 0 a 0,0 0 1,0 0,0 a 0,0 0 1,0 -0,0' },
-                },
-                {
-                    attr: { d: 'M 250 250 m -200, 0 a 200,200 0 1,0 400,0 a 200,200 0 1,0 -400,0' },
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: 'top bottom',
-                        end: 'center center',
-                        scrub: 1,
-                    },
-                }
-            );
-
+        if (sectionRef.current) {
             // Parallax effect for background elements
             gsap.to('.parallax-slow', {
                 y: -50,
@@ -66,57 +49,22 @@ export default function FooterSection() {
             {/* Main content */}
             <div className="relative z-10 max-w-7xl mx-auto px-8">
 
-                {/* Branding Circle SVG */}
-                <div className="mb-4 flex justify-center">
-                    <svg
-                        viewBox="0 50 500 400"
-                        className="w-full max-w-[280px] opacity-90"
-                    >
-                        <defs>
-                            <clipPath id="reveal-clip">
-                                <path ref={logoPathRef} />
-                            </clipPath>
-                        </defs>
-
-                        {/* Logo circle */}
-                        <circle
-                            cx="250"
-                            cy="250"
-                            r="220"
-                            fill="none"
-                            stroke="#FFCC00" /* Gold */
-                            strokeWidth="1.5"
-                            clipPath="url(#reveal-clip)"
-                        />
-
-                        {/* SIS text */}
-                        <text
-                            x="250"
-                            y="225"
-                            textAnchor="middle"
-                            fill="#FFCC00" /* Gold */
-                            fontSize="80"
-                            className="font-display font-bold"
-                            style={{ letterSpacing: '0.15em' }}
-                            clipPath="url(#reveal-clip)"
-                        >
-                            SIS
-                        </text>
-
-                        {/* MUN text */}
-                        <text
-                            x="250"
-                            y="310"
-                            textAnchor="middle"
-                            fill="#F0F4F8" /* Platinum/White */
-                            fontSize="64"
-                            className="font-display font-light"
-                            style={{ letterSpacing: '0.3em' }}
-                            clipPath="url(#reveal-clip)"
-                        >
-                            MUN
-                        </text>
-                    </svg>
+                {/* Branding Circle Logo */}
+                <div className="mb-8 flex justify-center">
+                    <div className="relative w-48 h-48 md:w-56 md:h-56 flex items-center justify-center">
+                        {/* White circle background */}
+                        <div className="absolute inset-0 bg-white rounded-full"></div>
+                        
+                        <div className="relative w-full h-full overflow-hidden rounded-full">
+                            <Image
+                                src="/WhatsApp_Image_2026-03-26_at_18.10.16-removebg-preview.png"
+                                alt="SISMUN Conclave Logo"
+                                fill
+                                sizes="(max-width: 768px) 192px, 224px"
+                                className="object-contain p-4"
+                            />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="text-center mb-16">

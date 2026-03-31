@@ -15,8 +15,11 @@ const navItems = [
         label: 'About Us',
         sections: [
             { name: 'Mission & Theme', id: 'theme-section' },
+            { name: 'School Director\'s Note', id: 'school-director-section' },
+            { name: 'Principal\'s Note', id: 'principal-section' },
+            { name: 'Knowledge Curator\'s Note', id: 'curator-section' },
+            { name: 'MUN Director\'s Note', id: 'directors-section' },
             { name: 'Secretariat', id: 'secretariat-section' },
-            { name: 'Directors\' Messages', id: 'principal-section' },
             { name: 'Meet the Team', id: 'student-heads-section' },
         ],
     },
