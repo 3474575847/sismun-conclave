@@ -43,7 +43,7 @@ export default function PrincipalSection() {
     return (
         <section
             ref={sectionRef}
-            className="w-full bg-platinum/30 py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5"
+            className="w-full bg-white py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5"
             id="principal-section"
         >
             <div className="max-w-7xl w-full">
