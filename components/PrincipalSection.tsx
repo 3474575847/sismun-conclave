@@ -130,7 +130,10 @@ export default function PrincipalSection() {
             </div>
 
             <div className="mt-10 pt-4 border-t border-charcoal/10 w-fit">
-                <p className="text-school-red text-lg lg:text-xl tracking-[0.1em] font-medium mb-1">Stephen Willoughby</p>
+                <p className="text-school-red text-lg lg:text-xl tracking-[0.1em] font-medium mb-1 uppercase">STEPHEN WILLOUGHBY</p>
+                <p className="text-charcoal/40 font-mono text-[10px] uppercase tracking-widest leading-relaxed">
+                    Principal,<br />Singapore International School
+                </p>
             </div>
         </div>
                 {/* Clearfix for floating elements */}
