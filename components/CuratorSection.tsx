@@ -77,7 +77,7 @@ export default function CuratorSection() {
                                 A Vision for SISMUN 2026
                             </h2>
                             <h3 className="text-xl sm:text-2xl text-school-red font-mono uppercase tracking-[0.3em] font-medium mb-8">
-                                A Message from the Curator
+                                A Message from the Knowledge Resource Curator
                             </h3>
                             <div className="h-1.5 w-24 bg-school-red" />
                         </div>
