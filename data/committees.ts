@@ -239,6 +239,7 @@ export const committees: Committee[] = [
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-icc',
         studentOfficers: [
             { name: 'Kiros Kamaal', role: 'President', email: 'kiros.kamaal1@gmail.com', image: '/team-photos/Kiros.jpg' },
+            { name: 'Anushka Bahorey', role: 'Deputy President', email: 'anushkabahorey@gmail.com', image: '/team-photos/anushka-bahorey.jpg' },
             { name: 'Viransh Shetty', role: 'Deputy President', email: 'virshetty2703@gmail.com', image: '/team-photos/Viransh.jpg' }
         ],
         detailedWriteup: {
