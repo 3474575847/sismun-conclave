@@ -74,7 +74,7 @@ export default function StudentHeadsSection() {
                             <div className="h-[1px] flex-grow bg-charcoal/10" />
                         </div>
 
-                        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-10">
+                        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-2 sm:gap-10">
                             {teamMembers
                                 .filter(member => member.category === category)
                                 .map((partner, idx) => (
