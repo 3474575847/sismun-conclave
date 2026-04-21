@@ -16,7 +16,7 @@ export const teamMembers: TeamMember[] = [
     { name: 'Aryan Jindal', role: 'Tech Head', image: '/team-photos/Aryan.jpg', category: 'Department Heads' },
     { name: 'Sarthak Devrani', role: 'Joint Tech Head', image: '/team-photos/Sarthak.jpg', category: 'Department Heads' },
     { name: 'Ahana Patil', role: 'Design & Media Head', image: '/team-photos/Ahana.jpg', category: 'Department Heads' },
-    { name: 'Angad Sawant', role: 'Joint Design & Media Head', image: '/team-photos/Angad.jpg', category: 'Department Heads' },
+    { name: 'Tvesha Reddy', role: 'Joint Design & Media Head', image: '/team-photos/Tvesha.jpg', category: 'Department Heads' },
     { name: 'Harshit Garg', role: 'Joint Design & Media Head', image: '/team-photos/harshit-garg.jpg', category: 'Department Heads' },
     { name: 'Tchia Pathare', role: 'Press Head', image: '/team-photos/Tchia.jpg', category: 'Department Heads' },
     { name: 'Saisha Swamy', role: 'Joint Press Head', image: '/team-photos/Saisha.jpg', category: 'Department Heads' },
