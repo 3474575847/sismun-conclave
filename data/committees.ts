@@ -203,7 +203,7 @@ export const committees: Committee[] = [
         description: 'Regulating emerging military applications and sovereignty questions.',
         topics: [
             'Regulating Lethal Autonomous Weapon Systems (LAWS) and Military Applications of Artificial Intelligence to Maintain International Peace and Security.',
-            'The question of granting Greenland conditional autonomy from Denmark with regards to use of their own resources and a step towards nationhood.'
+            'The question of granting Greenland conditional autonomy from Kindom of Denmark with regards to use of their own resources and a step towards nationhood.'
         ],
         color: 'from-orange-500/20 to-orange-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-disec',
