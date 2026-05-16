@@ -218,7 +218,7 @@ export const committees: Committee[] = [
             introduction: "From the ruins of a war that unleashed the most devastating weapons humanity had ever seen, the United Nations was established in 1945. The First Committee of the General Assembly, the Disarmament and International Security Committee, was given a single task: to make sure that the weapons of war would never again surpass the conscience of their operators.",
             body: [
                 "Our first agenda item, \"Regulating Lethal Autonomous Weapon Systems (LAWS) and Military Applications of Artificial Intelligence to Maintain International Peace and Security.\" These days, lethal autonomous weapon systems—platforms that can choose and attack targets without significant human involvement—are not just a thing of science fiction.",
-                "Our second agenda item, \"The question of granting Greenland conditional autonomy from Denmark with regards to use of their own resources and a step towards nationhood.\" Since 2009, Greenland has been governed under a system of self-government. Facing climate change opening new shipping routes, interest in Arctic resources has intensified."
+                "Our second agenda item, \"The question of granting Greenland conditional autonomy from Kingdom of Denmark with regards to use of their own resources and a step towards nationhood.\" Since 2009, Greenland has been governed under a system of self-government. Facing climate change opening new shipping routes, interest in Arctic resources has intensified."
             ],
             bibliography: [
                 "International Committee of the Red Cross. “ICRC Position on Autonomous Weapon Systems.” ICRC, 2022.",
