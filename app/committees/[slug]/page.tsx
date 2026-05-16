@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
 import Image from 'next/image';
+import CommitteeLedger from '@/components/committees/CommitteeLedger';
 
 export default function CommitteePage() {
     const { slug } = useParams();
@@ -194,6 +195,15 @@ export default function CommitteePage() {
                             )}
                         </div>
                     )}
+
+                    {/* Digital Ledger Section */}
+                    <div className="lg:col-span-12">
+                        <CommitteeLedger
+                            slug={committee.slug}
+                            acronym={committee.acronym}
+                            topics={committee.topics}
+                        />
+                    </div>
                 </div>
             </section>
 

@@ -47,6 +47,11 @@ const navItems = [
         ],
     },
     {
+        label: 'Digital Ledger',
+        path: '/portal/floor',
+        isExternal: true,
+    },
+    {
         label: 'Contact Us',
         id: 'footer-section',
     },
@@ -85,6 +90,9 @@ export default function Navbar() {
     const handleMobileNavClick = (item: any) => {
         if (item.sections) {
             setOpenSubMenu(openSubMenu === item.label ? null : item.label);
+        } else if (item.path) {
+            router.push(item.path);
+            toggleMenu();
         } else if (item.id) {
             scrollToSection(item.id);
             toggleMenu();
@@ -116,6 +124,8 @@ export default function Navbar() {
         }
         setHoveredItem(null);
     };
+
+    if (pathname.startsWith('/portal')) return null;
 
     return (
         <nav
@@ -169,7 +179,13 @@ export default function Navbar() {
                             onMouseLeave={() => setHoveredItem(null)}
                         >
                             <button
-                                onClick={() => item.id ? scrollToSection(item.id) : null}
+                                onClick={() => {
+                                    if (item.path) {
+                                        router.push(item.path);
+                                    } else if (item.id) {
+                                        scrollToSection(item.id);
+                                    }
+                                }}
                                 className={`font-mono text-[10px] uppercase tracking-[0.3em] transition-colors duration-300 ${hoveredItem === item.label ? 'text-gold' : 'text-platinum/60 hover:text-platinum'
                                     }`}
                             >
