@@ -106,7 +106,7 @@ export default function RegistrationSection() {
                                             </li>
                                             <li className="flex gap-4">
                                                 <span className="text-gold font-mono">—</span>
-                                                <span className="text-white/60">Deadline: 15th May 2026</span>
+                                                <span className="text-white/60">Deadline: 20th May 2026</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -124,7 +124,7 @@ export default function RegistrationSection() {
                                             </li>
                                             <li className="flex gap-4">
                                                 <span className="text-gold font-mono">—</span>
-                                                <span className="text-white/60">Deadline: 20th May 2026</span>
+                                                <span className="text-white/60">Deadline: 25th May 2026</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -146,7 +146,7 @@ export default function RegistrationSection() {
                                             </li>
                                             <li className="flex gap-4">
                                                 <span className="text-gold font-mono">—</span>
-                                                <span className="text-white/60">Payment Deadline: 25th May 2026</span>
+                                                <span className="text-white/60">Payment Deadline: 30th May 2026</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -214,7 +214,7 @@ export default function RegistrationSection() {
                                             </li>
                                             <li className="flex gap-4">
                                                 <span className="text-gold font-mono">—</span>
-                                                <span className="text-white/60">Deadline: 25th May 2026</span>
+                                                <span className="text-white/60">Deadline: 30th May 2026</span>
                                             </li>
                                         </ul>
                                     </div>
