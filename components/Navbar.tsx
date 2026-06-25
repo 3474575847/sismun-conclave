@@ -47,17 +47,13 @@ const navItems = [
         ],
     },
     {
-        label: 'Digital Ledger',
-        path: '/portal/floor',
-        isExternal: true,
-    },
-    {
         label: 'Contact Us',
         id: 'footer-section',
     },
 ];
 
 import { useRouter, usePathname } from 'next/navigation';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
     const lenis = useLenis();
@@ -129,7 +125,7 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 bg-[#0A192F]/90 backdrop-blur-xl border-b border-gold/10 shadow-2xl ${isScrolled
+            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 bg-[#0A192F]/90 backdrop-blur-xl border-b border-gold/10 dark:border-gold/5 shadow-2xl ${isScrolled
                 ? 'py-3'
                 : 'py-4 md:py-5'
                 }`}
@@ -152,7 +148,7 @@ export default function Navbar() {
                         
                         <div className="relative w-full h-full overflow-hidden rounded-lg">
                             <Image
-                                src="/WhatsApp_Image_2026-03-26_at_18.10.16-removebg-preview.png"
+                                src="/sismun-logo.png"
                                 alt="SISMUN Logo"
                                 fill
                                 sizes="(max-width: 768px) 40px, 48px"
@@ -180,7 +176,7 @@ export default function Navbar() {
                         >
                             <button
                                 onClick={() => {
-                                    if (item.path) {
+                                    if ('path' in item && typeof item.path === 'string') {
                                         router.push(item.path);
                                     } else if (item.id) {
                                         scrollToSection(item.id);
@@ -226,6 +222,7 @@ export default function Navbar() {
                             )}
                         </div>
                     ))}
+                    <ThemeToggle />
                     <button
                         onClick={() => scrollToSection('registration-section')}
                         className="bg-gold px-7 py-2.5 rounded-full font-mono text-[10px] uppercase tracking-widest text-charcoal font-bold hover:bg-gold/90 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-gold/10"
@@ -235,23 +232,26 @@ export default function Navbar() {
                 </div>
 
                 {/* Mobile Menu Toggle */}
-                <button 
-                    onClick={toggleMenu}
-                    className="lg:hidden relative z-[110] w-10 h-10 flex flex-col items-center justify-center gap-1.5 focus:outline-none bg-white/5 rounded-full border border-white/10"
-                >
-                    <motion.span 
-                        animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                        className="w-5 h-[1.5px] bg-gold rounded-full block"
-                    />
-                    <motion.span 
-                        animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                        className="w-5 h-[1.5px] bg-gold/70 rounded-full block"
-                    />
-                    <motion.span 
-                        animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-                        className="w-5 h-[1.5px] bg-gold rounded-full block"
-                    />
-                </button>
+                <div className="flex items-center gap-4 lg:hidden">
+                    <ThemeToggle />
+                    <button 
+                        onClick={toggleMenu}
+                        className="relative z-[110] w-10 h-10 flex flex-col items-center justify-center gap-1.5 focus:outline-none bg-white/5 rounded-full border border-white/10"
+                    >
+                        <motion.span 
+                            animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                            className="w-5 h-[1.5px] bg-gold rounded-full block"
+                        />
+                        <motion.span 
+                            animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                            className="w-5 h-[1.5px] bg-gold/70 rounded-full block"
+                        />
+                        <motion.span 
+                            animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                            className="w-5 h-[1.5px] bg-gold rounded-full block"
+                        />
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Sidebar */}
@@ -277,7 +277,7 @@ export default function Navbar() {
                                     <div key={item.label} className="border-b border-white/5 pb-4">
                                         <button
                                             onClick={() => handleMobileNavClick(item)}
-                                            className="w-full flex items-center justify-between font-serif text-2xl text-white uppercase tracking-tighter"
+                                            className="w-full flex items-center justify-between font-serif text-2xl text-platinum uppercase tracking-tighter"
                                         >
                                             {item.label}
                                             {item.sections && (

@@ -60,7 +60,7 @@ export default function ThemeSection() {
         <section
             ref={sectionRef}
             id="theme-section"
-            className="relative min-h-screen bg-white py-24 px-8 z-10 flex flex-col justify-center"
+            className="relative min-h-screen bg-white dark:bg-dark-b py-24 px-8 z-10 flex flex-col justify-center transition-colors duration-500"
         >
             <div ref={containerRef} className="max-w-6xl mx-auto w-full">
                 {/* Section Tag */}
@@ -71,7 +71,7 @@ export default function ThemeSection() {
 
                 {/* Main Theme */}
                 <div className="mb-32">
-                    <h2 className="theme-title text-3xl md:text-5xl lg:text-6xl font-display font-bold text-charcoal leading-[1.1] tracking-tight text-center md:text-left">
+                    <h2 className="theme-title text-3xl md:text-5xl lg:text-6xl font-display font-bold text-charcoal dark:text-[#e2e2e8] leading-[1.1] tracking-tight text-center md:text-left transition-colors duration-500">
                         Towards Fostering an Ecosystem of a <span className="text-school-red">Uniform Global Human Rights</span> and Social Justice Framework
                     </h2>
                 </div>
@@ -79,8 +79,8 @@ export default function ThemeSection() {
                 {/* Commemorations Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
                     <div className="lg:col-span-4">
-                        <div className="h-px w-full bg-charcoal/10" />
-                        <p className="mt-6 text-charcoal/60 font-light text-lg font-medium text-charcoal">
+                        <div className="h-px w-full bg-charcoal/10 dark:bg-platinum/10" />
+                        <p className="mt-6 text-charcoal/60 dark:text-[#c8c8d0]/70 font-light text-lg font-medium text-charcoal dark:text-[#e2e2e8] transition-colors duration-500">
                             Dedicated to Four Landmark Commemorations:
                         </p>
                     </div>
@@ -92,7 +92,7 @@ export default function ThemeSection() {
                                     {item.id}
                                 </span>
                                 <div className="pt-2">
-                                    <p className="text-xl md:text-2xl font-light text-charcoal pl-4 md:pl-0 md:group-hover:pl-4 transition-all duration-500 ease-out border-l border-school-red md:border-transparent md:group-hover:border-school-red">
+                                    <p className="text-xl md:text-2xl font-light text-charcoal dark:text-[#c8c8d0] pl-4 md:pl-0 md:group-hover:pl-4 transition-all duration-500 ease-out border-l border-school-red md:border-transparent md:group-hover:border-school-red">
                                         {item.title}
                                     </p>
                                 </div>
@@ -103,7 +103,7 @@ export default function ThemeSection() {
             </div>
 
             {/* Background Decoration */}
-            <div className="absolute right-0 top-0 w-1/3 h-full bg-platinum/30 -z-10" />
+            <div className="absolute right-0 top-0 w-1/3 h-full bg-platinum/30 dark:bg-platinum/[0.03] -z-10" />
         </section>
     );
 }

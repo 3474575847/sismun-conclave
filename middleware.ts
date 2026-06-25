@@ -30,6 +30,13 @@ export async function middleware(request: NextRequest) {
 
     const { pathname } = request.nextUrl;
 
+    // Block /portal/setup entirely in production — it was a one-time setup utility
+    if (pathname.startsWith('/portal/setup')) {
+        const notFoundUrl = request.nextUrl.clone();
+        notFoundUrl.pathname = '/portal/login';
+        return NextResponse.redirect(notFoundUrl);
+    }
+
     // Protect all /portal/eb/* routes — redirect to login if not authenticated
     if (pathname.startsWith('/portal/eb') && !user) {
         const loginUrl = request.nextUrl.clone();
@@ -52,5 +59,6 @@ export const config = {
     matcher: [
         '/portal/eb/:path*',
         '/portal/login',
+        '/portal/setup',
     ],
 };

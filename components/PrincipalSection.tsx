@@ -43,7 +43,7 @@ export default function PrincipalSection() {
     return (
         <section
             ref={sectionRef}
-            className="w-full bg-white py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5"
+            className="w-full bg-white dark:bg-dark-b py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5 dark:border-white/[0.04] transition-colors duration-500"
             id="principal-section"
         >
             <div className="max-w-7xl w-full">
@@ -52,7 +52,7 @@ export default function PrincipalSection() {
                     ref={placeholderRef}
                     className="w-full lg:w-auto lg:float-right lg:ml-16 lg:mb-12 flex justify-center lg:block"
                 >
-                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-platinum/5 border border-platinum/10 shadow-lg overflow-hidden group">
+                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-platinum/5 dark:bg-charcoal/30 border border-platinum/10 dark:border-platinum/10 shadow-lg overflow-hidden group">
                         <Image
                             src="/principal-Stephen-Willoughby.jpg"
                             alt="Mr. Stephen Willoughby, Principal"
@@ -75,7 +75,7 @@ export default function PrincipalSection() {
                 >
                     <div className="mb-10">
                         <div className="space-y-4">
-                            <h2 className="text-4xl sm:text-5xl lg:text-8xl font-serif text-charcoal font-bold leading-[1.1] mb-2 uppercase tracking-tighter">
+                            <h2 className="text-4xl sm:text-5xl lg:text-8xl font-serif text-charcoal dark:text-[#e2e2e8] font-bold leading-[1.1] mb-2 uppercase tracking-tighter transition-colors duration-500">
                                 Leading with Purpose
                             </h2>
                             <h3 className="text-xl sm:text-2xl text-school-red font-mono uppercase tracking-[0.3em] font-medium mb-8">
@@ -85,7 +85,7 @@ export default function PrincipalSection() {
                         </div>
                     </div>
 
-                    <div className="text-charcoal/80 leading-relaxed text-lg lg:text-xl font-light">
+                    <div className="text-charcoal/80 dark:text-[#c8c8d0] leading-relaxed text-lg lg:text-xl font-light transition-colors duration-500">
 
                         <div className="space-y-6">
                             <p>
@@ -117,9 +117,9 @@ export default function PrincipalSection() {
                             </p>
 
                             <div className="relative py-4">
-                                <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red/40 pl-8 py-2 text-charcoal/90">
+                                <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red/40 pl-8 py-2 text-charcoal/90 dark:text-[#e2e2e8] transition-colors duration-500">
                             &ldquo;There&rsquo;s really no such thing as the &lsquo;voiceless&rsquo;. There are only the deliberately silenced, or the preferably unheard.&rdquo;
-                            <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50">&mdash; ARUNDHATI ROY</span>
+                            <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50 dark:text-[#c8c8d0]/60 transition-colors duration-500">&mdash; ARUNDHATI ROY</span>
                         </p>
                     </div>
 
@@ -129,9 +129,9 @@ export default function PrincipalSection() {
                 </div>
             </div>
 
-            <div className="mt-10 pt-4 border-t border-charcoal/10 w-fit">
+            <div className="mt-10 pt-4 border-t border-charcoal/10 dark:border-white/10 w-fit transition-colors duration-500">
                 <p className="text-school-red text-lg lg:text-xl tracking-[0.1em] font-medium mb-1 uppercase">STEPHEN WILLOUGHBY</p>
-                <p className="text-charcoal/40 font-mono text-[10px] uppercase tracking-widest leading-relaxed">
+                <p className="text-charcoal/40 dark:text-[#c8c8d0]/50 font-mono text-[10px] uppercase tracking-widest leading-relaxed transition-colors duration-500">
                     Principal,<br />Singapore International School
                 </p>
             </div>

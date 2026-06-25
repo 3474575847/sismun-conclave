@@ -43,7 +43,7 @@ export default function GallerySection() {
     }, []);
 
     return (
-        <section id="gallery-section" className="relative bg-charcoal py-24 z-20 overflow-hidden border-y border-white/5">
+        <section id="gallery-section" className="relative bg-charcoal dark:bg-dark-a py-24 z-20 overflow-hidden border-y border-white/5 dark:border-white/[0.04] transition-colors duration-500">
             <div className="max-w-7xl mx-auto px-8 mb-16">
                 <div className="flex items-center gap-4 mb-6 text-gold font-mono text-[10px] tracking-[0.4em] uppercase">
                     <span className="w-2 h-2 bg-gold rounded-full" />

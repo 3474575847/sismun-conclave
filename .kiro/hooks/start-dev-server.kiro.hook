@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Start Dev Server",
+  "description": "Starts the SISMUN Next.js dev server at localhost:3000",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run dev",
+    "timeout": 0
+  }
+}

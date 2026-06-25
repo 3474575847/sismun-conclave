@@ -51,19 +51,14 @@ export default function FooterSection() {
 
                 {/* Branding Circle Logo */}
                 <div className="mb-8 flex justify-center">
-                    <div className="relative w-48 h-48 md:w-56 md:h-56 flex items-center justify-center">
-                        {/* White circle background */}
-                        <div className="absolute inset-0 bg-white rounded-full"></div>
-                        
-                        <div className="relative w-full h-full overflow-hidden rounded-full">
-                            <Image
-                                src="/WhatsApp_Image_2026-03-26_at_18.10.16-removebg-preview.png"
-                                alt="SISMUN Conclave Logo"
-                                fill
-                                sizes="(max-width: 768px) 192px, 224px"
-                                className="object-contain p-4"
-                            />
-                        </div>
+                    <div className="relative w-48 h-48 md:w-56 md:h-56 flex items-center justify-center bg-white rounded-full p-4 border-4 border-white/10 shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                        <Image
+                            src="/sismun-logo.png"
+                            alt="SISMUN Logo"
+                            fill
+                            sizes="(max-width: 768px) 192px, 224px"
+                            className="object-contain p-4"
+                        />
                     </div>
                 </div>
 
@@ -136,7 +131,7 @@ export default function FooterSection() {
                 </div>
 
                 {/* Social links & Copyright */}
-                <div className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-12">
+                <div className="mt-32 pt-12 border-t border-white/5 flex flex-col items-center gap-8">
                     <div className="flex gap-12">
                         <a
                             href="https://www.instagram.com/sismun_2026?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
@@ -157,7 +152,7 @@ export default function FooterSection() {
                         © 2026 SISMUN CONCLAVE DIPLOMACY REDEFINED
                     </p>
                 </div>
-            </div>
+                </div>
 
             {/* Decorative background grid */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">

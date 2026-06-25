@@ -5,16 +5,44 @@
 @layer base {
   :root {
     --color-platinum: #F0F4F8;
-    /* Cool White */
     --color-gold: #FFCC00;
-    /* School Yellow */
     --color-charcoal: #0A192F;
-    /* Deep Royal Blue */
+
+    /* Portal dark mode design tokens */
+    --portal-bg:        #09090e;
+    --portal-surface:   #0d0d14;
+    --portal-elevated:  #111118;
+    --portal-border:    rgba(255,255,255,0.08);
+    --portal-border-md: rgba(255,255,255,0.12);
+    --portal-border-hi: rgba(255,255,255,0.18);
+
+    --portal-text-1:    #f4f4f5;
+    --portal-text-2:    #a1a1aa;
+    --portal-text-3:    #71717a;
+    --portal-text-4:    #52525b;
+
+    --portal-gold:      #c9a84c;
+    --portal-gold-dim:  rgba(201,168,76,0.12);
+    --portal-gold-glow: rgba(201,168,76,0.25);
+  }
+
+  /* Portal light mode overrides */
+  .light {
+    --portal-bg:        #f8f8fc;
+    --portal-surface:   #ffffff;
+    --portal-elevated:  #f1f1f7;
+    --portal-border:    rgba(0,0,0,0.08);
+    --portal-border-md: rgba(0,0,0,0.12);
+    --portal-border-hi: rgba(0,0,0,0.18);
+
+    --portal-text-1:    #111118;
+    --portal-text-2:    #3f3f46;
+    --portal-text-3:    #71717a;
+    --portal-text-4:    #a1a1aa;
   }
 
   * {
     border-color: rgba(255, 204, 0, 0.2);
-    /* School Gold Border */
   }
 
   body {
@@ -37,18 +65,14 @@
 
   .glass-card {
     background: rgba(255, 255, 255, 0.9);
-    /* Opaque white for clarity */
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 204, 0, 0.3);
-    /* Gold border */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     color: var(--color-charcoal);
-    /* Force dark text in cards */
   }
 
   .text-gradient {
     background: linear-gradient(135deg, var(--color-gold) 0%, #D32F2F 100%);
-    /* Gold to Red */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -56,16 +80,67 @@
 
   .border-glow {
     box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
-    /* School Gold Glow */
+  }
+
+  /* Portal-specific utilities */
+  .portal-card {
+    background: var(--portal-surface);
+    border: 1px solid var(--portal-border);
+    border-radius: 0.75rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .portal-card:hover {
+    border-color: var(--portal-border-md);
+    background: var(--portal-elevated);
+  }
+
+  .portal-input {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--portal-border);
+    color: var(--portal-text-1);
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .portal-input:focus {
+    outline: none;
+    border-color: rgba(201,168,76,0.5);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  }
+
+  .portal-input::placeholder {
+    color: var(--portal-text-4);
+  }
+
+  .portal-input:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .portal-btn-gold {
+    background: var(--portal-gold);
+    color: #09090e;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .portal-btn-gold:hover:not(:disabled) {
+    background: #d4b560;
+    box-shadow: 0 0 16px rgba(201,168,76,0.35);
+  }
+
+  .portal-btn-gold:disabled {
+    background: rgba(201,168,76,0.35);
+    cursor: not-allowed;
   }
 
   /* Global Scrollbar Hide */
   html,
   body {
     scrollbar-width: none !important;
-    /* Firefox */
     -ms-overflow-style: none !important;
-    /* IE/Edge */
   }
 
   html::-webkit-scrollbar,

@@ -1,316 +1,392 @@
-'use server';
+'use server'
 
-import { createClient } from '@/lib/supabase-server';
-import { revalidatePath } from 'next/cache';
+import { createClient } from '@/lib/supabase-server'
+import { revalidatePath } from 'next/cache'
 
-// Types
-export type Clause = {
-    position: number;
-    text: string;
-    type: 'preamble' | 'operative';
-};
-
-export type ContentJson = {
-    preamble: Clause[];
-    operative: Clause[];
-};
+// ── Types ─────────────────────────────────────────────────────────────────────
 
 export type Resolution = {
-    id: string;
-    bloc_id: string;
-    committee_slug: string;
-    topic_index: number;
-    status: 'pending' | 'floor' | 'rejected' | 'drafting' | 'submitted';
-    content_json: ContentJson;
-    snapshot_json: ContentJson | null;
-    submitted_at: string | null;
-    updated_at: string;
-    created_at: string;
-    is_deleted: boolean;
-    rejection_note?: string | null;
-    blocs?: { bloc_name: string; member_countries: string[] };
-};
-
-// ---- Helpers ----
-
-async function assertEBAccess(committeeSlug?: string) {
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) throw new Error('Unauthorized');
-
-    const { data: profile } = await supabase
-        .from('eb_profiles')
-        .select('committee_slug, role')
-        .eq('id', user.id)
-        .single();
-
-    if (!profile) throw new Error('Not an EB member');
-
-    // SG (committee_slug = null) sees everything
-    if (profile.committee_slug !== null && committeeSlug) {
-        if (profile.committee_slug !== committeeSlug) {
-            throw new Error('Access denied: wrong committee');
-        }
-    }
-
-    return { user, profile };
+  id: string
+  committee_slug: string
+  title: string
+  topic_index: number | null
+  resolution_code: string | null
+  status: 'published' | 'archived'
+  current_file_path: string | null
+  uploaded_by: string | null
+  published_at: string | null
+  archived_at: string | null
+  created_at: string
+  is_deleted: boolean
 }
 
-// ---- Resolution Actions ----
-
-export async function createResolution(data: {
-    bloc_id: string;
-    committee_slug: string;
-    topic_index: number;
-}) {
-    await assertEBAccess(data.committee_slug);
-    const supabase = createClient();
-
-    const { data: res, error } = await supabase
-        .from('resolutions')
-        .insert({
-            bloc_id: data.bloc_id,
-            committee_slug: data.committee_slug,
-            topic_index: data.topic_index,
-            status: 'drafting',
-            content_json: { preamble: [], operative: [] },
-        })
-        .select()
-        .single();
-
-    if (error) throw new Error(error.message);
-    revalidatePath('/portal/eb');
-    return res;
+export type ResolutionFile = {
+  id: string
+  resolution_id: string
+  committee_slug: string
+  file_path: string
+  file_name: string
+  version_number: number
+  status: 'active' | 'archived'
+  uploaded_by: string | null
+  uploaded_at: string
 }
 
-export async function updateResolutionContent(data: {
-    id: string;
-    content_json: ContentJson;
-    last_known_updated_at: string; // optimistic concurrency check
-}) {
-    const supabase = createClient();
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
-    // Fetch current updated_at to detect conflicts
-    const { data: current } = await supabase
-        .from('resolutions')
-        .select('updated_at, committee_slug, status')
-        .eq('id', data.id)
-        .single();
+async function assertSecretariatAccess(committeeSlug?: string) {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Unauthorized')
 
-    if (!current) throw new Error('Resolution not found');
-    if (current.status !== 'drafting') throw new Error('Resolution is no longer in draft');
+  const { data: profile } = await supabase
+    .from('eb_profiles')
+    .select('committee_slug, role')
+    .eq('id', user.id)
+    .single()
 
-    await assertEBAccess(current.committee_slug);
+  if (!profile) throw new Error('Not an EB member')
+  if (!['secretariat', 'sg', 'admin'].includes(profile.role)) {
+    throw new Error('Only Secretariat members can manage resolutions')
+  }
+  if (committeeSlug && profile.committee_slug !== null && profile.committee_slug !== committeeSlug) {
+    throw new Error('Access denied: wrong committee')
+  }
 
-    // Optimistic concurrency: reject if someone else updated since we last read
-    if (current.updated_at !== data.last_known_updated_at) {
-        return { conflict: true, server_updated_at: current.updated_at };
-    }
-
-    const { error } = await supabase
-        .from('resolutions')
-        .update({ content_json: data.content_json })
-        .eq('id', data.id);
-
-    if (error) throw new Error(error.message);
-    revalidatePath(`/portal/eb/resolutions/${data.id}`);
-    return { conflict: false };
+  return { user, profile }
 }
 
-export async function submitResolution(id: string) {
-    const supabase = createClient();
+export async function assertEBAccess(committeeSlug?: string) {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Unauthorized')
 
-    const { data: current } = await supabase
-        .from('resolutions')
-        .select('committee_slug, status, content_json')
-        .eq('id', id)
-        .single();
+  const { data: profile } = await supabase
+    .from('eb_profiles')
+    .select('committee_slug, role')
+    .eq('id', user.id)
+    .single()
 
-    if (!current) throw new Error('Resolution not found');
-    if (current.status !== 'drafting') throw new Error('Already submitted');
+  if (!profile) throw new Error('Not an EB member')
 
-    await assertEBAccess(current.committee_slug);
+  // Require a recognised EB role — prevents phantom eb_profiles rows with no role
+  const validRoles = ['chair', 'secretariat', 'sg', 'admin']
+  if (!profile.role || !validRoles.includes(profile.role)) {
+    throw new Error('Access denied: invalid EB role')
+  }
 
-    // Check conference settings
-    const { data: settings } = await supabase
-        .from('conference_settings')
-        .select('accepting_submissions')
-        .eq('id', 1)
-        .single();
+  if (committeeSlug && profile.committee_slug !== null && profile.committee_slug !== committeeSlug) {
+    throw new Error('Access denied: wrong committee')
+  }
 
-    if (!settings?.accepting_submissions) {
-        throw new Error('Submissions are currently closed by the EB');
-    }
-
-    const { error } = await supabase
-        .from('resolutions')
-        .update({
-            status: 'floor',
-            submitted_at: new Date().toISOString(),
-            snapshot_json: current.content_json, // freeze snapshot at submission
-        })
-        .eq('id', id);
-
-    if (error) throw new Error(error.message);
-    revalidatePath('/portal/floor');
-    revalidatePath('/portal/eb');
+  return { user, profile }
 }
 
-export async function softDeleteResolution(id: string) {
-    const supabase = createClient();
-    const { data: current } = await supabase
-        .from('resolutions')
-        .select('committee_slug')
-        .eq('id', id)
-        .single();
-
-    if (!current) throw new Error('Not found');
-    await assertEBAccess(current.committee_slug);
-
-    await supabase.from('resolutions').update({ is_deleted: true }).eq('id', id);
-    revalidatePath('/portal/eb');
-    revalidatePath('/portal/floor');
-}
+// ── Resolution Actions ────────────────────────────────────────────────────────
 
 /**
- * Approve a pending resolution, transitioning it to the floor.
- * Only an EB member scoped to the resolution's committee (or an SG) may approve.
- * Requirements: 2.2, 2.5
+ * Upload a new resolution DOCX and publish it.
+ * Creates a resolutions row + resolution_files row.
+ * Requirements: 1.1, 1.2
  */
-export async function approveResolution(id: string) {
-    const supabase = createClient();
+export async function uploadResolution(formData: FormData): Promise<{ resolutionId: string }> {
+  const { user } = await assertSecretariatAccess()
+  const supabase = createClient()
 
-    // Fetch the resolution to get its committee_slug for scoping
-    const { data: current } = await supabase
-        .from('resolutions')
-        .select('committee_slug, status, is_deleted')
-        .eq('id', id)
-        .single();
+  const committeeSlug = formData.get('committeeSlug') as string
+  const title = formData.get('title') as string
+  const topicIndex = formData.get('topicIndex') ? Number(formData.get('topicIndex')) : null
+  const resolutionCode = (formData.get('resolutionCode') as string) || null
+  const file = formData.get('file') as File
 
-    if (!current) throw new Error('Resolution not found');
-    if (current.is_deleted) throw new Error('Resolution has been deleted');
-    if (current.status !== 'pending') throw new Error('Resolution is not in pending state');
+  if (!committeeSlug || !title || !file) {
+    throw new Error('committeeSlug, title, and file are required')
+  }
 
-    // Enforce committee scoping: Chair can only approve resolutions in their own committee
-    await assertEBAccess(current.committee_slug);
+  // Validate DOCX MIME type (Req 1.3)
+  const validMime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  if (file.type !== validMime) {
+    throw new Error('Only DOCX files are accepted (.docx)')
+  }
 
-    const { error } = await supabase
-        .from('resolutions')
-        .update({
-            status: 'floor',
-            submitted_at: new Date().toISOString(),
-        })
-        .eq('id', id)
-        .eq('status', 'pending'); // guard against concurrent updates
+  // Validate file size ≤ 10 MB (Req 1.4)
+  if (file.size > 10 * 1024 * 1024) {
+    throw new Error('File size must not exceed 10 MB')
+  }
 
-    if (error) throw new Error(error.message);
+  // Generate resolution ID upfront for use in storage path
+  const resolutionId = crypto.randomUUID()
+  const safeFileName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
+  const filePath = `${committeeSlug}/${resolutionId}/v1_${safeFileName}`
 
-    revalidatePath('/portal/eb');
-    revalidatePath('/portal/floor');
+  // Upload to Supabase Storage bucket 'resolutions'
+  const { error: uploadError } = await supabase.storage
+    .from('resolutions')
+    .upload(filePath, file, { contentType: file.type, upsert: false })
+
+  if (uploadError) throw new Error(`Storage upload failed: ${uploadError.message}`)
+
+  // Insert resolutions row
+  const { error: resError } = await supabase
+    .from('resolutions')
+    .insert({
+      id: resolutionId,
+      committee_slug: committeeSlug,
+      title,
+      topic_index: topicIndex,
+      resolution_code: resolutionCode,
+      status: 'published',
+      current_file_path: filePath,
+      uploaded_by: user.id,
+      published_at: new Date().toISOString(),
+    })
+
+  if (resError) throw new Error(`Failed to create resolution: ${resError.message}`)
+
+  // Insert resolution_files row (version 1)
+  const { error: fileError } = await supabase
+    .from('resolution_files')
+    .insert({
+      resolution_id: resolutionId,
+      committee_slug: committeeSlug,
+      file_path: filePath,
+      file_name: file.name,
+      version_number: 1,
+      status: 'active',
+      uploaded_by: user.id,
+    })
+
+  if (fileError) throw new Error(`Failed to create file record: ${fileError.message}`)
+
+  revalidatePath(`/committees/${committeeSlug}`)
+  revalidatePath('/portal/eb/resolutions')
+
+  return { resolutionId }
 }
 
 /**
- * Reject a pending resolution, soft-deleting it from all public views.
- * Only an EB member scoped to the resolution's committee (or an SG) may reject.
- * Requirements: 2.3, 2.5
+ * Re-upload an updated DOCX for an existing resolution.
+ * Archives the current active file, inserts a new active file.
+ * Requirements: 6.1, 6.2
  */
-export async function rejectResolution(id: string, note?: string) {
-    const supabase = createClient();
+export async function republishResolution(formData: FormData): Promise<void> {
+  const supabase = createClient()
 
-    // Fetch the resolution to get its committee_slug for scoping
-    const { data: current } = await supabase
-        .from('resolutions')
-        .select('committee_slug, status, is_deleted')
-        .eq('id', id)
-        .single();
+  const resolutionId = formData.get('resolutionId') as string
+  const file = formData.get('file') as File
 
-    if (!current) throw new Error('Resolution not found');
-    if (current.is_deleted) throw new Error('Resolution has already been deleted');
-    if (current.status !== 'pending') throw new Error('Resolution is not in pending state');
+  if (!resolutionId || !file) throw new Error('resolutionId and file are required')
 
-    // Enforce committee scoping: Chair can only reject resolutions in their own committee
-    await assertEBAccess(current.committee_slug);
+  const validMime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  if (file.type !== validMime) throw new Error('Only DOCX files are accepted (.docx)')
+  if (file.size > 10 * 1024 * 1024) throw new Error('File size must not exceed 10 MB')
 
-    const updates: Record<string, unknown> = { is_deleted: true };
-    if (note !== undefined && note !== '') {
-        updates.rejection_note = note;
-    }
+  // Fetch resolution for committee_slug
+  const { data: resolution } = await supabase
+    .from('resolutions')
+    .select('committee_slug, is_deleted')
+    .eq('id', resolutionId)
+    .single()
 
-    const { error } = await supabase
-        .from('resolutions')
-        .update(updates)
-        .eq('id', id);
+  if (!resolution || resolution.is_deleted) throw new Error('Resolution not found')
 
-    if (error) throw new Error(error.message);
+  const { user } = await assertSecretariatAccess(resolution.committee_slug)
 
-    revalidatePath('/portal/eb');
-    revalidatePath('/portal/floor');
+  // Get current active file to determine next version number
+  const { data: currentFile } = await supabase
+    .from('resolution_files')
+    .select('id, version_number')
+    .eq('resolution_id', resolutionId)
+    .eq('status', 'active')
+    .single()
+
+  const nextVersion = currentFile ? currentFile.version_number + 1 : 2
+  const safeFileName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
+  const filePath = `${resolution.committee_slug}/${resolutionId}/v${nextVersion}_${safeFileName}`
+
+  // Upload new file to Storage
+  const { error: uploadError } = await supabase.storage
+    .from('resolutions')
+    .upload(filePath, file, { contentType: file.type, upsert: false })
+
+  if (uploadError) throw new Error(`Storage upload failed: ${uploadError.message}`)
+
+  // Archive current active file record
+  if (currentFile) {
+    await supabase
+      .from('resolution_files')
+      .update({ status: 'archived' })
+      .eq('id', currentFile.id)
+  }
+
+  // Insert new active file record
+  const { error: fileError } = await supabase
+    .from('resolution_files')
+    .insert({
+      resolution_id: resolutionId,
+      committee_slug: resolution.committee_slug,
+      file_path: filePath,
+      file_name: file.name,
+      version_number: nextVersion,
+      status: 'active',
+      uploaded_by: user.id,
+    })
+
+  if (fileError) throw new Error(`Failed to create file record: ${fileError.message}`)
+
+  // Update resolution's current_file_path
+  await supabase
+    .from('resolutions')
+    .update({ current_file_path: filePath })
+    .eq('id', resolutionId)
+
+  revalidatePath(`/committees/${resolution.committee_slug}`)
+  revalidatePath('/portal/eb/resolutions')
 }
-
-// ---- Bloc Actions ----
-
-export async function createBloc(data: {
-    committee_slug: string;
-    topic_index: number;
-    bloc_name: string;
-    member_countries: string[];
-}) {
-    await assertEBAccess(data.committee_slug);
-    const supabase = createClient();
-
-    const { data: bloc, error } = await supabase
-        .from('blocs')
-        .insert(data)
-        .select()
-        .single();
-
-    if (error) throw new Error(error.message);
-    revalidatePath('/portal/eb');
-    return bloc;
-}
-
-export async function updateBloc(id: string, data: {
-    bloc_name?: string;
-    member_countries?: string[];
-}) {
-    const supabase = createClient();
-    const { data: current } = await supabase
-        .from('blocs')
-        .select('committee_slug')
-        .eq('id', id)
-        .single();
-
-    if (!current) throw new Error('Not found');
-    await assertEBAccess(current.committee_slug);
-
-    await supabase.from('blocs').update(data).eq('id', id);
-    revalidatePath('/portal/eb');
-}
-
-// ---- Conference Settings Actions ----
 
 /**
- * Update a single boolean field in the conference_settings singleton row.
- * Only the SG (role = 'sg') may call this action.
- * Requirements: 7.1, 7.2, 7.3, 7.4
+ * Archive a resolution — removes it from public view.
+ * Requirements: 6.1
+ */
+export async function archiveResolution(resolutionId: string): Promise<void> {
+  const supabase = createClient()
+
+  const { data: resolution } = await supabase
+    .from('resolutions')
+    .select('committee_slug')
+    .eq('id', resolutionId)
+    .single()
+
+  if (!resolution) throw new Error('Resolution not found')
+
+  await assertSecretariatAccess(resolution.committee_slug)
+
+  await supabase
+    .from('resolutions')
+    .update({ status: 'archived', archived_at: new Date().toISOString() })
+    .eq('id', resolutionId)
+
+  revalidatePath(`/committees/${resolution.committee_slug}`)
+  revalidatePath('/portal/eb/resolutions')
+}
+
+/**
+ * Permanently delete a resolution (soft-delete via is_deleted flag).
+ * Only Secretariat/SG/Admin can delete. Removes from all public views.
+ * Requirements: 2.3
+ */
+export async function deleteResolution(resolutionId: string): Promise<void> {
+  const supabase = createClient()
+
+  const { data: resolution } = await supabase
+    .from('resolutions')
+    .select('committee_slug')
+    .eq('id', resolutionId)
+    .single()
+
+  if (!resolution) throw new Error('Resolution not found')
+
+  await assertSecretariatAccess(resolution.committee_slug)
+
+  const { error } = await supabase
+    .from('resolutions')
+    .update({ is_deleted: true })
+    .eq('id', resolutionId)
+
+  if (error) throw new Error(`Failed to delete resolution: ${error.message}`)
+
+  revalidatePath(`/committees/${resolution.committee_slug}`)
+  revalidatePath('/portal/eb/resolutions')
+  revalidatePath('/portal/eb')
+}
+
+/**
+ * Update conference settings (SG only).
+ * Requirements: 7.1, 7.2, 7.4
  */
 export async function updateConferenceSettings(
-    field: 'accepting_submissions' | 'accepting_amendments',
-    value: boolean
-) {
-    // assertEBAccess with no committee slug — verifies the caller is any EB member
-    const { profile } = await assertEBAccess();
+  field: 'accepting_amendments' | 'accepting_submissions' | 'debate_mode',
+  value: boolean
+): Promise<void> {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Unauthorized')
 
-    if (profile.role !== 'sg') {
-        throw new Error('Only the SG can modify conference settings');
-    }
+  const { data: profile } = await supabase
+    .from('eb_profiles')
+    .select('role')
+    .eq('id', user.id)
+    .single()
 
-    const supabase = createClient();
-    const { error } = await supabase
-        .from('conference_settings')
-        .update({ [field]: value })
-        .eq('id', 1);
+  if (!profile || !['sg', 'admin'].includes(profile.role)) {
+    throw new Error('Only the SG or Admin can modify conference settings')
+  }
 
-    if (error) throw new Error(error.message);
-    revalidatePath('/portal/eb');
+  const { error } = await supabase
+    .from('conference_settings')
+    .update({ [field]: value })
+    .eq('id', 1)
+
+  if (error) throw new Error(error.message)
+  revalidatePath('/portal/eb')
+}
+
+/**
+ * Approve a pending resolution — transitions status from 'pending' → 'floor'
+ * and records the submission timestamp.
+ * Requirements: 2.2, 2.5
+ */
+export async function approveResolution(id: string): Promise<void> {
+  const supabase = createClient()
+
+  const { data: resolution } = await supabase
+    .from('resolutions')
+    .select('committee_slug')
+    .eq('id', id)
+    .single()
+
+  if (!resolution) throw new Error('Resolution not found')
+
+  await assertEBAccess(resolution.committee_slug)
+
+  const { error } = await supabase
+    .from('resolutions')
+    .update({ status: 'floor', submitted_at: new Date().toISOString() })
+    .eq('id', id)
+
+  if (error) throw new Error(`Failed to approve resolution: ${error.message}`)
+
+  revalidatePath('/portal/eb')
+  revalidatePath('/portal/floor')
+}
+
+/**
+ * Reject a pending resolution — soft-deletes it and optionally records a note.
+ * Requirements: 2.3, 2.5
+ */
+export async function rejectResolution(id: string, note?: string): Promise<void> {
+  const supabase = createClient()
+
+  const { data: resolution } = await supabase
+    .from('resolutions')
+    .select('committee_slug')
+    .eq('id', id)
+    .single()
+
+  if (!resolution) throw new Error('Resolution not found')
+
+  await assertEBAccess(resolution.committee_slug)
+
+  const updatePayload: Record<string, unknown> = { is_deleted: true }
+  if (note) updatePayload.rejection_note = note
+
+  const { error } = await supabase
+    .from('resolutions')
+    .update(updatePayload)
+    .eq('id', id)
+
+  if (error) throw new Error(`Failed to reject resolution: ${error.message}`)
+
+  revalidatePath('/portal/eb')
+  revalidatePath('/portal/floor')
 }

@@ -87,11 +87,11 @@ export default function SecretariatSection() {
         <section
             ref={sectionRef}
             id="secretariat-section"
-            className="relative min-h-screen bg-white py-24 px-8 z-20 flex flex-col justify-center"
+            className="relative min-h-screen bg-white dark:bg-dark-b py-24 px-8 z-20 flex flex-col justify-center transition-colors duration-500"
         >
             <div className="max-w-7xl mx-auto w-full">
                 <div className="secretariat-header text-center mb-20">
-                    <h2 className="text-6xl md:text-8xl font-display font-bold text-charcoal mb-4">
+                    <h2 className="text-6xl md:text-8xl font-display font-bold text-charcoal dark:text-[#e2e2e8] mb-4 transition-colors duration-500">
                         The Secretariat
                     </h2>
                     <div className="h-1 w-24 bg-school-red mx-auto rounded-full" />
@@ -103,7 +103,7 @@ export default function SecretariatSection() {
                             key={index}
                             className="member-card relative group"
                         >
-                            <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl aspect-[3/4] mb-8 border-school-red/50 md:border-platinum transition-colors duration-500 md:hover:border-school-red/50">
+                            <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-charcoal shadow-xl aspect-[3/4] mb-8 border-school-red/50 md:border-platinum dark:md:border-charcoal transition-colors duration-500 md:hover:border-school-red/50">
                                 <div className="absolute inset-0 bg-charcoal/10 md:bg-charcoal/5 md:group-hover:bg-charcoal/10 transition-colors duration-500">
                                     <Image
                                         src={member.image}
@@ -118,7 +118,7 @@ export default function SecretariatSection() {
                             </div>
 
                             <div className="text-center relative z-10 px-1">
-                                <h3 className="text-sm sm:text-4xl font-display font-bold text-charcoal mb-1 sm:mb-2 leading-tight">
+                                <h3 className="text-sm sm:text-4xl font-display font-bold text-charcoal dark:text-[#e2e2e8] mb-1 sm:mb-2 leading-tight transition-colors duration-500">
                                     {member.name}
                                 </h3>
                                 <p className="text-school-red font-sans font-medium tracking-[0.1em] sm:tracking-widest text-[7px] sm:text-sm uppercase mb-1 sm:mb-4">
@@ -126,7 +126,7 @@ export default function SecretariatSection() {
                                 </p>
                                 <a 
                                     href={`mailto:${member.email}`} 
-                                    className="text-[#B22234] font-mono text-[6px] sm:text-sm hover:underline transition-all block tracking-tighter sm:tracking-widest opacity-80 sm:opacity-100"
+                                    className="text-[#B22234] dark:text-gold font-mono text-[6px] sm:text-sm hover:underline transition-all block tracking-tighter sm:tracking-widest opacity-80 sm:opacity-100"
                                 >
                                     {member.email}
                                 </a>

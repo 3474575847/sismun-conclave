@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono, Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import Navbar from '@/components/Navbar';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -28,8 +29,8 @@ export const metadata: Metadata = {
     keywords: ['MUN', 'Model United Nations', 'Singapore', 'SISMUN', 'Diplomacy', 'International Relations'],
     authors: [{ name: 'Singapore International School' }],
     icons: {
-        icon: '/WhatsApp_Image_2026-03-26_at_18.10.16-removebg-preview.png',
-        apple: '/WhatsApp_Image_2026-03-26_at_18.10.16-removebg-preview.png',
+        icon: '/sismun-logo.png',
+        apple: '/sismun-logo.png',
     },
     openGraph: {
         title: 'SISMUN - Singapore International School Model United Nations',
@@ -46,10 +47,12 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${cormorant.variable}`}>
             <body className={`${inter.className} font-sans bg-white text-charcoal antialiased selection:bg-gold/30 no-scrollbar`}>
-                <SmoothScroll>
-                    <Navbar />
-                    {children}
-                </SmoothScroll>
+                <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+                    <SmoothScroll>
+                        <Navbar />
+                        {children}
+                    </SmoothScroll>
+                </ThemeProvider>
             </body>
         </html>
     );

@@ -139,7 +139,7 @@ export const committees: Committee[] = [
             'The Impact of Socio-Political Instability, Armed Conflict, and Social Conservatism vis-a-vis the Rights of Gender-Divergent in Middle East.',
             'Human Rights frameworks and the smooth transition towards a future elected Parliament in the light of Civil Unrest and Democratic Backsliding in Nepal.'
         ],
-        color: 'from-purple-500/20 to-purple-900/20',
+        color: 'from-rose-500/20 to-rose-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hrc',
         studentOfficers: [
             { name: 'Plaksha Sachanandani', role: 'President', email: 'plaksharajesh@gmail.com', image: '/team-photos/Plaksha.jpg' },
@@ -174,7 +174,7 @@ export const committees: Committee[] = [
             'The implications of Cuban Missile Crisis and the Deployment of Strategic Weapons in the Caribbean.',
             'Proposed formation of a future independent government with the prevalent Situation in East Pakistan.'
         ],
-        color: 'from-indigo-500/20 to-indigo-900/20',
+        color: 'from-blue-400/20 to-blue-800/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hsc',
         studentOfficers: [
             { name: 'Advait Vaishnav', role: 'President', email: 'advaitvaishnav27@gmail.com', image: '/team-photos/Advait.jpg' },
@@ -208,7 +208,7 @@ export const committees: Committee[] = [
         color: 'from-orange-500/20 to-orange-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-disec',
         studentOfficers: [
-            { name: 'Satvik Agarwal', role: 'President', email: 'satvikagar2@gmail.com', image: '/team-photos/Satvik.jpeg' },
+            { name: 'Satvik Agarwal', role: 'President', email: 'satvikagar2@gmail.com', image: '/team-photos/Satvik.jpg' },
             { name: 'Vivaan Varshney', role: 'Deputy President', email: 'vivaan.varshney23@gmail.com', image: '/team-photos/Vivaan.jpg' },
             { name: 'Medhansh Saha', role: 'Deputy President', email: 'medhanshsaha.10@gmail.com', image: '/team-photos/Medhansh.jpg' }
         ],

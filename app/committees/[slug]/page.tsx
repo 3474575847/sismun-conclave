@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
 import Image from 'next/image';
-import CommitteeLedger from '@/components/committees/CommitteeLedger';
+import CommitteeResolutions from '@/components/committees/CommitteeResolutions';
 
 export default function CommitteePage() {
     const { slug } = useParams();
@@ -34,13 +34,13 @@ export default function CommitteePage() {
     if (!committee) return null;
 
     return (
-        <main ref={sectionRef} className="min-h-screen bg-platinum text-charcoal selection:bg-school-red/30 overflow-x-hidden">
+        <main ref={sectionRef} className="min-h-screen bg-platinum dark:bg-charcoal text-charcoal dark:text-platinum selection:bg-school-red/30 overflow-x-hidden transition-colors duration-500">
             {/* Minimal Header — no mix-blend-difference so links work */}
 
             <section className="relative pt-24 pb-8 px-8 flex items-center justify-center">
                 {/* Background Text */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.03]">
-                    <h1 className="text-[35vw] font-display font-bold uppercase leading-none tracking-tighter text-charcoal">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
+                    <h1 className="text-[35vw] font-display font-bold uppercase leading-none tracking-tighter text-charcoal dark:text-platinum">
                         {committee.acronym}
                     </h1>
                 </div>
@@ -48,7 +48,7 @@ export default function CommitteePage() {
                 <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
                     {/* Left Column: Identity */}
                     <div className="lg:col-span-12 mb-4">
-                        <h1 className="reveal text-5xl md:text-7xl font-serif font-bold text-charcoal leading-none uppercase tracking-tighter">
+                        <h1 className="reveal text-5xl md:text-7xl font-serif font-bold text-charcoal dark:text-platinum leading-none uppercase tracking-tighter">
                             {committee.name}
                         </h1>
                         <div className="reveal h-1 w-32 bg-school-red mt-8 mb-8" />
@@ -67,7 +67,7 @@ export default function CommitteePage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
                             {committee.studentOfficers?.map((officer, i) => (
                                 <div key={i} className="reveal group flex flex-col items-center text-center">
-                                    <div className="relative aspect-[4/5] w-full max-w-[240px] rounded-2xl overflow-hidden border border-charcoal/10 bg-white group-hover:border-school-red/30 transition-all duration-700 shadow-sm mb-8">
+                                    <div className="relative aspect-[4/5] w-full max-w-[240px] rounded-2xl overflow-hidden border border-charcoal/10 dark:border-platinum/10 bg-white dark:bg-platinum/5 group-hover:border-school-red/30 transition-all duration-700 shadow-sm mb-8">
                                         {officer.image ? (
                                             <Image
                                                 src={officer.image}
@@ -77,7 +77,7 @@ export default function CommitteePage() {
                                                 className="object-cover object-center group-hover:scale-105 transition-transform duration-1000"
                                             />
                                         ) : (
-                                            <div className="w-full h-full flex items-center justify-center bg-charcoal/10 text-charcoal/30">
+                                            <div className="w-full h-full flex items-center justify-center bg-charcoal/10 dark:bg-platinum/10 text-charcoal/30 dark:text-platinum/30">
                                                 <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                                 </svg>
@@ -89,15 +89,15 @@ export default function CommitteePage() {
                                         <p className="text-school-red font-mono text-[9px] uppercase tracking-[0.4em] font-bold">
                                             {officer.role}
                                         </p>
-                                        <h4 className="text-2xl font-display font-bold text-charcoal group-hover:text-school-red transition-colors duration-500">
+                                        <h4 className="text-2xl font-display font-bold text-charcoal dark:text-platinum group-hover:text-school-red transition-colors duration-500">
                                             {officer.name}
                                         </h4>
-                                        <div className="pt-4 border-t border-charcoal/5">
+                                        <div className="pt-4 border-t border-charcoal/5 dark:border-platinum/5">
                                             <a
                                                 href={`mailto:${officer.email}`}
                                                 className="text-sm md:text-base text-school-red hover:underline transition-all font-mono lowercase flex items-center justify-center gap-2 group/link tracking-tight font-medium"
                                             >
-                                                <span className="w-1.5 h-1.5 border border-charcoal/30 rounded-full group-hover/link:bg-school-red group-hover/link:border-school-red transition-all" />
+                                                <span className="w-1.5 h-1.5 border border-charcoal/30 dark:border-platinum/30 rounded-full group-hover/link:bg-school-red group-hover/link:border-school-red transition-all" />
                                                 {officer.email}
                                             </a>
                                         </div>
@@ -117,7 +117,7 @@ export default function CommitteePage() {
                                         <span className="absolute left-0 top-0 text-school-red/30 font-display text-4xl group-hover:text-school-red transition-colors duration-500">
                                             0{i + 1}
                                         </span>
-                                        <p className="text-2xl md:text-3xl font-light leading-snug text-charcoal/90 border-l border-charcoal/10 pl-8 group-hover:border-school-red transition-all duration-700">
+                                        <p className="text-2xl md:text-3xl font-light leading-snug text-charcoal/90 dark:text-platinum/90 border-l border-charcoal/10 dark:border-platinum/10 pl-8 group-hover:border-school-red transition-all duration-700">
                                             {topic}
                                         </p>
                                     </div>
@@ -128,9 +128,9 @@ export default function CommitteePage() {
 
                     {/* Right: Technical Details & Sidebar */}
                     <div className="lg:col-span-5 space-y-8">
-                        <div className="reveal p-10 bg-charcoal/5 border border-charcoal/10 rounded-2xl backdrop-blur-xl">
+                        <div className="reveal p-10 bg-charcoal/5 dark:bg-platinum/5 border border-charcoal/10 dark:border-platinum/10 rounded-2xl backdrop-blur-xl">
                             <h3 className="text-school-red font-mono text-[10px] uppercase tracking-[0.4em] mb-6">Briefing Note</h3>
-                            <p className="text-charcoal/70 font-light leading-relaxed text-lg italic">
+                            <p className="text-charcoal/70 dark:text-platinum/70 font-light leading-relaxed text-lg italic">
                                 &ldquo;{committee.description}&rdquo;
                             </p>
                         </div>
@@ -145,7 +145,7 @@ export default function CommitteePage() {
                                     <svg className="w-12 h-12 text-school-red/20 mb-8" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V3L21.017 3V15C21.017 18.3137 18.3307 21 15.017 21H14.017ZM3.0166 21L3.0166 18C3.0166 16.8954 3.91203 16 5.0166 16H8.0166C8.56888 16 9.0166 15.5523 9.0166 15V9C9.0166 8.44772 8.56888 8 8.0166 8H5.0166C3.91203 8 3.0166 7.10457 3.0166 6V3L10.0166 3V15C10.0166 18.3137 7.33031 21 4.0166 21H3.0166Z" />
                                     </svg>
-                                    <p className="text-3xl md:text-4xl font-display font-medium text-charcoal leading-tight mb-6 italic">
+                                    <p className="text-3xl md:text-4xl font-display font-medium text-charcoal dark:text-platinum leading-tight mb-6 italic">
                                         &ldquo;{committee.detailedWriteup.quote}&rdquo;
                                     </p>
                                     <p className="text-school-red font-mono text-xs uppercase tracking-[0.3em] font-bold">
@@ -157,17 +157,17 @@ export default function CommitteePage() {
                             {/* Main Content */}
                             <div className="reveal prose prose-lg prose-slate max-w-none">
                                         {committee.detailedWriteup.introduction && (
-                                            <p className="text-xl text-charcoal font-medium leading-relaxed mb-8">
+                                            <p className="text-xl text-charcoal dark:text-platinum font-medium leading-relaxed mb-8">
                                                 {committee.detailedWriteup.introduction}
                                             </p>
                                         )}
-                                        <div className="space-y-6 text-charcoal/80 font-light leading-relaxed">
+                                        <div className="space-y-6 text-charcoal/80 dark:text-platinum/80 font-light leading-relaxed">
                                             {committee.detailedWriteup.body?.map((para, i) => (
                                                 <p key={i}>{para}</p>
                                             ))}
                                         </div>
                                         {committee.detailedWriteup.conclusion && (
-                                            <p className="mt-12 p-8 bg-charcoal/5 rounded-2xl border-l-4 border-school-red text-charcoal/90 italic">
+                                            <p className="mt-12 p-8 bg-charcoal/5 dark:bg-platinum/5 rounded-2xl border-l-4 border-school-red text-charcoal/90 dark:text-platinum/90 italic">
                                                 {committee.detailedWriteup.conclusion}
                                             </p>
                                         )}
@@ -179,9 +179,9 @@ export default function CommitteePage() {
                                     <h4 className="text-school-red font-mono text-[10px] uppercase tracking-[0.4em] mb-10">
                                         {committee.detailedWriteup.bibliography ? 'Bibliography' : 'Citations'}
                                     </h4>
-                                    <ul className="grid grid-cols-1 gap-6 text-charcoal/60 font-light">
+                                    <ul className="grid grid-cols-1 gap-6 text-charcoal/60 dark:text-platinum/60 font-light">
                                         {(committee.detailedWriteup.bibliography || committee.detailedWriteup.citations)?.map((item, i) => (
-                                            <li key={i} className="text-xs font-mono text-charcoal/50 leading-loose break-words hover:text-school-red transition-colors border-l border-charcoal/5 pl-6 group">
+                                            <li key={i} className="text-xs font-mono text-charcoal/50 dark:text-platinum/50 leading-loose break-words hover:text-school-red transition-colors border-l border-charcoal/5 dark:border-platinum/5 pl-6 group">
                                                 <span className="text-school-red/40 mr-2 group-hover:text-school-red transition-colors">/0{i + 1}</span>
                                                 {item.startsWith('http') ? (
                                                     <a href={item} target="_blank" rel="noopener noreferrer" className="underline decoration-school-red/20 underline-offset-4">
@@ -196,9 +196,9 @@ export default function CommitteePage() {
                         </div>
                     )}
 
-                    {/* Digital Ledger Section */}
+                    {/* Digital Resolutions Section */}
                     <div className="lg:col-span-12">
-                        <CommitteeLedger
+                        <CommitteeResolutions
                             slug={committee.slug}
                             acronym={committee.acronym}
                             topics={committee.topics}
@@ -208,8 +208,8 @@ export default function CommitteePage() {
             </section>
 
             {/* Decorative Corner Accents */}
-            <div className="fixed top-0 right-0 w-32 h-32 border-t border-r border-charcoal/10 pointer-events-none" />
-            <div className="fixed bottom-0 left-0 w-32 h-32 border-b border-l border-charcoal/10 pointer-events-none" />
+            <div className="fixed top-0 right-0 w-32 h-32 border-t border-r border-charcoal/10 dark:border-platinum/10 pointer-events-none" />
+            <div className="fixed bottom-0 left-0 w-32 h-32 border-b border-l border-charcoal/10 dark:border-platinum/10 pointer-events-none" />
         </main>
     );
 }

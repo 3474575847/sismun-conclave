@@ -1,8 +1,7 @@
 import { createClient } from '@/lib/supabase-server';
-import { committees } from '@/data/committees';
 import { redirect } from 'next/navigation';
-import EBReviewPanel from '../../../components/portal/EBReviewPanel';
-import ConferenceSettingsPanel from '../../../components/portal/ConferenceSettingsPanel';
+import ConferenceSettingsPanel from '@/components/portal/ConferenceSettingsPanel';
+import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
@@ -35,63 +34,94 @@ export default async function EBDashboard() {
         );
     }
 
-    // Fetch all pending resolutions (SG sees all, chairs see their committee only)
-    let query = supabase
-        .from('resolutions')
-        .select('*, blocs(bloc_name, member_countries)')
+    // Fetch pending amendment count for badge
+    let amendmentQuery = supabase
+        .from('amendments')
+        .select('*', { count: 'exact', head: true })
         .eq('status', 'pending')
-        .eq('is_deleted', false)
-        .order('submitted_at', { ascending: true });
+        .eq('is_deleted', false);
 
-    if (profile.role !== 'sg' && profile.committee_slug) {
-        query = query.eq('committee_slug', profile.committee_slug);
+    if (profile.role !== 'sg' && profile.role !== 'admin' && profile.committee_slug) {
+        amendmentQuery = amendmentQuery.eq('committee_slug', profile.committee_slug);
     }
 
-    const { data: pendingResolutions } = await query;
+    const { count: pendingAmendments } = await amendmentQuery;
 
-    // Fetch conference settings for SG (needed for ConferenceSettingsPanel)
-    const { data: conferenceSettings } = profile.role === 'sg'
-        ? await supabase
-            .from('conference_settings')
-            .select('accepting_submissions, accepting_amendments')
-            .eq('id', 1)
-            .single()
-        : { data: null };
+    // Fetch conference settings for all EB members
+    const { data: conferenceSettings } = await supabase
+        .from('conference_settings')
+        .select('accepting_submissions, accepting_amendments')
+        .eq('id', 1)
+        .single();
 
-    // Filter committees this user can manage
-    const managedCommittees = profile.role === 'sg'
-        ? committees
-        : committees.filter(c => c.slug === profile.committee_slug);
+    const isSGOrAdmin = profile.role === 'sg' || profile.role === 'admin';
 
     return (
-        <div className="max-w-6xl mx-auto px-6 py-10">
+        <div className="max-w-4xl mx-auto px-6 py-10">
             {/* Header */}
-            <div className="flex items-end justify-between gap-4 mb-10 pb-6 border-b border-white/10">
-                <div>
-                    <h1 className="text-2xl font-bold text-white mb-1">
-                        {profile.role === 'sg' ? 'SG Control Panel' : 'EB Review Dashboard'}
-                    </h1>
-                    <p className="text-sm text-white/40 font-mono">
-                        {profile.name} · {profile.role === 'sg' ? 'Secretary General' : 'Committee Chair'}
-                        {profile.committee_slug && profile.role !== 'sg' ? ` · ${profile.committee_slug.toUpperCase()}` : ''}
-                    </p>
-                </div>
-                <div className="flex items-center gap-2 bg-amber-400/5 border border-amber-400/20 rounded-lg px-4 py-2">
-                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    <span className="text-xs font-mono text-amber-400">
-                        {pendingResolutions?.length ?? 0} pending review
-                    </span>
-                </div>
+            <div className="mb-10 pb-6 border-b border-white/10">
+                <h1 className="text-2xl font-bold text-white mb-1">
+                    {isSGOrAdmin ? 'SG Control Panel' : 'EB Dashboard'}
+                </h1>
+                <p className="text-sm text-white/40 font-mono">
+                    {profile.name} · {
+                        profile.role === 'sg' ? 'Secretary General' :
+                        profile.role === 'admin' ? 'Admin' :
+                        profile.role === 'secretariat' ? 'Secretariat' :
+                        'Committee Chair'
+                    }
+                    {profile.committee_slug && !isSGOrAdmin
+                        ? ` · ${profile.committee_slug.toUpperCase()}`
+                        : ''}
+                </p>
             </div>
 
-            {profile.role === 'sg' && conferenceSettings && (
-                <ConferenceSettingsPanel settings={conferenceSettings} />
+            {/* Conference Settings — SG/Admin only can toggle, others see status */}
+            {conferenceSettings && (
+                isSGOrAdmin ? (
+                    <ConferenceSettingsPanel settings={conferenceSettings} />
+                ) : (
+                    <div className="bg-white/[0.03] border border-white/10 rounded-xl p-6">
+                        <div className="flex items-center gap-3 mb-5">
+                            <div className="w-1.5 h-5 rounded-full bg-amber-400/40" />
+                            <h2 className="text-sm font-mono font-semibold text-white/60 tracking-wider uppercase">
+                                Conference Status
+                            </h2>
+                        </div>
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
+                                <div>
+                                    <p className="text-sm font-mono text-white/70">Accepting Submissions</p>
+                                    <p className="text-xs text-white/35 mt-0.5">Delegate submissions of new resolutions</p>
+                                </div>
+                                <span className={`text-xs font-mono px-2.5 py-1 rounded ${
+                                    conferenceSettings.accepting_submissions
+                                        ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                        : 'bg-white/5 text-white/30 border border-white/10'
+                                }`}>
+                                    {conferenceSettings.accepting_submissions ? 'ACTIVE' : 'CLOSED'}
+                                </span>
+                            </div>
+                            <div className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
+                                <div>
+                                    <p className="text-sm font-mono text-white/70">Accepting Amendments</p>
+                                    <p className="text-xs text-white/35 mt-0.5">Delegate proposals for floor resolutions</p>
+                                </div>
+                                <span className={`text-xs font-mono px-2.5 py-1 rounded ${
+                                    conferenceSettings.accepting_amendments
+                                        ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                        : 'bg-white/5 text-white/30 border border-white/10'
+                                }`}>
+                                    {conferenceSettings.accepting_amendments ? 'ACTIVE' : 'CLOSED'}
+                                </span>
+                            </div>
+                        </div>
+                        <p className="text-[10px] font-mono text-white/20 mt-5 italic text-center">
+                            * Note: Only the Secretary General / Admin can modify these settings.
+                        </p>
+                    </div>
+                )
             )}
-
-            <EBReviewPanel
-                pendingResolutions={pendingResolutions ?? []}
-                managedCommittees={managedCommittees}
-            />
         </div>
     );
 }

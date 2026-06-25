@@ -1,227 +1,198 @@
-'use server';
+'use server'
 
-import { createClient } from '@/lib/supabase-server';
-import { revalidatePath } from 'next/cache';
-import type { ContentJson } from './resolutions';
+import { createClient } from '@/lib/supabase-server'
+import { createAdminClient } from '@/lib/supabase-admin'
+import { revalidatePath } from 'next/cache'
+import { validateCommitteePassword } from '@/lib/committee-password'
+import { assertEBAccess } from '@/lib/actions/resolutions'
 
-export type AmendmentType = 'add' | 'strike' | 'modify';
+// ── Types ─────────────────────────────────────────────────────────────────────
 
+export type Amendment = {
+  id: string
+  resolution_id: string
+  committee_slug: string
+  delegate_name: string
+  delegate_country: string
+  amendment_type: 'modify' | 'strike' | 'add' | null
+  clause_reference: string
+  proposed_text: string
+  status: 'pending' | 'passed' | 'failed' | 'withdrawn'
+  reviewed_by: string | null
+  reviewed_at: string | null
+  created_at: string
+  is_deleted: boolean
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────────
+
+/**
+ * Delegate submits an amendment (unauthenticated).
+ * Validates: committee password, accepting_amendments flag, resolution is published.
+ * Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.7, 3.8
+ */
 export async function proposeAmendment(data: {
-    resolution_id: string;
-    clause_section: 'preamble' | 'operative';
-    clause_position: number;
-    target_position?: number;
-    proposer_name: string;
-    proposer_country: string;
-    type: AmendmentType;
-    suggested_text?: string;
-}) {
-    const supabase = createClient();
+  resolutionId: string
+  committeeSlug: string
+  delegateName: string
+  delegateCountry: string
+  amendmentType: 'modify' | 'strike' | 'add'
+  clauseReference: string
+  proposedText: string
+  committeePassword: string
+}): Promise<void> {
+  const {
+    resolutionId,
+    committeeSlug,
+    delegateName,
+    delegateCountry,
+    amendmentType,
+    clauseReference,
+    proposedText,
+    committeePassword,
+  } = data
 
-    // Validate amendment type vs suggested_text
-    if (data.type !== 'strike' && !data.suggested_text?.trim()) {
-        throw new Error('Suggested text is required for add/modify amendments');
-    }
-    if (data.type === 'add' && !data.target_position) {
-        throw new Error('Target position is required for add amendments');
-    }
+  // Validate all required fields non-empty (Req 3.4)
+  if (!delegateName?.trim())      throw new Error('Delegate name is required')
+  if (!delegateCountry?.trim())   throw new Error('Delegate country is required')
+  if (!amendmentType)             throw new Error('Amendment type is required')
+  if (!clauseReference?.trim())   throw new Error('Clause reference is required')
+  if (!proposedText?.trim())      throw new Error('Proposed text is required')
+  if (!committeePassword?.trim()) throw new Error('Committee password is required')
 
-    // Validate resolution is on the floor
-    const { data: resolution } = await supabase
-        .from('resolutions')
-        .select('status, committee_slug')
-        .eq('id', data.resolution_id)
-        .single();
+  // Validate committee password server-side — never stored (Req 3.2, 3.3)
+  const passwordValid = validateCommitteePassword(committeeSlug, committeePassword)
+  if (!passwordValid) {
+    throw new Error('Incorrect committee password. Please check with your Chair.')
+  }
 
-    if (!resolution) throw new Error('Resolution not found');
-    if (resolution.status !== 'floor') {
-        throw new Error('This resolution is not on the floor and cannot receive amendments');
-    }
+  const supabase = createClient()
 
-    // Check conference settings
-    const { data: settings } = await supabase
-        .from('conference_settings')
-        .select('accepting_amendments')
-        .eq('id', 1)
-        .single();
+  // Check accepting_amendments — read fresh, no cache (Req 3.5, 7.3)
+  const { data: settings } = await supabase
+    .from('conference_settings')
+    .select('accepting_amendments')
+    .eq('id', 1)
+    .single()
 
-    if (!settings?.accepting_amendments) {
-        throw new Error('Amendments are currently closed by the EB');
-    }
+  if (!settings?.accepting_amendments) {
+    throw new Error('Amendment submissions are currently closed.')
+  }
 
-    // Rate limit: max 5 pending amendments per country per resolution
-    const { count } = await supabase
-        .from('amendments')
-        .select('*', { count: 'exact', head: true })
-        .eq('resolution_id', data.resolution_id)
-        .eq('proposer_country', data.proposer_country)
-        .eq('vote_status', 'pending')
-        .eq('is_deleted', false);
+  // Verify resolution is published (Req 3.8)
+  const { data: resolution } = await supabase
+    .from('resolutions')
+    .select('status, committee_slug, is_deleted')
+    .eq('id', resolutionId)
+    .single()
 
-    if ((count ?? 0) >= 5) {
-        throw new Error('Maximum 5 pending amendments per country per resolution');
-    }
+  if (!resolution || resolution.is_deleted) {
+    throw new Error('Resolution not found.')
+  }
+  if (resolution.status !== 'floor') {
+    throw new Error('This resolution is not on the floor and cannot receive amendments')
+  }
+  if (resolution.committee_slug !== committeeSlug) {
+    throw new Error('Resolution does not belong to this committee.')
+  }
 
-    // Req 6.5: committee_slug is always inherited from the parent resolution, never from user input
-    const { error } = await supabase
-        .from('amendments')
-        .insert({
-            ...data,
-            committee_slug: resolution.committee_slug,
-            vote_status: 'pending',
-        });
+  // Rate-limit check: reject if delegate already has >= 5 pending amendments on this resolution (Req 3.5)
+  const { count: pendingCount, error: countError } = await supabase
+    .from('amendments')
+    .select('id', { count: 'exact', head: true })
+    .eq('resolution_id', resolutionId)
+    .eq('delegate_country', delegateCountry.trim())
+    .eq('status', 'pending')
+    .eq('is_deleted', false)
 
-    if (error) throw new Error(error.message);
-    revalidatePath(`/portal/floor/${data.resolution_id}`);
+  if (countError) throw new Error(`Failed to check amendment rate limit: ${countError.message}`)
+
+  if ((pendingCount ?? 0) >= 5) {
+    throw new Error(
+      'Rate limit reached: you already have 5 or more pending amendments on this resolution.'
+    )
+  }
+
+  // Insert amendment row using admin client to bypass RLS
+  // All validation above (password, settings, resolution status) is the authorization gate
+  const adminClient = createAdminClient()
+  const { error } = await adminClient
+    .from('amendments')
+    .insert({
+      resolution_id: resolutionId,
+      committee_slug: committeeSlug,
+      delegate_name: delegateName.trim(),
+      delegate_country: delegateCountry.trim(),
+      amendment_type: amendmentType,
+      clause_reference: clauseReference.trim(),
+      proposed_text: proposedText.trim(),
+      status: 'pending',
+    })
+
+  if (error) throw new Error(`Failed to submit amendment: ${error.message}`)
+
+  revalidatePath(`/committees/${committeeSlug}`)
 }
 
-export async function approveAmendment(amendmentId: string) {
-    const supabase = createClient();
+/**
+ * Chair updates amendment outcome after physical vote.
+ * Requirements: 5.2, 5.3, 5.4, 5.5, 4.6, 8.1, 8.2, 8.3, 8.4
+ */
+export async function updateAmendmentStatus(
+  amendmentId: string,
+  status: 'passed' | 'failed' | 'withdrawn'
+): Promise<void> {
+  const supabase = createClient()
 
-    // Get amendment + resolution
-    const { data: amendment } = await supabase
-        .from('amendments')
-        .select('*, resolutions(committee_slug, content_json, status)')
-        .eq('id', amendmentId)
-        .single();
+  // Fetch amendment to get committee_slug, resolution_id, and type for access check and audit log
+  const { data: amendment } = await supabase
+    .from('amendments')
+    .select('committee_slug, status, is_deleted, resolution_id, amendment_type')
+    .eq('id', amendmentId)
+    .single()
 
-    if (!amendment) throw new Error('Amendment not found');
-    if (amendment.vote_status !== 'pending') throw new Error('Already resolved');
+  if (!amendment || amendment.is_deleted) throw new Error('Amendment not found')
 
-    const resolution = amendment.resolutions as any;
-    if (!resolution) throw new Error('Resolution not found');
+  // Assert EB access scoped to this committee (Req 5.5)
+  const { user } = await assertEBAccess(amendment.committee_slug)
 
-    // Check EB access
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) throw new Error('Unauthorized');
-    const { data: profile } = await supabase
-        .from('eb_profiles')
-        .select('committee_slug')
-        .eq('id', user.id)
-        .single();
+  const { error } = await supabase
+    .from('amendments')
+    .update({
+      status,
+      reviewed_by: user.id,
+      reviewed_at: new Date().toISOString(),
+    })
+    .eq('id', amendmentId)
 
-    if (!profile) throw new Error('Not an EB member');
-    if (profile.committee_slug && profile.committee_slug !== amendment.committee_slug) {
-        throw new Error('Access denied: wrong committee');
-    }
+  if (error) throw new Error(`Failed to update amendment: ${error.message}`)
 
-    // Apply the amendment to content_json
-    const content: ContentJson = JSON.parse(JSON.stringify(resolution.content_json));
-    const section = amendment.clause_section as 'preamble' | 'operative';
-    const clauses = content[section];
-    const clauseBefore = clauses.find(c => c.position === amendment.clause_position);
+  // Map vote status to audit log action (Req 4.6, 8.1)
+  const action = status === 'passed' ? 'approved' : 'rejected'
 
-    if (amendment.type === 'strike') {
-        // Req 4.3: guard — target clause must exist before striking
-        if (!clauseBefore) {
-            throw new Error(`Target clause not found at position ${amendment.clause_position}`);
-        }
-        content[section] = clauses.filter(c => c.position !== amendment.clause_position);
-    } else if (amendment.type === 'modify') {
-        // Req 4.2: guard — target clause must exist before modifying
-        const idx = clauses.findIndex(c => c.position === amendment.clause_position);
-        if (idx === -1) {
-            throw new Error(`Target clause not found at position ${amendment.clause_position}`);
-        }
-        clauses[idx].text = amendment.suggested_text!;
-    } else if (amendment.type === 'add') {
-        const newClause = {
-            position: amendment.target_position!,
-            text: amendment.suggested_text!,
-            type: section,
-        };
-        // Sorted by position ascending to maintain clause order (Req 4.4)
-        content[section] = [...clauses, newClause].sort((a, b) => a.position - b.position);
-    }
-
-    // Update resolution content + mark amendment passed
-    const { error: resErr } = await supabase
-        .from('resolutions')
-        .update({ content_json: content })
-        .eq('id', amendment.resolution_id);
-
-    if (resErr) throw new Error(resErr.message);
-
-    await supabase
-        .from('amendments')
-        .update({ vote_status: 'passed', resolved_at: new Date().toISOString() })
-        .eq('id', amendmentId);
-
-    // Write audit log
-    await supabase.from('amendment_log').insert({
-        amendment_id: amendmentId,
-        resolution_id: amendment.resolution_id,
-        action: 'approved',
-        eb_profile_id: user.id,
-        clause_before: clauseBefore?.text ?? null,
-        clause_after: amendment.type === 'strike' ? null : amendment.suggested_text,
-        full_snapshot_json: content,
-    });
-
-    revalidatePath(`/portal/floor/${amendment.resolution_id}`);
-    revalidatePath('/portal/eb/amendments');
-}
-
-export async function rejectAmendment(amendmentId: string) {
-    const supabase = createClient();
-
-    // Fetch full amendment row so we can record clause_before for modify/strike types
-    const { data: amendment } = await supabase
-        .from('amendments')
-        .select('committee_slug, resolution_id, clause_section, clause_position, type')
-        .eq('id', amendmentId)
-        .single();
-
-    if (!amendment) throw new Error('Not found');
-
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) throw new Error('Unauthorized');
-    const { data: profile } = await supabase
-        .from('eb_profiles')
-        .select('committee_slug')
-        .eq('id', user.id)
-        .single();
-
-    if (!profile) throw new Error('Not EB');
-    if (profile.committee_slug && profile.committee_slug !== amendment.committee_slug) {
-        throw new Error('Access denied');
-    }
-
-    // Fetch the resolution's current content_json for the snapshot and clause_before
+  // Fetch resolution content for full_snapshot_json (Req 8.4)
+  let fullSnapshotJson: object | null = null
+  if (status === 'passed') {
     const { data: resolution } = await supabase
-        .from('resolutions')
-        .select('content_json')
-        .eq('id', amendment.resolution_id)
-        .single();
+      .from('resolutions')
+      .select('content_json')
+      .eq('id', amendment.resolution_id)
+      .single()
+    fullSnapshotJson = resolution?.content_json ?? null
+  }
 
-    if (!resolution) throw new Error('Resolution not found');
+  // Insert audit log entry (Req 4.6, 8.1, 8.2, 8.3, 8.4)
+  await supabase.from('amendment_log').insert({
+    amendment_id: amendmentId,
+    resolution_id: amendment.resolution_id,
+    action,
+    eb_profile_id: user.id,
+    timestamp: new Date().toISOString(),
+    full_snapshot_json: fullSnapshotJson,
+    clause_before: null,  // simplified: full clause tracking is a future enhancement
+    clause_after: null,   // simplified: full clause tracking is a future enhancement
+  })
 
-    const content: ContentJson = resolution.content_json;
-    const section = amendment.clause_section as 'preamble' | 'operative';
-
-    // For modify/strike, record the current text of the targeted clause
-    let clauseBefore: string | null = null;
-    if (amendment.type === 'modify' || amendment.type === 'strike') {
-        const targetClause = content[section]?.find(
-            (c) => c.position === amendment.clause_position
-        );
-        clauseBefore = targetClause?.text ?? null;
-    }
-
-    await supabase
-        .from('amendments')
-        .update({ vote_status: 'failed', resolved_at: new Date().toISOString() })
-        .eq('id', amendmentId);
-
-    await supabase.from('amendment_log').insert({
-        amendment_id: amendmentId,
-        resolution_id: amendment.resolution_id,
-        action: 'rejected',
-        eb_profile_id: user.id,
-        clause_before: clauseBefore,
-        full_snapshot_json: content,
-    });
-
-    revalidatePath('/portal/eb/amendments');
-    revalidatePath(`/portal/floor/${amendment.resolution_id}`);
+  revalidatePath('/portal/eb/amendments')
+  revalidatePath(`/committees/${amendment.committee_slug}`)
 }

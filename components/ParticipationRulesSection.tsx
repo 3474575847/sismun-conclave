@@ -34,32 +34,32 @@ export default function ParticipationRulesSection() {
         <section
             ref={sectionRef}
             id="participation-rules-section"
-            className="relative bg-white text-charcoal py-24 px-8 z-20 overflow-hidden"
+            className="relative bg-white dark:bg-charcoal text-charcoal dark:text-platinum py-24 px-8 z-20 overflow-hidden transition-colors duration-500"
         >
             <div className="max-w-4xl mx-auto w-full">
                 <div className="mb-16 rule-text">
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal leading-tight mb-4">
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal dark:text-platinum leading-tight mb-4 transition-colors duration-500">
                         Rules of Participation
                     </h2>
                     <div className="h-1.5 w-24 bg-school-red" />
                 </div>
 
-                <div className="space-y-12 text-charcoal/80 font-light text-lg leading-relaxed">
+                <div className="space-y-12 text-charcoal/80 dark:text-platinum/80 font-light text-lg leading-relaxed transition-colors duration-500">
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Delegation Size</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Delegation Size</h3>
                         <p>The teams should preferably comprise 7-21 students per school (Grades 6-12).</p>
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Chaperones</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Chaperones</h3>
                         <p>A minimum of one teacher must accompany students on both days.</p>
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Dress Code</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Dress Code</h3>
                         <p className="mb-4">All delegates are required to wear formal Western business attire with appropriate footwear, reflecting the professionalism of United Nations diplomats.</p>
                         
-                        <p className="font-medium text-charcoal mt-4 mb-2">Mandatory Attire:</p>
+                        <p className="font-medium text-charcoal dark:text-platinum mt-4 mb-2">Mandatory Attire:</p>
                         <ul className="list-disc pl-6 space-y-1 mb-4">
                             <li>Formal trousers/pants (compulsory for all delegates)</li>
                             <li>Formal shirts/blouses</li>
@@ -67,7 +67,7 @@ export default function ParticipationRulesSection() {
                             <li>Formal shoes</li>
                         </ul>
 
-                        <p className="font-medium text-charcoal mt-4 mb-2">Not Permitted:</p>
+                        <p className="font-medium text-charcoal dark:text-platinum mt-4 mb-2">Not Permitted:</p>
                         <ul className="list-disc pl-6 space-y-1">
                             <li>Skirts or mini-skirts</li>
                             <li>Denim of any kind (including jeans)</li>
@@ -82,43 +82,43 @@ export default function ParticipationRulesSection() {
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Rules of Procedure</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Rules of Procedure</h3>
                         <p>SISMUN 2026 will follow the latest THIMUN Rules of Procedure.</p>
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Attendance</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Attendance</h3>
                         <p>Attendance on both conference days is mandatory. In case of absence, the school chaperone must inform the SISMUN 2026 Director before the start of the day. Delegates absent on either day will not be eligible for certificates or awards.</p>
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Diplomatic Conduct & Punctuality</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Diplomatic Conduct & Punctuality</h3>
                         <p>Delegates must uphold diplomatic standards and be punctual for all committee sessions.</p>
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Meals</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Meals</h3>
                         <p>Externally brought food and beverages are prohibited. All meals will be provided by the host school.</p>
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Language</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Language</h3>
                         <p>English is the formal medium of communication.</p>
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Use of Devices</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Use of Devices</h3>
                         <p>The use of laptops and mobile phones is permitted during committee sessions only at the discretion of the Committee President and Deputy President. Delegates must comply with all instructions regarding device usage, and misuse may result in restriction of devices for the remainder of the session.</p>
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">AI Usage Policy</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">AI Usage Policy</h3>
                         <p className="mb-4">Delegates may use AI tools before the conference for background understanding, concept clarification and research direction. AI must function only as a learning aid and not as a substitute for independent research or analysis.</p>
                         <p>The use of AI tools during live committee sessions is strictly prohibited, including generating speeches, drafting resolutions or amendments, or producing real-time responses.</p>
                     </div>
 
                     <div className="rule-text">
-                        <h3 className="text-xl font-display font-bold text-charcoal uppercase mb-2">Sustainability Policy</h3>
+                        <h3 className="text-xl font-display font-bold text-charcoal dark:text-platinum uppercase mb-2">Sustainability Policy</h3>
                         <p>SISMUN 2026 is a green conference. We will avoid printing as far as possible. Participants are strongly discouraged from bringing single-use plastic bottles. We recommend bringing your own reusable bottles.</p>
                     </div>
                 </div>

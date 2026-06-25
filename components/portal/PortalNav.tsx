@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase-browser';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function PortalNav() {
     const pathname = usePathname();
@@ -45,7 +46,7 @@ export default function PortalNav() {
     const isOnEB = pathname.startsWith('/portal/eb');
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 h-14 bg-[#0d0d14] border-b border-white/10 flex items-center px-6 gap-6">
+        <nav className="fixed top-0 left-0 right-0 z-50 h-14 bg-[var(--portal-surface)] border-b border-[var(--portal-border)] flex items-center px-6 gap-6 transition-colors duration-300">
             {/* Logo */}
             <Link href="/portal" className="flex items-center gap-2 shrink-0">
                 <span className="text-[#c9a84c] font-mono text-xs font-semibold tracking-widest uppercase">
@@ -53,7 +54,7 @@ export default function PortalNav() {
                 </span>
                 <span className="text-white/30 font-mono text-xs">·</span>
                 <span className="text-white/60 font-mono text-xs tracking-wider uppercase">
-                    Digital Ledger
+                    Digital Resolutions
                 </span>
             </Link>
 
@@ -67,7 +68,7 @@ export default function PortalNav() {
                             : 'text-white/50 hover:text-white/80'
                     }`}
                 >
-                    COMMITTEE LEDGERS
+                    COMMITTEE RESOLUTIONS
                 </Link>
                 {isEB && (
                     <Link
@@ -89,6 +90,7 @@ export default function PortalNav() {
             {/* Auth status */}
             {isEB ? (
                 <div className="flex items-center gap-3">
+                    <ThemeToggle />
                     <div className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         <span className="text-xs font-mono text-white/50">{ebName ?? 'EB'}</span>
@@ -101,12 +103,15 @@ export default function PortalNav() {
                     </button>
                 </div>
             ) : (
-                <Link
-                    href="/portal/login"
-                    className="px-3 py-1.5 rounded text-xs font-mono text-white/40 hover:text-[#c9a84c] border border-white/10 hover:border-[#c9a84c]/40 transition-colors"
-                >
-                    EB LOGIN
-                </Link>
+                <div className="flex items-center gap-3">
+                    <ThemeToggle />
+                    <Link
+                        href="/portal/login"
+                        className="px-3 py-1.5 rounded text-xs font-mono text-white/40 hover:text-[#c9a84c] border border-white/10 hover:border-[#c9a84c]/40 transition-colors"
+                    >
+                        EB LOGIN
+                    </Link>
+                </div>
             )}
         </nav>
     );

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase-browser';
 
 export default function TestSupabase() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
@@ -9,32 +9,27 @@ export default function TestSupabase() {
 
   useEffect(() => {
     async function testConnection() {
-      if (!supabase) {
-        setStatus('error');
-        setMessage('Supabase client not initialized. Please set your environment variables.');
-        return;
-      }
+      const supabase = createClient();
 
       try {
-        const { data, error } = await supabase.from('_test_connection').select('*').limit(1);
+        const { error } = await supabase.from('_test_connection').select('*').limit(1);
 
-        
-        // Note: _test_connection table likely doesn't exist, but we just want to see if the client initializes
-        // and makes a request. If it fails with 'Table not found', it still means the connection worked.
-        if (error && error.code !== 'PGRST116') { // PGRST116 is often 'Table not found'
-           // If we get "Invalid API Key" or "Invalid URL", that's a real error.
-           if (error.message.includes('Invalid API Key') || error.message.includes('FetchError')) {
-             setStatus('error');
-             setMessage(error.message);
-             return;
-           }
+        // _test_connection table likely doesn't exist, but we just want to see if the client
+        // initializes and makes a request. PGRST116 = table not found, which still means the
+        // connection and API key are working.
+        if (error && error.code !== 'PGRST116') {
+          if (error.message.includes('Invalid API Key') || error.message.includes('FetchError')) {
+            setStatus('error');
+            setMessage(error.message);
+            return;
+          }
         }
-        
+
         setStatus('success');
         setMessage('Supabase client initialized successfully!');
-      } catch (err: any) {
+      } catch (err: unknown) {
         setStatus('error');
-        setMessage(err.message || 'An unknown error occurred');
+        setMessage(err instanceof Error ? err.message : 'An unknown error occurred');
       }
     }
 

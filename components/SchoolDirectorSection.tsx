@@ -43,7 +43,7 @@ export default function SchoolDirectorSection() {
     return (
         <section
             ref={sectionRef}
-            className="w-full bg-white py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5"
+            className="w-full bg-white dark:bg-dark-b py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5 dark:border-white/[0.04] transition-colors duration-500"
             id="school-director-section"
         >
             <div className="max-w-7xl w-full">
@@ -52,7 +52,7 @@ export default function SchoolDirectorSection() {
                     ref={placeholderRef}
                     className="w-full lg:w-auto lg:float-right lg:ml-16 lg:mb-12 flex justify-center lg:block"
                 >
-                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-charcoal/5 border border-charcoal/10 shadow-lg overflow-hidden group">
+                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-charcoal/5 dark:bg-white/5 border border-charcoal/10 dark:border-white/10 shadow-lg overflow-hidden group">
                         <Image
                             src="/sharonee-mullick.png"
                             alt="School Director - Mrs. Sharonee Mullick"
@@ -75,7 +75,7 @@ export default function SchoolDirectorSection() {
                 >
                     <div className="mb-10">
                         <div className="space-y-4">
-                            <h2 className="text-4xl sm:text-5xl lg:text-8xl font-serif text-charcoal font-bold leading-[1.1] mb-2 uppercase tracking-tighter">
+                            <h2 className="text-4xl sm:text-5xl lg:text-8xl font-serif text-charcoal dark:text-[#e2e2e8] font-bold leading-[1.1] mb-2 uppercase tracking-tighter transition-colors duration-500">
                                 Shaping Global Citizens
                             </h2>
                             <h3 className="text-xl sm:text-2xl text-school-red font-mono uppercase tracking-[0.3em] font-medium mb-8">
@@ -85,7 +85,7 @@ export default function SchoolDirectorSection() {
                         </div>
                     </div>
 
-                    <div className="text-charcoal/80 leading-relaxed text-lg lg:text-xl font-light space-y-6">
+                    <div className="text-charcoal/80 dark:text-[#c8c8d0] leading-relaxed text-lg lg:text-xl font-light space-y-6 transition-colors duration-500">
                         <p>
                             It gives me great pleasure to present the 17th Edition of the Singapore International School Model United Nations (SISMUN). This year&rsquo;s theme &mdash; <span className="text-school-red font-medium italic underline decoration-school-red/30 underline-offset-4">&ldquo;Towards Fostering an Ecosystem of a Uniform Global Human Rights and Social Justice Framework&rdquo;</span> &mdash; urges us to reflect deeply on the world we aspire to build: one where rights are universal, justice is unwavering, and human dignity is non-negotiable. More than a simulation, SISMUN serves as a dynamic platform where young minds confront global challenges with intellectual rigour, moral conviction, and diplomatic responsibility.
                         </p>
@@ -125,19 +125,19 @@ export default function SchoolDirectorSection() {
                         <p>
                             As we welcome schools from diverse institutions, we anticipate thoughtful and respectful deliberations. We hope SISMUN 2026 inspires every participant to rise beyond rhetoric and emerge as responsible advocates of peace, justice, and sustainable progress.
                         </p>
-                        <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red pl-8 py-2 text-charcoal/90 mt-8">
+                        <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red pl-8 py-2 text-charcoal/90 dark:text-[#e2e2e8] mt-8 transition-colors duration-500">
                             &ldquo;Education is the most powerful weapon which you can use to change the world.&rdquo;
-                            <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50">&mdash; NELSON MANDELA</span>
+                            <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50 dark:text-[#c8c8d0]/60 transition-colors duration-500">&mdash; NELSON MANDELA</span>
                         </p>
 
-                        <p className="text-charcoal/80 leading-relaxed text-lg lg:text-xl font-light">
+                        <p className="text-charcoal/80 dark:text-[#c8c8d0] leading-relaxed text-lg lg:text-xl font-light transition-colors duration-500">
                             I look forward to welcoming you all to the 17th anniversary of SISMUN Conclave.
                         </p>
                     </div>
                         
-                    <div className="mt-10 pt-4 border-t border-charcoal/10 w-fit">
+                    <div className="mt-10 pt-4 border-t border-charcoal/10 dark:border-white/10 w-fit transition-colors duration-500">
                         <p className="text-school-red text-lg lg:text-xl tracking-[0.1em] font-medium mb-1">SHARONEE MULLICK</p>
-                        <p className="text-charcoal/40 font-mono text-[10px] uppercase tracking-widest leading-relaxed">
+                        <p className="text-charcoal/40 dark:text-[#c8c8d0]/50 font-mono text-[10px] uppercase tracking-widest leading-relaxed transition-colors duration-500">
                             School Director,<br />Singapore International School
                         </p>
                     </div>

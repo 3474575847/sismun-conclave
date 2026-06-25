@@ -19,18 +19,18 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - Update the error message to: `'This resolution is not on the floor and cannot receive amendments'`
   - _Requirements: 3.1, 3.2_
 
-  - [ ]* 2.1 Write property test for amendment eligibility (Property 7)
+  - [x] 2.1 Write property test for amendment eligibility (Property 7)
     - **Property 7: Amendments are only accepted for floor resolutions**
     - Test file: `__tests__/amendments.property.test.ts`
     - Use `fc.constantFrom('pending', 'rejected')` for non-floor statuses; assert `proposeAmendment` throws and no row is inserted
     - **Validates: Requirements 3.1, 3.2**
 
-  - [ ]* 2.2 Write property test for closed amendments gate (Property 8)
+  - [x] 2.2 Write property test for closed amendments gate (Property 8)
     - **Property 8: Closed amendments gate blocks all proposals**
     - Same test file; mock `conference_settings.accepting_amendments = false`; assert rejection for any valid amendment input
     - **Validates: Requirements 3.4, 7.2**
 
-  - [ ]* 2.3 Write property test for amendment rate limit (Property 9)
+  - [x] 2.3 Write property test for amendment rate limit (Property 9)
     - **Property 9: Amendment rate limit is enforced**
     - Use `fc.integer({ min: 5, max: 20 })` for existing pending count; assert the 5-or-more case is rejected
     - **Validates: Requirements 3.5**
@@ -41,7 +41,7 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - For rejected `modify`/`strike` amendments, also record `clause_before` from the current clause at `clause_position`
   - _Requirements: 4.5, 4.6, 8.1, 8.2_
 
-  - [ ]* 3.1 Write property test for audit log completeness (Property 12)
+  - [x] 3.1 Write property test for audit log completeness (Property 12)
     - **Property 12: Every amendment action produces a complete audit log entry**
     - Test file: `__tests__/audit-log.property.test.ts`
     - Use `fc.constantFrom('approved', 'rejected')` and amendment type arbitraries; assert log entry fields per the property definition
@@ -53,13 +53,13 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - Both functions must call `revalidatePath('/portal/eb')` and `revalidatePath('/portal/floor')`
   - _Requirements: 2.2, 2.3, 2.5_
 
-  - [ ]* 4.1 Write property test for resolution approval state transition (Property 5)
+  - [x] 4.1 Write property test for resolution approval state transition (Property 5)
     - **Property 5: Resolution approval transitions state correctly**
     - Test file: `__tests__/resolution-lifecycle.property.test.ts`
     - Use `fc.uuid()` for resolution IDs; assert `status = 'floor'` and non-null `submitted_at` after approval
     - **Validates: Requirements 2.2**
 
-  - [ ]* 4.2 Write property test for cross-committee authorization (Property 6)
+  - [x] 4.2 Write property test for cross-committee authorization (Property 6)
     - **Property 6: Cross-committee actions are rejected**
     - Test file: `__tests__/authorization.property.test.ts`
     - Use `fc.string()` for mismatched committee slugs; assert error thrown and no DB rows modified for `approveResolution`, `rejectResolution`, `approveAmendment`, `rejectAmendment`
@@ -77,7 +77,7 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - In `app/portal/eb/page.tsx`, fetch `conference_settings` and pass it to `ConferenceSettingsPanel`; render the panel only when `profile.role === 'sg'`
   - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5_
 
-  - [ ]* 6.1 Write property test for non-SG settings modification (Property 15)
+  - [x] 6.1 Write property test for non-SG settings modification (Property 15)
     - **Property 15: Non-SG EB members cannot modify Conference_Settings**
     - Test file: `__tests__/authorization.property.test.ts`
     - Use `fc.record({ role: fc.constant('chair') })`; assert `updateConferenceSettings` throws and the row is unchanged
@@ -90,7 +90,7 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - The server action / Supabase insert must also check `accepting_submissions` on every request (already done in `proposeAmendment`; add the same check to the delegate submission insert path)
   - _Requirements: 1.3, 7.1, 7.5_
 
-  - [ ]* 7.1 Write property test for closed submissions gate (Property 2)
+  - [x] 7.1 Write property test for closed submissions gate (Property 2)
     - **Property 2: Closed submissions gate blocks all inserts**
     - Test file: `__tests__/submission.property.test.ts`
     - Mock `conference_settings.accepting_submissions = false`; use valid submission arbitraries; assert no `blocs` or `resolutions` rows inserted
@@ -107,7 +107,7 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - Conditionally render the `+ PROPOSE AMENDMENT` link only when `resolution.status === 'floor'` (already guaranteed by the query, but add an explicit guard for clarity)
   - _Requirements: 3.3, 5.3, 5.4, 5.6_
 
-  - [ ]* 9.1 Write property test for floor display filtering (Property 13)
+  - [x] 9.1 Write property test for floor display filtering (Property 13)
     - **Property 13: Floor display shows only approved, non-deleted resolutions**
     - Test file: `__tests__/floor-display.property.test.ts`
     - Use `fc.array` of resolutions with random `status` and `is_deleted` values; assert only `status='floor'` and `is_deleted=false` rows are returned, ordered by `submitted_at` descending
@@ -118,7 +118,7 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - In `components/portal/AmendmentList.tsx`, update the history tab to display `full_snapshot_json` as a collapsible "View snapshot" section per log entry when the field is non-null
   - _Requirements: 8.5, 8.6_
 
-  - [ ]* 10.1 Write property test for history ordering (Property 16)
+  - [ ] 10.1 Write property test for history ordering (Property 16)
     - **Property 16: Amendment history is ordered by timestamp descending**
     - Test file: `__tests__/audit-log.property.test.ts`
     - Use `fc.array` of log entries with random timestamps; assert the rendered list is sorted descending
@@ -130,7 +130,7 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - In `lib/actions/amendments.ts` `proposeAmendment`, verify that `committee_slug` is copied from the parent resolution row (not from user input) — already implemented; add a comment documenting this as the enforcement of Requirement 6.5
   - _Requirements: 6.1, 6.2, 6.5_
 
-  - [ ]* 11.1 Write property test for amendment committee_slug inheritance (Property 14)
+  - [ ] 11.1 Write property test for amendment committee_slug inheritance (Property 14)
     - **Property 14: Amendment committee_slug matches parent resolution**
     - Test file: `__tests__/amendments.property.test.ts`
     - Use `fc.string()` for arbitrary committee slugs on the resolution; assert the inserted amendment row always inherits the resolution's `committee_slug`
@@ -142,13 +142,13 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - This ensures the server-side gate is always enforced even if the client-side check is bypassed
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
 
-  - [ ]* 12.1 Write property test for valid submission creates pending rows (Property 1)
+  - [ ] 12.1 Write property test for valid submission creates pending rows (Property 1)
     - **Property 1: Valid submission creates pending rows**
     - Test file: `__tests__/submission.property.test.ts`
     - Use `fc.record({ name: fc.string({ minLength: 1 }), country: fc.string({ minLength: 1 }), ... })` with valid arbitraries; assert exactly one `blocs` row and one `resolutions` row with `status='pending'` are inserted
     - **Validates: Requirements 1.1**
 
-  - [ ]* 12.2 Write property test for invalid submissions rejected (Property 3)
+  - [ ] 12.2 Write property test for invalid submissions rejected (Property 3)
     - **Property 3: Invalid submissions are rejected without DB writes**
     - Same test file; use `fc.record` with one or more required fields set to empty string; assert error thrown and no rows inserted
     - **Validates: Requirements 1.4**
@@ -157,7 +157,7 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - Confirm `app/portal/eb/page.tsx` and `app/portal/eb/amendments/page.tsx` both apply the `committee_slug` filter for Chairs and omit it for SG (already implemented; add explicit test coverage)
   - _Requirements: 2.1, 4.1, 6.3, 6.4_
 
-  - [ ]* 13.1 Write property test for EB data scoped to committee (Property 4)
+  - [ ] 13.1 Write property test for EB data scoped to committee (Property 4)
     - **Property 4: EB resolution data is scoped to committee**
     - Test file: `__tests__/eb-scoping.property.test.ts`
     - Use `fc.record({ role: fc.constantFrom('chair', 'sg'), committee_slug: fc.option(fc.string()) })`; assert Chair sees only own committee, SG sees all
@@ -168,13 +168,13 @@ This plan addresses three areas of remaining work in the SISMUN Digital Ledger: 
   - Ensure the `add` path sorts the resulting array by `position` ascending after insertion (already done; add a comment)
   - _Requirements: 4.2, 4.3, 4.4_
 
-  - [ ]* 14.1 Write property test for amendment application integrity (Property 10)
+  - [ ] 14.1 Write property test for amendment application integrity (Property 10)
     - **Property 10: Amendment application preserves content integrity**
     - Test file: `__tests__/amendment-application.property.test.ts`
     - Use `fc.array(clauseArbitrary)` and `fc.constantFrom('add', 'strike', 'modify')`; apply a sequence of amendments and assert the resulting `content_json` reflects all changes correctly
     - **Validates: Requirements 4.2, 4.3, 4.4**
 
-  - [ ]* 14.2 Write property test for rejected amendments do not modify content (Property 11)
+  - [ ] 14.2 Write property test for rejected amendments do not modify content (Property 11)
     - **Property 11: Rejected amendments do not modify content**
     - Same test file; assert `content_json` is byte-for-byte identical before and after rejection, and `vote_status = 'failed'`
     - **Validates: Requirements 4.5**
