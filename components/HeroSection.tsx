@@ -7,12 +7,12 @@ import dynamic from 'next/dynamic';
 // Dynamically import HeroScene to avoid SSR issues with Three.js
 const HeroScene = dynamic(() => import('./HeroScene'), {
     ssr: false,
-    loading: () => <div className="absolute inset-0 bg-[#0A192F] transition-colors duration-500" />,
+    loading: () => <div className="absolute inset-0 bg-white dark:bg-[#0A192F] transition-colors duration-500" />,
 });
 
 export default function HeroSection() {
     return (
-        <section id="hero-section" className="relative h-screen w-full overflow-hidden bg-[#0A192F] dark:bg-dark-a transition-colors duration-500">
+        <section id="hero-section" className="relative h-screen w-full overflow-hidden bg-white dark:bg-dark-a transition-colors duration-500">
             <div className="absolute inset-0 z-0">
                 <HeroScene />
             </div>

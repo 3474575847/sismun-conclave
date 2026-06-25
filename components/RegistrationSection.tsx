@@ -49,7 +49,7 @@ export default function RegistrationSection() {
                 
                 {/* Registration Toggle Button */}
                 <div className="flex flex-col items-center mb-20 animate-fade-in">
-                    <div className="relative p-1 bg-white/5 dark:bg-white/5 border border-white/10 dark:border-white/10 rounded-full flex gap-1 mb-6">
+                    <div className="relative p-1 bg-charcoal/5 dark:bg-white/5 border border-charcoal/10 dark:border-white/10 rounded-full flex gap-1 mb-6">
                         <button
                             onClick={() => setRegType('school')}
                             className={`px-8 py-3 rounded-full text-[10px] font-mono uppercase tracking-[0.2em] transition-all duration-500 relative z-10 ${
@@ -157,7 +157,7 @@ export default function RegistrationSection() {
 
                                     {/* Info note */}
                                     <div className="reg-text pt-4">
-                                        <div className="bg-white/5 dark:bg-white/5 border-l-2 border-gold p-8 rounded-r-xl">
+                                        <div className="bg-charcoal/5 dark:bg-white/5 border-l-2 border-gold p-8 rounded-r-xl">
                                             <p className="text-base text-platinum/70 dark:text-platinum/70 font-light leading-relaxed transition-colors duration-500">
                                                 Study Guides, Committee Allocations, and Country Allocations will be shared with registered schools in <span className="text-gold font-bold">mid-July 2026</span>, following the verification of registration details and receipt of all applicable payments.
                                             </p>
@@ -165,7 +165,7 @@ export default function RegistrationSection() {
                                     </div>
 
                                     {/* Special Note */}
-                                    <div className="reg-text mt-20 mb-12 p-8 bg-white/5 dark:bg-platinum/5 border-l-4 border-gold rounded-r-xl transition-colors duration-500">
+                                    <div className="reg-text mt-20 mb-12 p-8 bg-charcoal/5 dark:bg-platinum/5 border-l-4 border-gold rounded-r-xl transition-colors duration-500">
                                         <h2 className="text-3xl font-serif font-bold text-platinum dark:text-platinum leading-tight mb-4 lowercase first-letter:uppercase transition-colors duration-500">
                                             Special Note for Schools Reopening After the Conference:
                                         </h2>
@@ -214,7 +214,7 @@ export default function RegistrationSection() {
 
                                     {/* Info note */}
                                     <div className="reg-text pt-4">
-                                        <div className="bg-white/5 dark:bg-white/5 border-l-2 border-gold p-8 rounded-r-xl">
+                                        <div className="bg-charcoal/5 dark:bg-white/5 border-l-2 border-gold p-8 rounded-r-xl">
                                             <p className="text-base text-platinum/70 dark:text-platinum/70 font-light leading-relaxed transition-colors duration-500">
                                                 Study Guides, Committee Allocations, and Country Allocations will be shared with independent delegates in <span className="text-gold font-bold">mid-July 2026</span>, following the verification of registration details and receipt of all applicable payments.
                                             </p>
@@ -224,7 +224,7 @@ export default function RegistrationSection() {
                                     {/* Payment Details */}
                                     <div className="reg-text">
                                         <h3 className="text-xl font-display font-bold text-platinum dark:text-platinum mb-4 mt-4 transition-colors duration-500">Payment Details</h3>
-                                        <ul className="list-none space-y-1 font-mono text-sm border-l border-white/10 dark:border-white/10 pl-6 py-4 transition-colors duration-500">
+                                        <ul className="list-none space-y-1 font-mono text-sm border-l border-charcoal/10 dark:border-white/10 pl-6 py-4 transition-colors duration-500">
                                             <li>— Account Name: Singapore International School</li>
                                             <li>— Account Number: 59202022786000</li>
                                             <li>— Bank: HDFC Bank, Mira Road Branch</li>
