@@ -101,10 +101,10 @@ export default function CommitteesSection() {
     }, [gotoSlide]);
 
     return (
-        <section ref={sectionRef} id="committees-section" className="relative h-screen bg-white overflow-hidden select-none">
+        <section ref={sectionRef} id="committees-section" className="relative h-screen bg-white dark:bg-dark-b overflow-hidden select-none transition-colors duration-500">
             {/* Section Header */}
             <div className="absolute top-12 left-12 z-50">
-                <h2 className="text-2xl md:text-5xl font-display font-bold text-charcoal uppercase tracking-tighter">
+                <h2 className="text-2xl md:text-5xl font-display font-bold text-charcoal dark:text-[#e2e2e8] uppercase tracking-tighter transition-colors duration-500">
                     Committees and Agendas
                 </h2>
                 <div className="h-1 w-12 bg-school-red mt-2" />
@@ -121,7 +121,7 @@ export default function CommitteesSection() {
                                 gotoSlide(i, dir);
                             }
                         }}
-                        className={`w-2.5 h-2.5 rounded-full transition-all duration-1000 ${i === activeIndex ? 'bg-school-red scale-125' : 'bg-charcoal/20 hover:bg-charcoal/40'
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-1000 ${i === activeIndex ? 'bg-school-red scale-125' : 'bg-charcoal/20 dark:bg-platinum/20 hover:bg-charcoal/40 dark:hover:bg-platinum/40'
                             }`}
                         aria-label={`Go to slide ${i + 1}`}
                     />
@@ -131,12 +131,12 @@ export default function CommitteesSection() {
             {committees.map((committee, index) => (
                 <div
                     key={index}
-                    className={`committee-card-${index} absolute inset-0 w-full h-full flex items-center justify-center bg-white`}
+                    className={`committee-card-${index} absolute inset-0 w-full h-full flex items-center justify-center bg-white dark:bg-dark-b transition-colors duration-500`}
                     style={{ willChange: 'transform' }}
                 >
                     {/* Background Visuals */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${committee.color} opacity-10`} />
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${committee.color} opacity-10 dark:opacity-20`} />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
                     <div className="w-full max-w-7xl px-8 md:px-12 z-20">
                         <div className={`card-content-${index} grid grid-cols-1 lg:grid-cols-12 gap-12 items-center`}>
@@ -149,10 +149,10 @@ export default function CommitteesSection() {
                                         Committee 0{index + 1}
                                     </span>
                                 </div>
-                                <h2 className="text-[14vw] lg:text-[11vw] leading-[0.85] font-display font-bold text-charcoal tracking-tighter uppercase">
+                                <h2 className="text-[14vw] lg:text-[11vw] leading-[0.85] font-display font-bold text-charcoal dark:text-[#e2e2e8] tracking-tighter uppercase transition-colors duration-500">
                                     {committee.acronym}
                                 </h2>
-                                <h3 className="text-xl md:text-3xl font-light text-charcoal/70 mt-6 uppercase tracking-[0.2em]">
+                                <h3 className="text-xl md:text-3xl font-light text-charcoal/70 dark:text-[#c8c8d0] mt-6 uppercase tracking-[0.2em] transition-colors duration-500">
                                     {committee.name}
                                 </h3>
                             </div>
@@ -163,13 +163,13 @@ export default function CommitteesSection() {
                                     {committee.topics.map((topic, i) => (
                                         <div key={i} className="flex gap-4">
                                             <span className="text-school-red font-mono text-xs pt-1">0{i + 1}</span>
-                                            <p className="text-charcoal/80 font-mono text-[11px] md:text-xs leading-relaxed uppercase tracking-wider">
+                                            <p className="text-charcoal/80 dark:text-[#c8c8d0] font-mono text-[11px] md:text-xs leading-relaxed uppercase tracking-wider transition-colors duration-500">
                                                 {topic}
                                             </p>
                                         </div>
                                     ))}
                                 </div>
-                                <p className="text-charcoal/60 font-light leading-relaxed text-lg border-l border-charcoal/10 pl-6">
+                                <p className="text-charcoal/60 dark:text-platinum/60 font-light leading-relaxed text-lg border-l border-charcoal/10 dark:border-platinum/10 pl-6 transition-colors duration-500">
                                     {committee.description}
                                 </p>
 
@@ -200,8 +200,8 @@ export default function CommitteesSection() {
                     </div>
 
                     {/* Massive Background Number */}
-                    <div className="absolute right-10 bottom-0 opacity-[0.03] select-none pointer-events-none">
-                        <span className="text-[25vw] font-bold text-charcoal leading-none translate-y-1/4">
+                    <div className="absolute right-10 bottom-0 opacity-[0.03] dark:opacity-[0.05] select-none pointer-events-none transition-opacity duration-500">
+                        <span className="text-[25vw] font-bold text-charcoal dark:text-platinum leading-none translate-y-1/4 transition-colors duration-500">
                             0{index + 1}
                         </span>
                     </div>

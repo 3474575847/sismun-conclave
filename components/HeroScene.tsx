@@ -1,11 +1,12 @@
 'use client';
 
 import { useRef, useMemo } from 'react';
+import { useTheme } from 'next-themes';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-function ParticleGlobe({ mousePosition }: { mousePosition: { x: number; y: number } }) {
+function ParticleGlobe({ mousePosition, isDark }: { mousePosition: { x: number; y: number }; isDark: boolean }) {
     const pointsRef = useRef<THREE.Points>(null);
     const mouseRef = useRef({ x: 0, y: 0 });
 
@@ -90,11 +91,11 @@ function ParticleGlobe({ mousePosition }: { mousePosition: { x: number; y: numbe
         <Points ref={pointsRef} positions={particlesPosition} stride={3} frustumCulled={false}>
             <PointMaterial
                 transparent
-                color="#0A192F" // Deep Blue for Light Mode
+                color={isDark ? '#e2e8f0' : '#0A192F'}
                 size={0.02}
                 sizeAttenuation={true}
                 depthWrite={false}
-                opacity={0.6}
+                opacity={isDark ? 0.75 : 0.6}
             />
         </Points>
     );
@@ -102,6 +103,8 @@ function ParticleGlobe({ mousePosition }: { mousePosition: { x: number; y: numbe
 
 export default function HeroScene() {
     const mousePosition = useRef({ x: 0.5, y: 0.5 });
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === 'dark';
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -125,7 +128,7 @@ export default function HeroScene() {
                 }}
             >
                 <ambientLight intensity={1} />
-                <ParticleGlobe mousePosition={mousePosition.current} />
+                <ParticleGlobe mousePosition={mousePosition.current} isDark={isDark} />
             </Canvas>
         </div>
     );

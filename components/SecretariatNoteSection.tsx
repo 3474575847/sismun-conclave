@@ -34,7 +34,7 @@ export default function SecretariatNoteSection() {
         <section
             ref={sectionRef}
             id="secretariat-note"
-            className="relative min-h-screen bg-charcoal py-32 px-8 z-20 flex items-center justify-center overflow-hidden"
+            className="relative min-h-screen bg-charcoal dark:bg-dark-a py-32 px-8 z-20 flex items-center justify-center overflow-hidden transition-colors duration-500"
         >
             {/* Background Decorative Element */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-5">
@@ -45,12 +45,12 @@ export default function SecretariatNoteSection() {
 
             <div ref={contentRef} className="max-w-4xl mx-auto w-full relative z-10">
                 <div className="space-y-8">
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum font-bold leading-[1.1] mb-4">
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-platinum dark:text-[#e2e2e8] font-bold leading-[1.1] mb-4 transition-colors duration-500">
                         A note from the Secretariat
                     </h2>
                     <div className="h-1.5 w-24 bg-gold mb-8" />
 
-                    <div className="space-y-8 text-platinum/80 font-light text-lg leading-relaxed text-justify">
+                    <div className="space-y-8 text-platinum/80 dark:text-[#c8c8d0] font-light text-lg leading-relaxed text-justify transition-colors duration-500">
                         <p>
                             It is with immense pride and gratitude that we welcome you to the 17th Edition of SISMUN. What you see is more than just a platform &mdash; it is the culmination of months of planning, collaboration, late-night discussions, and a shared commitment to creating a conference that challenges, inspires, and empowers. However, no matter how detailed our preparation, a conference truly comes alive only because of its delegates &mdash; and that means you.
                         </p>
@@ -72,7 +72,7 @@ export default function SecretariatNoteSection() {
                         <p>
                             As former UN Secretary-General Kofi Annan once said, &ldquo;More than ever before in human history, we share a common destiny.&rdquo; May this conference remind us of that shared responsibility &mdash; and the power of dialogue in shaping it.
                         </p>
-                        <p className="font-semibold text-platinum italic">
+                        <p className="font-semibold text-platinum dark:text-[#e2e2e8] italic transition-colors duration-500">
                             Let the debate begin.
                         </p>
                     </div>

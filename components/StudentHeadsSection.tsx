@@ -55,11 +55,11 @@ export default function StudentHeadsSection() {
         <section
             ref={sectionRef}
             id="student-heads-section"
-            className="relative bg-white py-24 px-6 sm:px-12 lg:px-24 z-20 overflow-hidden"
+            className="relative bg-white dark:bg-dark-b py-24 px-6 sm:px-12 lg:px-24 z-20 overflow-hidden transition-colors duration-500"
         >
             <div className="max-w-7xl mx-auto w-full">
                 <div ref={headingRef} className="mb-20">
-                    <h2 className="text-4xl sm:text-7xl lg:text-8xl font-serif font-bold text-charcoal leading-none mb-4 sm:mb-6 uppercase tracking-tighter">
+                    <h2 className="text-4xl sm:text-7xl lg:text-8xl font-serif font-bold text-charcoal dark:text-[#e2e2e8] leading-none mb-4 sm:mb-6 uppercase tracking-tighter transition-colors duration-500">
                         Meet the <span className="text-school-red">Team</span>
                     </h2>
                     <div className="h-1 sm:h-2 w-24 sm:w-32 bg-school-red" />
@@ -68,10 +68,10 @@ export default function StudentHeadsSection() {
                 {categories.map((category) => (
                     <div key={category} className="mb-20 last:mb-0">
                         <div className="flex items-center gap-6 mb-10">
-                            <h3 className="text-xl md:text-2xl font-mono text-charcoal/60 uppercase tracking-[0.4em]">
+                            <h3 className="text-xl md:text-2xl font-mono text-charcoal/60 dark:text-[#c8c8d0]/60 uppercase tracking-[0.4em] transition-colors duration-500">
                                 {category}
                             </h3>
-                            <div className="h-[1px] flex-grow bg-charcoal/10" />
+                            <div className="h-[1px] flex-grow bg-charcoal/10 dark:bg-white/10 transition-colors duration-500" />
                         </div>
 
                         <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-2 sm:gap-10">
@@ -82,7 +82,7 @@ export default function StudentHeadsSection() {
                                         key={idx}
                                         className="team-card group relative flex flex-col items-center text-center"
                                     >
-                                        <div className="relative w-full aspect-[4/5] mb-6 overflow-hidden bg-charcoal/5 rounded-2xl border border-charcoal/5 group-hover:border-school-red/30 transition-all duration-500 shadow-sm group-hover:shadow-xl">
+                                        <div className="relative w-full aspect-[4/5] mb-6 overflow-hidden bg-charcoal/5 dark:bg-white/5 rounded-2xl border border-charcoal/5 dark:border-white/10 group-hover:border-school-red/30 transition-all duration-500 shadow-sm group-hover:shadow-xl">
                                             <Image
                                                 src={partner.image}
                                                 alt={partner.name}
@@ -95,10 +95,10 @@ export default function StudentHeadsSection() {
                                             <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-school-red/0 group-hover:border-school-red/40 group-hover:m-2 transition-all duration-500 opacity-0 group-hover:opacity-100" />
                                         </div>
                                         <div className="space-y-1 px-1">
-                                            <h4 className="text-charcoal font-display font-bold text-[9px] sm:text-lg leading-tight group-hover:text-school-red transition-colors">
+                                            <h4 className="text-charcoal dark:text-[#e2e2e8] font-display font-bold text-[9px] sm:text-lg leading-tight group-hover:text-school-red transition-colors duration-500">
                                                 {partner.name}
                                             </h4>
-                                            <p className="text-charcoal/40 font-mono text-[6px] sm:text-[10px] uppercase tracking-[0.05em] sm:tracking-[0.2em] px-0.5 sm:px-2 italic font-medium">
+                                            <p className="text-charcoal/40 dark:text-[#c8c8d0]/50 font-mono text-[6px] sm:text-[10px] uppercase tracking-[0.05em] sm:tracking-[0.2em] px-0.5 sm:px-2 italic font-medium transition-colors duration-500">
                                                 {partner.role}
                                             </p>
                                             {partner.email && (

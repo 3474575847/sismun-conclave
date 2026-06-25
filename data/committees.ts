@@ -139,7 +139,7 @@ export const committees: Committee[] = [
             'The Impact of Socio-Political Instability, Armed Conflict, and Social Conservatism vis-a-vis the Rights of Gender-Divergent in Middle East.',
             'Human Rights frameworks and the smooth transition towards a future elected Parliament in the light of Civil Unrest and Democratic Backsliding in Nepal.'
         ],
-        color: 'from-purple-500/20 to-purple-900/20',
+        color: 'from-rose-500/20 to-rose-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hrc',
         studentOfficers: [
             { name: 'Plaksha Sachanandani', role: 'President', email: 'plaksharajesh@gmail.com', image: '/team-photos/Plaksha.jpg' },
@@ -174,7 +174,7 @@ export const committees: Committee[] = [
             'The implications of Cuban Missile Crisis and the Deployment of Strategic Weapons in the Caribbean.',
             'Proposed formation of a future independent government with the prevalent Situation in East Pakistan.'
         ],
-        color: 'from-indigo-500/20 to-indigo-900/20',
+        color: 'from-blue-400/20 to-blue-800/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hsc',
         studentOfficers: [
             { name: 'Advait Vaishnav', role: 'President', email: 'advaitvaishnav27@gmail.com', image: '/team-photos/Advait.jpg' },
@@ -203,7 +203,7 @@ export const committees: Committee[] = [
         description: 'Regulating emerging military applications and sovereignty questions.',
         topics: [
             'Regulating Lethal Autonomous Weapon Systems (LAWS) and Military Applications of Artificial Intelligence to Maintain International Peace and Security.',
-            'The question of granting Greenland conditional autonomy from Kindom of Denmark with regards to use of their own resources and a step towards nationhood.'
+            'The question of granting Greenland conditional autonomy from the Kingdom of Denmark with regards to use of their own resources and a step towards nationhood.'
         ],
         color: 'from-orange-500/20 to-orange-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-disec',
@@ -218,7 +218,7 @@ export const committees: Committee[] = [
             introduction: "From the ruins of a war that unleashed the most devastating weapons humanity had ever seen, the United Nations was established in 1945. The First Committee of the General Assembly, the Disarmament and International Security Committee, was given a single task: to make sure that the weapons of war would never again surpass the conscience of their operators.",
             body: [
                 "Our first agenda item, \"Regulating Lethal Autonomous Weapon Systems (LAWS) and Military Applications of Artificial Intelligence to Maintain International Peace and Security.\" These days, lethal autonomous weapon systems—platforms that can choose and attack targets without significant human involvement—are not just a thing of science fiction.",
-                "Our second agenda item, \"The question of granting Greenland conditional autonomy from Kingdom of Denmark with regards to use of their own resources and a step towards nationhood.\" Since 2009, Greenland has been governed under a system of self-government. Facing climate change opening new shipping routes, interest in Arctic resources has intensified."
+                "Our second agenda item, \"The question of granting Greenland conditional autonomy from the Kingdom of Denmark with regards to use of their own resources and a step towards nationhood.\" Since 2009, Greenland has been governed under a system of self-government. Facing climate change opening new shipping routes, interest in Arctic resources has intensified."
             ],
             bibliography: [
                 "International Committee of the Red Cross. “ICRC Position on Autonomous Weapon Systems.” ICRC, 2022.",

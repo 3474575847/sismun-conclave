@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+    darkMode: 'class',
     content: [
         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,6 +12,8 @@ const config: Config = {
             colors: {
                 platinum: '#F0F4F8', // Cool White
                 charcoal: '#0A192F', // Deep Royal Blue (Background/Text)
+                'dark-a': '#0c0c12', // Dark mode — primary (replaces charcoal sections)
+                'dark-b': '#141419', // Dark mode — secondary (replaces white sections)
                 gold: '#FFCC00',     // School Yellow/Gold
                 ivory: '#FFFDF9',    // Warm White for messages
                 'school-red': '#D32F2F',

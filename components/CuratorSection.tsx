@@ -42,7 +42,7 @@ export default function CuratorSection() {
     return (
         <section
             ref={sectionRef}
-            className="w-full bg-white py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5"
+            className="w-full bg-white dark:bg-dark-b py-20 sm:py-32 px-6 sm:px-12 lg:px-24 h-auto flex items-center justify-center overflow-visible border-y border-charcoal/5 dark:border-white/[0.04] transition-colors duration-500"
             id="curator-section"
         >
             <div className="max-w-7xl w-full">
@@ -51,7 +51,7 @@ export default function CuratorSection() {
                     ref={placeholderRef}
                     className="w-full lg:w-auto lg:float-left lg:mr-16 lg:mb-12 flex justify-center lg:block"
                 >
-                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-charcoal/5 border border-charcoal/10 shadow-lg overflow-hidden group">
+                    <div className="relative w-[280px] sm:w-[360px] lg:w-[400px] aspect-[3/4] rounded-2xl bg-charcoal/5 dark:bg-white/5 border border-charcoal/10 dark:border-white/10 shadow-lg overflow-hidden group">
                         <Image
                             src="/parnab-curator.jpeg"
                             alt="Parnab Mukherjee - Knowledge Curator"
@@ -73,7 +73,7 @@ export default function CuratorSection() {
                 >
                     <div className="mb-10">
                         <div className="space-y-4">
-                            <h2 className="text-4xl sm:text-5xl lg:text-8xl font-serif text-charcoal font-bold leading-[1.1] mb-2 uppercase tracking-tighter text-balance">
+                            <h2 className="text-4xl sm:text-5xl lg:text-8xl font-serif text-charcoal dark:text-[#e2e2e8] font-bold leading-[1.1] mb-2 uppercase tracking-tighter text-balance transition-colors duration-500">
                                 A Vision for SISMUN 2026
                             </h2>
                             <h3 className="text-xl sm:text-2xl text-school-red font-mono uppercase tracking-[0.3em] font-medium mb-8">
@@ -83,8 +83,8 @@ export default function CuratorSection() {
                         </div>
                     </div>
 
-                    <div className="text-charcoal leading-relaxed text-lg lg:text-xl font-light">
-                        <div className="space-y-6 text-charcoal/80">
+                    <div className="text-charcoal dark:text-[#c8c8d0] leading-relaxed text-lg lg:text-xl font-light transition-colors duration-500">
+                        <div className="space-y-6 text-charcoal/80 dark:text-[#c8c8d0] transition-colors duration-500">
                             <p>
                                 What is history? Is it merely a collection of data, chronology, dates, timelines, and facts, or is it the study of diplomacy, subaltern voices, human experiences, wars, peace efforts, and their consequences across time? Is it a vital tool for understanding the present and shaping the future through the nuances of geopolitics? Do we gain a deeper appreciation of our mistakes, hopes, collective heritage, questions of identity and migration, and the complexities of human existence? Is history simply the past, a log of events that unfolded, or does it demand interpretation? Who unravels its dilemmas and dialectics to piece together an unbiased, coherent rendition? What is the place of the United Nations in this chronicling, and what role do media and social media play in shaping the narratives that influence both micro and grand histories?
                             </p>
@@ -97,15 +97,15 @@ export default function CuratorSection() {
                                 The SISMUN Conclave is an ode to memory and history, carried forward by societies to transmit values and preserve the lamp of peace. Every discussion may be incomplete, yet it grounds us by dissolving boundaries as we engage with one another to better understand the present, the past, and the future. A resolution or white paper holds meaning only when it reflects sincere and rigorous deliberation. Our unique line-up of committees bridges historical continuities with present urgencies. The rest now lies with you, delegates, to make this journey engrossing, meaningful, and above all, humane.
                             </p>
                         </div>
-                        <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red pl-8 py-2 text-charcoal/90 mt-12">
+                        <p className="italic font-serif text-2xl lg:text-3xl border-l-4 border-school-red pl-8 py-2 text-charcoal/90 dark:text-[#e2e2e8] mt-12 transition-colors duration-500">
                             &ldquo;Information is not knowledge. Knowledge is not wisdom. Wisdom is not truth.&rdquo;
-                            <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50">&mdash; PARNAB MUKHERJEE</span>
+                            <span className="block text-sm mt-3 font-sans font-normal not-italic tracking-widest text-charcoal/50 dark:text-[#c8c8d0]/60 transition-colors duration-500">&mdash; PARNAB MUKHERJEE</span>
                         </p>
                     </div>
 
-                    <div className="mt-10 pt-4 border-t border-charcoal/10 w-fit">
+                    <div className="mt-10 pt-4 border-t border-charcoal/10 dark:border-white/10 w-fit transition-colors duration-500">
                         <p className="text-school-red text-lg lg:text-xl tracking-[0.1em] font-medium mb-1">PARNAB MUKHERJEE</p>
-                        <p className="text-charcoal/40 font-mono text-[10px] uppercase tracking-widest leading-relaxed">
+                        <p className="text-charcoal/40 dark:text-[#c8c8d0]/50 font-mono text-[10px] uppercase tracking-widest leading-relaxed transition-colors duration-500">
                             Knowledge Resource Curator,<br />SISMUN Conclave
                         </p>
                     </div>
