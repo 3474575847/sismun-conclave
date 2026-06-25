@@ -107,7 +107,7 @@ export default function RegistrationSection() {
                                             </li>
                                             <li className="flex gap-4">
                                                 <span className="text-gold font-mono">—</span>
-                                                <span className="text-charcoal/60 dark:text-platinum/60 transition-colors duration-500">Deadline: <span className="font-semibold">8th July 2026</span></span>
+                                                <span className="text-charcoal/60 dark:text-platinum/60 transition-colors duration-500">Deadline: <span className="font-semibold">10th July 2026</span></span>
                                             </li>
                                         </ul>
                                     </div>
