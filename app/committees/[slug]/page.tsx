@@ -134,6 +134,65 @@ export default function CommitteePage() {
                                 &ldquo;{committee.description}&rdquo;
                             </p>
                         </div>
+
+                        {/* Resources & Study Guides Card */}
+                        <div className="reveal p-10 bg-charcoal/5 dark:bg-platinum/5 border border-charcoal/10 dark:border-platinum/10 rounded-2xl backdrop-blur-xl space-y-6">
+                            <h3 className="text-school-red font-mono text-[10px] uppercase tracking-[0.4em]">Resources & Materials</h3>
+                            <div className="space-y-4">
+                                {/* Global ROP Guide - on every committee page */}
+                                <a
+                                    href="https://drive.google.com/file/d/15HpbKrC5XzHvrIwW4Ratkxb1nkx-Dn_l/view?usp=sharing"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-between p-4 bg-charcoal/5 dark:bg-platinum/5 hover:bg-school-red/10 border border-charcoal/10 dark:border-platinum/10 rounded-xl transition-all duration-300 group"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <svg className="w-5 h-5 text-school-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                        </svg>
+                                        <div className="text-left">
+                                            <p className="text-sm font-medium text-charcoal dark:text-platinum group-hover:text-school-red transition-colors">
+                                                Rules of Procedure (ROP)
+                                            </p>
+                                            <p className="text-[10px] font-mono text-charcoal/40 dark:text-platinum/40 uppercase tracking-wider">
+                                                SISMUN 2026 - Guide for Delegates
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <svg className="w-4 h-4 text-charcoal/30 dark:text-platinum/30 group-hover:text-school-red transition-colors transform group-hover:translate-x-1 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+
+                                {/* Committee Specific Study Guides */}
+                                {committee.studyGuides?.map((guide, idx) => (
+                                    <a
+                                        key={idx}
+                                        href={guide.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-between p-4 bg-charcoal/5 dark:bg-platinum/5 hover:bg-school-red/10 border border-charcoal/10 dark:border-platinum/10 rounded-xl transition-all duration-300 group"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <svg className="w-5 h-5 text-school-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                            </svg>
+                                            <div className="text-left">
+                                                <p className="text-sm font-medium text-charcoal dark:text-platinum group-hover:text-school-red transition-colors">
+                                                    {guide.name}
+                                                </p>
+                                                <p className="text-[10px] font-mono text-charcoal/40 dark:text-platinum/40 uppercase tracking-wider">
+                                                    Study Guide
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <svg className="w-4 h-4 text-charcoal/30 dark:text-platinum/30 group-hover:text-school-red transition-colors transform group-hover:translate-x-1 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Full Width detailedWriteup Section */}

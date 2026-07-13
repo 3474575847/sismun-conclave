@@ -21,6 +21,10 @@ export interface Committee {
         bibliography?: string[];
         citations?: string[];
     };
+    studyGuides?: {
+        name: string;
+        url: string;
+    }[];
 }
 
 export const committees: Committee[] = [
@@ -35,6 +39,16 @@ export const committees: Committee[] = [
         ],
         color: 'from-blue-500/20 to-blue-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-ga4',
+        studyGuides: [
+            {
+                name: 'GA 4 Study Guide Agenda 1',
+                url: 'https://drive.google.com/file/d/1u6o6LCsRH5efUqqfBkNGklQaFUn_sMiE/view?usp=sharing'
+            },
+            {
+                name: 'GA 4 Study Guide Agenda 2',
+                url: 'https://drive.google.com/file/d/1OByRUvEqC19kAfgVfW68mJh1rTDEe7Xg/view?usp=sharing'
+            }
+        ],
         studentOfficers: [
             { name: 'Raphael Fohine', role: 'President', email: 'rfohine@gmail.com', image: '/team-photos/Raphael.jpg' },
             { name: 'Kaira Ghosh', role: 'Deputy President', email: 'kaira.ghosh@gmail.com', image: '/team-photos/Kaira.jpg' },
@@ -71,6 +85,16 @@ export const committees: Committee[] = [
         ],
         color: 'from-red-500/20 to-red-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-sc',
+        studyGuides: [
+            {
+                name: 'UNSC Study Guide Agenda 1',
+                url: 'https://drive.google.com/file/d/1ADu2sJty4AVpcrmW3r2L1FqVafL2OeCH/view?usp=sharing'
+            },
+            {
+                name: 'UNSC Study Guide Agenda 2',
+                url: 'https://drive.google.com/file/d/13s394w1sCHo4uGHZuKNq3UUiM8NKIFpb/view?usp=sharing'
+            }
+        ],
         studentOfficers: [
             { name: 'Siddhanth Chawla', role: 'President', email: 'sidchawla20@gmail.com', image: '/team-photos/Siddhanth.jpg' },
             { name: 'Aarav Naik', role: 'Deputy President', email: 'lancevance69420@gmail.com', image: '/team-photos/Aarav.jpg' },
@@ -107,6 +131,16 @@ export const committees: Committee[] = [
         ],
         color: 'from-green-500/20 to-green-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-ecosoc',
+        studyGuides: [
+            {
+                name: 'ECOSOC Study Guide Agenda 1',
+                url: 'https://drive.google.com/file/d/1PBhQ9wCn0iCO0R_sRVFSqXVl3V2t1hD7/view?usp=sharing'
+            },
+            {
+                name: 'ECOSOC Study Guide Agenda 2',
+                url: 'https://drive.google.com/file/d/1DK7t2rFCkYYDlGCX300fFfsgeew_jHGW/view?usp=sharing'
+            }
+        ],
         studentOfficers: [
             { name: 'Ayontika Naha', role: 'President', email: 'ayontikan46@gmail.com', image: '/team-photos/Ayontika.jpg' },
             { name: 'Nathan George', role: 'Deputy President', email: 'Knathangeorge@gmail.com', image: '/team-photos/Nathan.jpg' },
@@ -141,6 +175,16 @@ export const committees: Committee[] = [
         ],
         color: 'from-rose-500/20 to-rose-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hrc',
+        studyGuides: [
+            {
+                name: 'HRC Study Guide Agenda 1',
+                url: 'https://drive.google.com/file/d/1vjw49jtwaXe1s8lxG28JeKEQMmrjs3ci/view?usp=sharing'
+            },
+            {
+                name: 'HRC Study Guide Agenda 2',
+                url: 'https://drive.google.com/file/d/1RtSMoK616S7OJg5LyWx_LsQSJUU_Ee4w/view?usp=sharing'
+            }
+        ],
         studentOfficers: [
             { name: 'Plaksha Sachanandani', role: 'President', email: 'plaksharajesh@gmail.com', image: '/team-photos/Plaksha.jpg' },
             { name: 'Joshua Jose', role: 'Deputy President', email: 'joshnissan98@gmail.com', image: '/team-photos/Joshua.jpg' },
@@ -176,6 +220,16 @@ export const committees: Committee[] = [
         ],
         color: 'from-blue-400/20 to-blue-800/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-hsc',
+        studyGuides: [
+            {
+                name: 'HSC Study Guide Agenda 1',
+                url: 'https://drive.google.com/file/d/1H0Fiu3ee3YN9ETXc6OSGvirSQ_TmXwzM/view?usp=sharing'
+            },
+            {
+                name: 'HSC Study Guide Agenda 2',
+                url: 'https://drive.google.com/file/d/1GP6EU1LYAOhp2ErsvffPHgpskDF6pnAv/view?usp=sharing'
+            }
+        ],
         studentOfficers: [
             { name: 'Advait Vaishnav', role: 'President', email: 'advaitvaishnav27@gmail.com', image: '/team-photos/Advait.jpg' },
             { name: 'Kavish Goenka', role: 'Deputy President', email: 'kavish.goenka@gmail.com', image: '/team-photos/Kavish.jpg' },
@@ -207,6 +261,16 @@ export const committees: Committee[] = [
         ],
         color: 'from-orange-500/20 to-orange-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-disec',
+        studyGuides: [
+            {
+                name: 'DISEC Study Guide Agenda 1',
+                url: 'https://drive.google.com/file/d/1zotN7RLRPtI0cd0Adwmcj6IlksdKkcMG/view?usp=sharing'
+            },
+            {
+                name: 'DISEC Study Guide Agenda 2',
+                url: 'https://drive.google.com/file/d/1c5A4--S_j6O5Rxs_ASv9kssXtdbFi_8L/view?usp=sharing'
+            }
+        ],
         studentOfficers: [
             { name: 'Satvik Agarwal', role: 'President', email: 'satvikagar2@gmail.com', image: '/team-photos/Satvik.jpg' },
             { name: 'Vivaan Varshney', role: 'Deputy President', email: 'vivaan.varshney23@gmail.com', image: '/team-photos/Vivaan.jpg' },
@@ -238,6 +302,16 @@ export const committees: Committee[] = [
         ],
         color: 'from-yellow-500/20 to-yellow-900/20',
         draftResolutionUrl: 'https://docs.google.com/document/d/placeholder-icc',
+        studyGuides: [
+            {
+                name: 'ICC Study Guide Agenda 1',
+                url: 'https://drive.google.com/file/d/1nTx-lFReCPYYc4tvODN8j0J6-oT4nBRA/view?usp=sharing'
+            },
+            {
+                name: 'ICC Study Guide Agenda 2',
+                url: 'https://drive.google.com/file/d/13DZ-diom799gNDk8NKBfef5pPiJXYyAz/view?usp=sharing'
+            }
+        ],
         studentOfficers: [
             { name: 'Kiros Kamaal', role: 'President', email: 'kiros.kamaal1@gmail.com', image: '/team-photos/Kiros.jpg' },
             { name: 'Anushka Bahorey', role: 'Deputy President', email: 'anushkabahorey@gmail.com', image: '/team-photos/anushka-bahorey.jpg' },
