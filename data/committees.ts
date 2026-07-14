@@ -42,11 +42,11 @@ export const committees: Committee[] = [
         studyGuides: [
             {
                 name: 'GA 4 Study Guide Agenda 1',
-                url: 'https://drive.google.com/file/d/1u6o6LCsRH5efUqqfBkNGklQaFUn_sMiE/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1PRAw1DdbuKwP_roFnxcQJlj_IuXm-w3J'
             },
             {
                 name: 'GA 4 Study Guide Agenda 2',
-                url: 'https://drive.google.com/file/d/1OByRUvEqC19kAfgVfW68mJh1rTDEe7Xg/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1jl7hcdUvGXjke6vtEe7Vha0TD8pvRU36'
             }
         ],
         studentOfficers: [
@@ -88,11 +88,11 @@ export const committees: Committee[] = [
         studyGuides: [
             {
                 name: 'UNSC Study Guide Agenda 1',
-                url: 'https://drive.google.com/file/d/1ADu2sJty4AVpcrmW3r2L1FqVafL2OeCH/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1Zuc58Y5Or9tYaJ-AcyZKvTb-ywzSaPQr'
             },
             {
                 name: 'UNSC Study Guide Agenda 2',
-                url: 'https://drive.google.com/file/d/13s394w1sCHo4uGHZuKNq3UUiM8NKIFpb/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1Z16O9L3keN_2uPxOyL4YyjGm2P5Cyk1u'
             }
         ],
         studentOfficers: [
@@ -134,11 +134,11 @@ export const committees: Committee[] = [
         studyGuides: [
             {
                 name: 'ECOSOC Study Guide Agenda 1',
-                url: 'https://drive.google.com/file/d/1PBhQ9wCn0iCO0R_sRVFSqXVl3V2t1hD7/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1UypuR5nmffiHkpuh-AWZWlUxO4fSxerP'
             },
             {
                 name: 'ECOSOC Study Guide Agenda 2',
-                url: 'https://drive.google.com/file/d/1DK7t2rFCkYYDlGCX300fFfsgeew_jHGW/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1LplX9r7VzY5qBNkuumiDEUHDZ2KyG5qM'
             }
         ],
         studentOfficers: [
@@ -178,11 +178,11 @@ export const committees: Committee[] = [
         studyGuides: [
             {
                 name: 'HRC Study Guide Agenda 1',
-                url: 'https://drive.google.com/file/d/1vjw49jtwaXe1s8lxG28JeKEQMmrjs3ci/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=11Ms5ct2VJjdeQsXTvfssifEb8wxIWm6M'
             },
             {
                 name: 'HRC Study Guide Agenda 2',
-                url: 'https://drive.google.com/file/d/1RtSMoK616S7OJg5LyWx_LsQSJUU_Ee4w/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1lRQ3P2u35nAe5jpqyFggzMSb-TdzRe7o'
             }
         ],
         studentOfficers: [
@@ -223,11 +223,11 @@ export const committees: Committee[] = [
         studyGuides: [
             {
                 name: 'HSC Study Guide Agenda 1',
-                url: 'https://drive.google.com/file/d/1H0Fiu3ee3YN9ETXc6OSGvirSQ_TmXwzM/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1amo2p-Irjedt__UIt_gL4b5xSYRAFfkT'
             },
             {
                 name: 'HSC Study Guide Agenda 2',
-                url: 'https://drive.google.com/file/d/1GP6EU1LYAOhp2ErsvffPHgpskDF6pnAv/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1EGBZsBridLoXuRjDJrdBjsZ12hmUGyOa'
             }
         ],
         studentOfficers: [
@@ -264,11 +264,11 @@ export const committees: Committee[] = [
         studyGuides: [
             {
                 name: 'DISEC Study Guide Agenda 1',
-                url: 'https://drive.google.com/file/d/1zotN7RLRPtI0cd0Adwmcj6IlksdKkcMG/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1EaXI6mI88IBKpQUXUHH9qxgd3TN0xEaN'
             },
             {
                 name: 'DISEC Study Guide Agenda 2',
-                url: 'https://drive.google.com/file/d/1c5A4--S_j6O5Rxs_ASv9kssXtdbFi_8L/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1JaSUyJysXLNwnMLrSX9gCg-vGjIomkZx'
             }
         ],
         studentOfficers: [
@@ -305,11 +305,11 @@ export const committees: Committee[] = [
         studyGuides: [
             {
                 name: 'ICC Study Guide Agenda 1',
-                url: 'https://drive.google.com/file/d/1nTx-lFReCPYYc4tvODN8j0J6-oT4nBRA/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1fweh3Uj1KUlCeCy-LzacwOPggtT8jGAL'
             },
             {
                 name: 'ICC Study Guide Agenda 2',
-                url: 'https://drive.google.com/file/d/13DZ-diom799gNDk8NKBfef5pPiJXYyAz/view?usp=sharing'
+                url: 'https://drive.google.com/open?id=1ua23m9bbZqMsHFzX9xf9t2NQ25eLytZW'
             }
         ],
         studentOfficers: [

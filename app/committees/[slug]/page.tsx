@@ -141,7 +141,7 @@ export default function CommitteePage() {
                             <div className="space-y-4">
                                 {/* Global ROP Guide - on every committee page */}
                                 <a
-                                    href="https://drive.google.com/file/d/15HpbKrC5XzHvrIwW4Ratkxb1nkx-Dn_l/view?usp=sharing"
+                                    href="https://drive.google.com/open?id=1kMGsb-Buxz_K82KD_Eogf71jFheuNTbv"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-between p-4 bg-charcoal/5 dark:bg-platinum/5 hover:bg-school-red/10 border border-charcoal/10 dark:border-platinum/10 rounded-xl transition-all duration-300 group"
